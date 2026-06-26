@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162B50;
+  --navy-light: #1E3A6E;
+  --cream: #F0EDE8;
+  --cream-dark: #E2DDD6;
+  --white: #FFFFFF;
+  --text-muted: #8A94A6;
+  --accent-line: #C8C0B4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(13, 31, 60, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-divider {
+  width: 1px; height: 22px;
+  background: rgba(240,237,232,0.15);
+  margin: 0 4px;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.7);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-links a.active { color: var(--cream); }
+
+/* Dropdown arrow */
+.nav-arrow {
+  font-size: 8px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-links > li:hover .nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.1);
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, top 0.15s;
+  z-index: 300;
+}
+
+.nav-links > li:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  top: calc(100% + 12px);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.65);
+}
+
+.nav-dropdown a:last-child { border-bottom: none; }
+
+.nav-dropdown a:hover {
+  background: rgba(240,237,232,0.04);
+  color: var(--cream);
+}
+
+.nav-dropdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  padding: 12px 20px 6px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.35) !important;
+  color: var(--cream) !important;
+  padding: 8px 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border-color: var(--cream) !important;
+}
+
+/* ========================
+   PAGE HEADER (inner pages)
+======================== */
+.page-header {
+  background: var(--navy);
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.page-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.page-header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: rgba(240,237,232,0.25);
+}
+
+.page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.page-header h1 em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+.page-header-sub {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ========================
+   SHARED SECTION UTILITIES
+======================== */
+section { padding: 88px 48px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+.section-eyebrow.light { color: rgba(240,237,232,0.35); }
+.section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
+
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: #4A6FA5; }
+.section-title.light { color: var(--cream); }
+.section-title.light em { color: rgba(240,237,232,0.45); }
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(240,237,232,0.7);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.25);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-ghost:hover { border-color: rgba(240,237,232,0.6); color: var(--cream); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+/* ========================
+   MARQUEE
+======================== */
+.marquee-strip {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  overflow: hidden;
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.28);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 64px;
+}
+
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(240,237,232,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-main {
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  border-bottom: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.35);
+  line-height: 1.75;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  margin-bottom: 2px;
+}
+
+.footer-contact-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.55);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-left {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.2);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal-links a:hover { color: rgba(240,237,232,0.55); }
+
+/* ========================
+   FORM ELEMENTS
+======================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+}
+
+.form-label.dark { color: rgba(13,31,60,0.5); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.12);
+  color: var(--cream);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  width: 100%;
+}
+
+.form-input.light, .form-select.light, .form-textarea.light {
+  background: rgba(13,31,60,0.04);
+  border-color: rgba(13,31,60,0.15);
+  color: var(--navy);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(240,237,232,0.18); }
+.form-input.light::placeholder, .form-textarea.light::placeholder { color: rgba(13,31,60,0.25); }
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(240,237,232,0.35);
+}
+
+.form-input.light:focus, .form-select.light:focus, .form-textarea.light:focus {
+  border-color: rgba(13,31,60,0.4);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
+
+.form-select option { background: var(--navy); color: var(--cream); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
+<style>
+.services-grid {
+  background: var(--cream);
+}
+
+.service-block {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+  padding: 72px 48px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.service-block:last-child { border-bottom: none; }
+
+.service-block-meta {}
+
+.service-block-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 80px;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
+}
+
+.service-block-tag {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.service-block-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 34px; font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.service-block-codename {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8A94A6;
+  margin-bottom: 24px;
+}
+
+.service-block-price {
+  font-family: 'EB Garamond', serif;
+  font-size: 40px;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.service-block-price-note {
+  font-size: 10px; font-weight: 400;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #8A94A6;
+  margin-bottom: 28px;
+}
+
+.service-block-body {}
+
+.service-block-desc {
+  font-size: 16px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 36px;
+}
+
+.service-includes-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.service-includes {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.service-includes li {
+  font-size: 14px; font-weight: 300;
+  color: #3A4A60; line-height: 1.6;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+
+.service-includes li::before {
+  content: '—';
+  color: var(--text-muted);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.service-why {
+  background: var(--cream-dark);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  border-left: 3px solid var(--navy);
+}
+
+.service-why-label {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.service-why-text {
+  font-size: 13px; font-weight: 400;
+  color: var(--navy); line-height: 1.65;
+  font-style: italic;
+}
+
+/* Comparison table */
+.comparison-section {
+  background: var(--navy);
+  padding: 88px 48px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 56px;
+}
+
+.comparison-table th {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid rgba(240,237,232,0.08);
+}
+
+.comparison-table td {
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,237,232,0.6);
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(240,237,232,0.05);
+  vertical-align: top;
+}
+
+.comparison-table tr:hover td {
+  background: rgba(240,237,232,0.02);
+}
+
+.check { color: rgba(240,237,232,0.75); font-size: 15px; }
+.dash { color: rgba(240,237,232,0.2); font-size: 15px; }
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Locke &amp; Boole Solutions</title>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark">L&amp;B</span>
+    <span class="nav-divider"></span>
+    <span class="nav-logo-text">Locke &amp; Boole</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" data-page="services.html">Services</a></li>
+    <li><a href="methodology.html" data-page="methodology.html">Methodology</a></li>
+    <li><a href="sectors.html" data-page="sectors.html">Sectors</a></li>
+    <li class="has-dropdown">
+      <a href="#" data-page="resources">Resources <span class="nav-arrow">▼</span></a>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Resources</div>
+        <a href="insights.html">Insights &amp; Blog</a>
+        <a href="briefings.html">Briefings</a>
+      </div>
+    </li>
+    <li><a href="about.html" data-page="about.html">About Us</a></li>
+    <li><a href="demo.html" class="nav-cta" data-page="demo.html">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Services</div>
+  <h1>Surveillance and <em>Verification.</em></h1>
+  <p class="page-header-sub">We do not provide advice. We provide data — verified, mapped, and delivered in subpoena-ready formats.</p>
+</div>
+
+<div class="services-grid">
+  <!-- FIREWALL -->
+  <div class="service-block" id="firewall">
+    <div class="service-block-meta">
+      <div class="service-block-num">01</div>
+      <div class="service-block-tag">Subscription · Monthly</div>
+      <div class="service-block-name">The Firewall</div>
+      <div class="service-block-codename">Continuous Monitoring</div>
+      <div class="service-block-price">$1,500<span style="font-size:20px;opacity:0.45">/mo</span></div>
+      <div class="service-block-price-note">Top 5 business partners</div>
+      <a href="demo.html" class="btn-navy">Engage This Service</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">Retain our automated monitoring engine to watch over your critical partners, vendors, and organizational subsidiaries. The Firewall runs continuously so you don't have to — surfacing structural changes before they become legal exposure.</p>
+      <div class="service-includes-title">What's Included</div>
+      <ul class="service-includes">
+        <li>Monthly Stability Reports on your top 5 business partners</li>
+        <li>Automated flagging of registered agent changes, entity dissolutions, and new UCC liens</li>
+        <li>2-page executive summary delivered by the 1st of every month</li>
+        <li>Secure encrypted PDF delivery for every report</li>
+        <li>Email alerts for time-sensitive structural changes between reports</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">Why You Need It</div>
+        <p class="service-why-text">To avoid a $50,000 legal headache from a partner who quietly restructured their liability shields without your knowledge — and without telling you.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEEP DIVE -->
+  <div class="service-block" id="deepdive">
+    <div class="service-block-meta">
+      <div class="service-block-num">02</div>
+      <div class="service-block-tag">One-Time · Bespoke</div>
+      <div class="service-block-name">The Deep Dive</div>
+      <div class="service-block-codename">Asset Trace Report</div>
+      <div class="service-block-price">$3,500<span style="font-size:20px;opacity:0.45">+</span></div>
+      <div class="service-block-price-note">Starting price</div>
+      <a href="demo.html" class="btn-navy">Engage This Service</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">A full, bespoke asset mapping investigation for high-stakes litigation, divorce proceedings, bankruptcy, or M&amp;A due diligence. Every claim is independently verifiable using the same public sources we cite. We do not guess.</p>
+      <div class="service-includes-title">What's Included</div>
+      <ul class="service-includes">
+        <li>20-page visual "asset genealogy" report mapping the target's full ownership chain</li>
+        <li>Cross-state and cross-jurisdictional entity tracking</li>
+        <li>Footnoted data sources for every claim in the report</li>
+        <li>Secure, encrypted PDF delivery</li>
+        <li>Optional: Subpoena-ready affidavit of methodology (+$2,000)</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">When to Use It</div>
+        <p class="service-why-text">High-net-worth divorce where assets have been moved into holding companies. Pre-acquisition diligence where the selling entity's ownership chain is opaque. Bankruptcy proceedings where assets may have been transferred to nominees.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SILENT PARTNER -->
+  <div class="service-block" id="silent">
+    <div class="service-block-meta">
+      <div class="service-block-num">03</div>
+      <div class="service-block-tag">VIP Retainer · Monthly</div>
+      <div class="service-block-name">The Silent Partner</div>
+      <div class="service-block-codename">Executive Access</div>
+      <div class="service-block-price">$2,000<span style="font-size:20px;opacity:0.45">/mo</span></div>
+      <div class="service-block-price-note">Includes Firewall tier</div>
+      <a href="demo.html" class="btn-navy">Engage This Service</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">Immediate, priority access to our analyst team for high-volume, time-sensitive intelligence requirements. For clients who cannot afford to wait — or who simply require the highest tier of continuous structural intelligence.</p>
+      <div class="service-includes-title">What's Included</div>
+      <ul class="service-includes">
+        <li>All services in The Firewall Continuous Monitoring subscription</li>
+        <li>Unlimited "quick-trace" requests — entity status identified in under 1 hour</li>
+        <li>One complimentary Deep Dive report per quarter (a $3,500 value)</li>
+        <li>Direct "Hotline" access via encrypted messaging for urgent asset searches</li>
+        <li>24-hour guaranteed turnaround on all urgent requests</li>
+        <li>Dedicated analyst point-of-contact for all matters</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">Who It's For</div>
+        <p class="service-why-text">Litigation firms handling multiple concurrent matters. Family offices auditing their financial managers. Private equity teams running parallel diligence processes on multiple targets.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAINING -->
+  <div class="service-block" id="training">
+    <div class="service-block-meta">
+      <div class="service-block-num">04</div>
+      <div class="service-block-tag">Training · Per Session</div>
+      <div class="service-block-name">Analyst Accelerator</div>
+      <div class="service-block-codename">Internal OSINT Capacity</div>
+      <div class="service-block-price">$3,500<span style="font-size:20px;opacity:0.45">/session</span></div>
+      <div class="service-block-price-note">4-hour virtual session</div>
+      <a href="demo.html" class="btn-navy">Inquire About Training</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">We do not hoard our methodology. For clients seeking to build durable internal OSINT capacity, we offer live, virtual training sessions run directly by our analysts. Your team will leave capable of running basic structural investigations independently.</p>
+      <div class="service-includes-title">Training Modules</div>
+      <ul class="service-includes">
+        <li>Navigating UCC filings and Secretary of State databases across jurisdictions</li>
+        <li>Advanced Boolean search operators for open-source investigations</li>
+        <li>Building a "shell entity family tree" in under 30 minutes</li>
+        <li>Real property record cross-referencing for asset confirmation</li>
+        <li>EDGAR, federal procurement, and bankruptcy docket navigation</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">What You'll Receive</div>
+        <p class="service-why-text">A 40-page digital playbook and recorded session video for your firm's permanent internal records. Suitable for teams of up to 10 participants per session.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<section class="comparison-section">
+  <div class="section-eyebrow light">Service Comparison</div>
+  <h2 class="section-title light">Find the right <em>tier.</em></h2>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Firewall</th>
+        <th>Deep Dive</th>
+        <th>Silent Partner</th>
+        <th>Accelerator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Continuous partner monitoring</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Monthly executive summary</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Full asset genealogy report</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td>✓ Quarterly</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Cross-jurisdictional tracing</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Subpoena-ready affidavit (add-on)</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Unlimited quick-trace requests</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Direct encrypted analyst hotline</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Internal team training</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+      </tr>
+      <tr>
+        <td>40-page methodology playbook</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <a href="demo.html" class="btn-primary">Request a Demonstration</a>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
+      <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
+      <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">Our Story</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sectors.html">Sectors Served</a>
+      <a href="demo.html">Request a Demo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <a href="services.html#firewall">The Firewall</a>
+      <a href="services.html#deepdive">The Deep Dive</a>
+      <a href="services.html#silent">The Silent Partner</a>
+      <a href="services.html#training">Analyst Accelerator</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="insights.html">Insights &amp; Blog</a>
+      <a href="briefings.html">Briefings</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="demo.html">Client Intake</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2026 Locke &amp; Boole Solutions LLC. A Registered Florida Limited Liability Company. Data intelligence, not legal counsel.</div>
+    <div class="footer-legal-links">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var resourcePages = ['insights.html','briefings.html'];
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    var dp = a.getAttribute('data-page');
+    if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
+      a.classList.add('active');
+    }
+  });
+  // filter buttons
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

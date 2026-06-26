@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162B50;
+  --navy-light: #1E3A6E;
+  --cream: #F0EDE8;
+  --cream-dark: #E2DDD6;
+  --white: #FFFFFF;
+  --text-muted: #8A94A6;
+  --accent-line: #C8C0B4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(13, 31, 60, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-divider {
+  width: 1px; height: 22px;
+  background: rgba(240,237,232,0.15);
+  margin: 0 4px;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.7);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-links a.active { color: var(--cream); }
+
+/* Dropdown arrow */
+.nav-arrow {
+  font-size: 8px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-links > li:hover .nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.1);
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, top 0.15s;
+  z-index: 300;
+}
+
+.nav-links > li:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  top: calc(100% + 12px);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.65);
+}
+
+.nav-dropdown a:last-child { border-bottom: none; }
+
+.nav-dropdown a:hover {
+  background: rgba(240,237,232,0.04);
+  color: var(--cream);
+}
+
+.nav-dropdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  padding: 12px 20px 6px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.35) !important;
+  color: var(--cream) !important;
+  padding: 8px 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border-color: var(--cream) !important;
+}
+
+/* ========================
+   PAGE HEADER (inner pages)
+======================== */
+.page-header {
+  background: var(--navy);
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.page-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.page-header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: rgba(240,237,232,0.25);
+}
+
+.page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.page-header h1 em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+.page-header-sub {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ========================
+   SHARED SECTION UTILITIES
+======================== */
+section { padding: 88px 48px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+.section-eyebrow.light { color: rgba(240,237,232,0.35); }
+.section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
+
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: #4A6FA5; }
+.section-title.light { color: var(--cream); }
+.section-title.light em { color: rgba(240,237,232,0.45); }
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(240,237,232,0.7);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.25);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-ghost:hover { border-color: rgba(240,237,232,0.6); color: var(--cream); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+/* ========================
+   MARQUEE
+======================== */
+.marquee-strip {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  overflow: hidden;
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.28);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 64px;
+}
+
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(240,237,232,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-main {
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  border-bottom: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.35);
+  line-height: 1.75;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  margin-bottom: 2px;
+}
+
+.footer-contact-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.55);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-left {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.2);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal-links a:hover { color: rgba(240,237,232,0.55); }
+
+/* ========================
+   FORM ELEMENTS
+======================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+}
+
+.form-label.dark { color: rgba(13,31,60,0.5); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.12);
+  color: var(--cream);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  width: 100%;
+}
+
+.form-input.light, .form-select.light, .form-textarea.light {
+  background: rgba(13,31,60,0.04);
+  border-color: rgba(13,31,60,0.15);
+  color: var(--navy);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(240,237,232,0.18); }
+.form-input.light::placeholder, .form-textarea.light::placeholder { color: rgba(13,31,60,0.25); }
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(240,237,232,0.35);
+}
+
+.form-input.light:focus, .form-select.light:focus, .form-textarea.light:focus {
+  border-color: rgba(13,31,60,0.4);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
+
+.form-select option { background: var(--navy); color: var(--cream); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
+<style>
+.disclaimer-body {
+  background: var(--cream);
+  padding: 72px 48px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.disclaimer-toc {
+  position: sticky;
+  top: 100px;
+}
+
+.disclaimer-toc-title {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.disclaimer-toc a {
+  display: block;
+  font-size: 12px; font-weight: 400;
+  color: #5A6880;
+  text-decoration: none;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+
+.disclaimer-toc a:hover { color: var(--navy); }
+
+.disclaimer-toc-updated {
+  font-size: 10px; font-weight: 300;
+  color: var(--text-muted);
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.disclaimer-content {}
+
+.disclaimer-intro {
+  font-size: 15px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.disclaimer-section {
+  margin-bottom: 44px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.disclaimer-section:last-child { border-bottom: none; }
+
+.disclaimer-section-num {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.disclaimer-section h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.disclaimer-section p {
+  font-size: 14px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 14px;
+}
+
+.disclaimer-section p:last-child { margin-bottom: 0; }
+.disclaimer-section strong { font-weight: 600; color: var(--navy); }
+
+.disclaimer-callout {
+  background: var(--navy);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+
+.disclaimer-callout p {
+  font-size: 14px; font-weight: 300;
+  color: rgba(240,237,232,0.7);
+  line-height: 1.75;
+  margin: 0;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclaimer — Locke &amp; Boole Solutions</title>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark">L&amp;B</span>
+    <span class="nav-divider"></span>
+    <span class="nav-logo-text">Locke &amp; Boole</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" data-page="services.html">Services</a></li>
+    <li><a href="methodology.html" data-page="methodology.html">Methodology</a></li>
+    <li><a href="sectors.html" data-page="sectors.html">Sectors</a></li>
+    <li class="has-dropdown">
+      <a href="#" data-page="resources">Resources <span class="nav-arrow">▼</span></a>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Resources</div>
+        <a href="insights.html">Insights &amp; Blog</a>
+        <a href="briefings.html">Briefings</a>
+      </div>
+    </li>
+    <li><a href="about.html" data-page="about.html">About Us</a></li>
+    <li><a href="demo.html" class="nav-cta" data-page="demo.html">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Legal</div>
+  <h1>Disclaimer.</h1>
+  <p class="page-header-sub">Important disclosures regarding the nature, limitations, and intended use of all information and services provided by Locke &amp; Boole Solutions LLC.</p>
+</div>
+
+<div class="disclaimer-body">
+  <div class="disclaimer-toc">
+    <div class="disclaimer-toc-title">Contents</div>
+    <a href="#d-not-legal">Not Legal Advice</a>
+    <a href="#d-accuracy">Accuracy of Information</a>
+    <a href="#d-website">Website Disclaimer</a>
+    <a href="#d-third-party">Third-Party Sources</a>
+    <a href="#d-no-relationship">No Professional Relationship</a>
+    <a href="#d-forward">Forward-Looking Statements</a>
+    <a href="#d-liability">Limitation of Liability</a>
+    <a href="#d-jurisdiction">Jurisdictional Notice</a>
+    <div class="disclaimer-toc-updated">Last updated:<br>June 1, 2026</div>
+  </div>
+
+  <div class="disclaimer-content">
+    <div class="disclaimer-intro">
+      The following disclaimers apply to all content published on this website, all materials produced by Locke &amp; Boole Solutions LLC, and all communications made by the Firm in connection with its services. Please read these disclosures carefully. If you do not accept these terms, do not use this website or engage our services.
+    </div>
+
+    <div class="disclaimer-section" id="d-not-legal">
+      <div class="disclaimer-section-num">Disclaimer 01</div>
+      <h2>Not Legal Advice</h2>
+      <p><strong>Nothing on this website, in any Deliverable, or in any communication from Locke &amp; Boole Solutions LLC constitutes legal advice.</strong> Locke &amp; Boole is a data intelligence firm, not a law firm. We are not licensed to practice law in any jurisdiction and do not purport to do so.</p>
+      <p>All information provided by the Firm — whether on this website, in reports, in briefings, in insights articles, or in direct communications — is provided for <strong>general informational purposes only</strong>. It does not constitute legal advice and should not be relied upon as a substitute for consultation with a qualified attorney licensed in the relevant jurisdiction.</p>
+      <div class="disclaimer-callout">
+        <p>If you require legal advice regarding any matter touched upon in our services or publications, you should consult a licensed attorney. No content produced by Locke &amp; Boole Solutions LLC creates an attorney-client relationship between you and this firm under any circumstances.</p>
+      </div>
+    </div>
+
+    <div class="disclaimer-section" id="d-accuracy">
+      <div class="disclaimer-section-num">Disclaimer 02</div>
+      <h2>Accuracy of Information</h2>
+      <p>While Locke &amp; Boole Solutions LLC makes reasonable efforts to ensure that all information contained in its Deliverables is accurate as of the date of delivery, we make <strong>no warranties, express or implied</strong>, regarding the completeness, accuracy, reliability, suitability, or availability of any information provided.</p>
+      <p>Public records — including Secretary of State filings, UCC records, county property records, and federal databases — are subject to publication delays, clerical errors, incomplete filings, and jurisdictional inconsistencies that are entirely beyond the Firm's control. Corporate structures change. Registered agents change. Assets are transferred. Our reports reflect the public record as it existed at the time of investigation, not necessarily as it exists at the time you read or act upon them.</p>
+      <p>Reliance on any information provided by Locke &amp; Boole Solutions LLC is therefore at your own risk. The Firm shall not be liable for any errors, omissions, or inaccuracies in the information provided, or for any decisions made in reliance on such information.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-website">
+      <div class="disclaimer-section-num">Disclaimer 03</div>
+      <h2>Website Disclaimer</h2>
+      <p>The content of this website is provided for general information purposes only. Case study metrics, operational statistics, and service descriptions reflect historical or representative data and are subject to change without notice.</p>
+      <p>Locke &amp; Boole Solutions LLC reserves the right to modify, update, or remove any content on this website at any time and without prior notice. The Firm makes no representation that the website will be available without interruption, error-free, or free of harmful components.</p>
+      <p>This website may contain links to third-party websites. These links are provided for convenience only. The Firm has no control over the content of linked sites and accepts no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-third-party">
+      <div class="disclaimer-section-num">Disclaimer 04</div>
+      <h2>Third-Party Sources</h2>
+      <p>The Firm's Deliverables and publications may reference, cite, or summarize information from third-party sources, including government databases, court filings, and public registries. While we endeavor to cite reliable sources, the Firm makes no representation regarding the accuracy, completeness, or currency of information obtained from third-party sources.</p>
+      <p>The Firm is not responsible for the content, accuracy, or reliability of any third-party source referenced in its work. Citations are provided to enable independent verification; they do not constitute endorsement of the underlying source's general reliability.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-no-relationship">
+      <div class="disclaimer-section-num">Disclaimer 05</div>
+      <h2>No Professional Relationship</h2>
+      <p>Accessing this website, reading our publications, submitting an intake inquiry, or receiving a Deliverable does not establish any professional, fiduciary, or advisory relationship between you and Locke &amp; Boole Solutions LLC.</p>
+      <p>A formal client relationship is established <strong>only</strong> upon execution of a signed Engagement Letter or Retainer Agreement by both parties and clearance of all applicable fees. Until that point, no duty of any kind is owed by the Firm to any individual or entity that has interacted with this website or its publications.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-forward">
+      <div class="disclaimer-section-num">Disclaimer 06</div>
+      <h2>Forward-Looking Statements</h2>
+      <p>Any statements in our publications or communications that are not historical fact may constitute forward-looking statements. These include statements about anticipated regulatory developments, industry trends, or the potential implications of legal or structural changes.</p>
+      <p>Forward-looking statements involve known and unknown risks and uncertainties. Actual outcomes may differ materially from those expressed or implied. The Firm undertakes no obligation to update forward-looking statements following publication.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-liability">
+      <div class="disclaimer-section-num">Disclaimer 07</div>
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, Locke &amp; Boole Solutions LLC expressly excludes all liability for any loss or damage — including without limitation indirect or consequential loss or damage — arising from or in connection with the use of this website, any content published on it, or any Deliverable produced by the Firm.</p>
+      <p>This limitation applies whether the loss arises in contract, tort (including negligence), breach of statutory duty, or otherwise, and whether or not the Firm has been advised of the possibility of such loss.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-jurisdiction">
+      <div class="disclaimer-section-num">Disclaimer 08</div>
+      <h2>Jurisdictional Notice</h2>
+      <p>Locke &amp; Boole Solutions LLC is a Florida Limited Liability Company operating under the laws of the State of Florida. Our services are directed at legal professionals, corporate entities, and qualified business clients engaged in lawful activities.</p>
+      <p>The information on this website is not directed at any person in any jurisdiction where, by reason of that person's nationality, residence, or domicile, the publication or availability of the information would be contrary to law or regulation. Persons in such jurisdictions should not access this website or its content.</p>
+      <p>Questions regarding these disclaimers may be directed to <strong>contact@lockeandboole.com</strong>.</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
+      <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
+      <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">Our Story</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sectors.html">Sectors Served</a>
+      <a href="demo.html">Request a Demo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <a href="services.html#firewall">The Firewall</a>
+      <a href="services.html#deepdive">The Deep Dive</a>
+      <a href="services.html#silent">The Silent Partner</a>
+      <a href="services.html#training">Analyst Accelerator</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="insights.html">Insights &amp; Blog</a>
+      <a href="briefings.html">Briefings</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="demo.html">Client Intake</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2026 Locke &amp; Boole Solutions LLC. A Registered Florida Limited Liability Company. Data intelligence, not legal counsel.</div>
+    <div class="footer-legal-links">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var resourcePages = ['insights.html','briefings.html'];
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    var dp = a.getAttribute('data-page');
+    if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
+      a.classList.add('active');
+    }
+  });
+  // filter buttons
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

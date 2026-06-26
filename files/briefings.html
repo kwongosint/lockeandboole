@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162B50;
+  --navy-light: #1E3A6E;
+  --cream: #F0EDE8;
+  --cream-dark: #E2DDD6;
+  --white: #FFFFFF;
+  --text-muted: #8A94A6;
+  --accent-line: #C8C0B4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(13, 31, 60, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-divider {
+  width: 1px; height: 22px;
+  background: rgba(240,237,232,0.15);
+  margin: 0 4px;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.7);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-links a.active { color: var(--cream); }
+
+/* Dropdown arrow */
+.nav-arrow {
+  font-size: 8px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-links > li:hover .nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.1);
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, top 0.15s;
+  z-index: 300;
+}
+
+.nav-links > li:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  top: calc(100% + 12px);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.65);
+}
+
+.nav-dropdown a:last-child { border-bottom: none; }
+
+.nav-dropdown a:hover {
+  background: rgba(240,237,232,0.04);
+  color: var(--cream);
+}
+
+.nav-dropdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  padding: 12px 20px 6px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.35) !important;
+  color: var(--cream) !important;
+  padding: 8px 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border-color: var(--cream) !important;
+}
+
+/* ========================
+   PAGE HEADER (inner pages)
+======================== */
+.page-header {
+  background: var(--navy);
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.page-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.page-header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: rgba(240,237,232,0.25);
+}
+
+.page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.page-header h1 em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+.page-header-sub {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ========================
+   SHARED SECTION UTILITIES
+======================== */
+section { padding: 88px 48px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+.section-eyebrow.light { color: rgba(240,237,232,0.35); }
+.section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
+
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: #4A6FA5; }
+.section-title.light { color: var(--cream); }
+.section-title.light em { color: rgba(240,237,232,0.45); }
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(240,237,232,0.7);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.25);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-ghost:hover { border-color: rgba(240,237,232,0.6); color: var(--cream); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+/* ========================
+   MARQUEE
+======================== */
+.marquee-strip {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  overflow: hidden;
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.28);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 64px;
+}
+
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(240,237,232,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-main {
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  border-bottom: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.35);
+  line-height: 1.75;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  margin-bottom: 2px;
+}
+
+.footer-contact-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.55);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-left {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.2);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal-links a:hover { color: rgba(240,237,232,0.55); }
+
+/* ========================
+   FORM ELEMENTS
+======================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+}
+
+.form-label.dark { color: rgba(13,31,60,0.5); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.12);
+  color: var(--cream);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  width: 100%;
+}
+
+.form-input.light, .form-select.light, .form-textarea.light {
+  background: rgba(13,31,60,0.04);
+  border-color: rgba(13,31,60,0.15);
+  color: var(--navy);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(240,237,232,0.18); }
+.form-input.light::placeholder, .form-textarea.light::placeholder { color: rgba(13,31,60,0.25); }
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(240,237,232,0.35);
+}
+
+.form-input.light:focus, .form-select.light:focus, .form-textarea.light:focus {
+  border-color: rgba(13,31,60,0.4);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
+
+.form-select option { background: var(--navy); color: var(--cream); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
+<style>
+.briefings-intro {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.briefings-intro-body {
+  font-size: 15px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-top: 28px;
+}
+
+.briefings-intro-body p + p { margin-top: 16px; }
+
+.briefings-note {
+  background: var(--cream-dark);
+  padding: 28px 28px;
+  margin-top: 0;
+}
+
+.briefings-note-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.briefings-note-text {
+  font-size: 13px; font-weight: 300;
+  color: #4A5A70; line-height: 1.7;
+}
+
+/* BRIEFINGS LIST */
+.briefings-section {
+  background: var(--cream);
+  padding-top: 0;
+}
+
+.briefings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--cream-dark);
+  border: 1px solid var(--cream-dark);
+}
+
+.briefing-row {
+  background: var(--cream);
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 40px;
+  align-items: center;
+  transition: background 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.briefing-row:hover { background: #EAE6E0; }
+
+.briefing-date {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.briefing-content {}
+
+.briefing-category {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.briefing-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 20px; font-weight: 400;
+  color: var(--navy);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.briefing-desc {
+  font-size: 13px; font-weight: 300;
+  color: #5A6880; line-height: 1.6;
+}
+
+.briefing-arrow {
+  font-size: 18px; color: var(--cream-dark);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.briefing-row:hover .briefing-arrow {
+  color: var(--navy);
+  transform: translateX(4px);
+}
+
+.briefing-restricted {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(13,31,60,0.35);
+  border: 1px solid rgba(13,31,60,0.15);
+  padding: 4px 10px;
+  white-space: nowrap;
+}
+
+/* ACCESS SECTION */
+.access-section {
+  background: var(--navy);
+}
+
+.access-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(240,237,232,0.07);
+  border: 1px solid rgba(240,237,232,0.07);
+  margin-top: 56px;
+}
+
+.access-cell {
+  background: var(--navy);
+  padding: 44px 40px;
+}
+
+.access-tier {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.access-title {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px; color: var(--cream);
+  margin-bottom: 14px;
+}
+
+.access-desc {
+  font-size: 14px; font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  line-height: 1.75;
+  margin-bottom: 24px;
+}
+
+.access-includes {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 28px;
+}
+
+.access-includes li {
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  display: flex; gap: 10px;
+}
+
+.access-includes li::before {
+  content: '›';
+  color: rgba(240,237,232,0.25);
+  flex-shrink: 0;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briefings — Locke &amp; Boole Solutions</title>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark">L&amp;B</span>
+    <span class="nav-divider"></span>
+    <span class="nav-logo-text">Locke &amp; Boole</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" data-page="services.html">Services</a></li>
+    <li><a href="methodology.html" data-page="methodology.html">Methodology</a></li>
+    <li><a href="sectors.html" data-page="sectors.html">Sectors</a></li>
+    <li class="has-dropdown">
+      <a href="#" data-page="resources">Resources <span class="nav-arrow">▼</span></a>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Resources</div>
+        <a href="insights.html">Insights &amp; Blog</a>
+        <a href="briefings.html">Briefings</a>
+      </div>
+    </li>
+    <li><a href="about.html" data-page="about.html">About Us</a></li>
+    <li><a href="demo.html" class="nav-cta" data-page="demo.html">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Resources / Briefings</div>
+  <h1>Timely intelligence<br>on structural <em>risk.</em></h1>
+  <p class="page-header-sub">Briefings are short-form intelligence memos produced by the Locke &amp; Boole analyst team when a development in corporate law, OSINT practice, or regulatory compliance warrants immediate attention from our clients.</p>
+</div>
+
+<section class="briefings-intro">
+  <div>
+    <div class="section-eyebrow">What Are Briefings</div>
+    <h2 class="section-title">Not analysis.<br><em>Intelligence.</em></h2>
+    <div class="briefings-intro-body">
+      <p>Unlike our Insights pieces — which cover methodology and framework in depth — Briefings are short, direct, and time-sensitive. They are written when something changes in the regulatory environment, the OSINT toolset, or corporate law that has immediate implications for how our clients should approach their work.</p>
+      <p>Briefings are typically 2–4 pages. They do not hedge. They tell you what changed, why it matters to your practice, and what to do about it.</p>
+    </div>
+  </div>
+  <div>
+    <div class="briefings-note">
+      <div class="briefings-note-title">Access Policy</div>
+      <div class="briefings-note-text">Briefings marked "Restricted" are available exclusively to active retainer clients (Firewall, Silent Partner). Briefings marked "Open" are available to all newsletter subscribers. To access restricted briefings, inquire about a retainer engagement via our <a href="demo.html" style="color:var(--navy);font-weight:500;">client intake</a>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BRIEFINGS LIST -->
+<section class="briefings-section">
+  <div class="section-eyebrow">Recent Briefings</div>
+  <div class="briefings-list">
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">June 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">Regulatory Update · FinCEN</div>
+        <div class="briefing-title">FinCEN BOI Registry: New Reporting Exemptions and What They Mean for Investigative Practice</div>
+        <div class="briefing-desc">Three new exemption categories were quietly added in the May 2026 regulatory update. Here's what is no longer required to be reported — and where that creates new blind spots.</div>
+      </div>
+      <div>
+        <div class="briefing-restricted">Restricted</div>
+      </div>
+    </a>
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">May 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">OSINT Tools · Practice Update</div>
+        <div class="briefing-title">Two Secretary of State Portals Have Changed Their Search Interfaces — What Investigators Need to Know</div>
+        <div class="briefing-desc">Nevada and Wyoming updated their business registry search systems in April. The new interfaces have changed how registered agent data surfaces. A practical guide to the new navigation.</div>
+      </div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
+    </a>
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">May 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">Corporate Law · Florida</div>
+        <div class="briefing-title">Florida LLC Act Amendment: Changes to Annual Report Requirements Affecting Entity Monitoring</div>
+        <div class="briefing-desc">A Florida legislative amendment effective July 1, 2026 changes the information required on annual LLC reports. For clients monitoring Florida-registered entities, this changes your data picture.</div>
+      </div>
+      <div>
+        <div class="briefing-restricted">Restricted</div>
+      </div>
+    </a>
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">April 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">Litigation Practice · Asset Recovery</div>
+        <div class="briefing-title">Post-Judgment Asset Discovery: A Change in the 11th Circuit's Approach to Fraudulent Transfer Clawbacks</div>
+        <div class="briefing-desc">A recent 11th Circuit decision has implications for how asset recovery attorneys frame their discovery requests in Florida post-judgment proceedings. Summary for litigation teams.</div>
+      </div>
+      <div>
+        <div class="briefing-restricted">Restricted</div>
+      </div>
+    </a>
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">April 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">OSINT Practice · Database Update</div>
+        <div class="briefing-title">PACER Fee Structure Update: What Changed and How to Minimize Cost in High-Volume Searches</div>
+        <div class="briefing-desc">PACER's updated fee structure takes effect June 2026. For investigators running large-scale bankruptcy docket searches, the new pricing has meaningful cost implications. Practical guidance on batching and alternatives.</div>
+      </div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
+    </a>
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">March 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">Compliance · Corporate Transparency</div>
+        <div class="briefing-title">The CTA Enforcement Ramp: What the First Wave of BOI Penalties Tells Us About Priorities</div>
+        <div class="briefing-desc">The first formal FinCEN enforcement actions under the Corporate Transparency Act have been issued. An analysis of the penalty pattern, which entities were targeted, and what compliance teams should prioritize.</div>
+      </div>
+      <div>
+        <div class="briefing-restricted">Restricted</div>
+      </div>
+    </a>
+
+    <a class="briefing-row" href="#">
+      <div class="briefing-date">February 2026</div>
+      <div class="briefing-content">
+        <div class="briefing-category">OSINT Practice · Tools</div>
+        <div class="briefing-title">New Geospatial Verification Resources for Commercial Property Confirmation</div>
+        <div class="briefing-desc">Three new publicly accessible tools significantly improve the speed of physical asset confirmation in commercial real estate investigations. A brief evaluation and recommended workflow.</div>
+      </div>
+      <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ACCESS TIERS -->
+<section class="access-section">
+  <div class="section-eyebrow light">Access</div>
+  <h2 class="section-title light">How to receive<br><em>restricted briefings.</em></h2>
+  <div class="access-grid">
+    <div class="access-cell">
+      <div class="access-tier">Newsletter Subscribers</div>
+      <div class="access-title">Open Briefings</div>
+      <div class="access-desc">All briefings marked "Open" are distributed free to newsletter subscribers. Subscribe via our Insights page to receive them as published.</div>
+      <ul class="access-includes">
+        <li>All Open-access briefings</li>
+        <li>Monthly Insights articles</li>
+        <li>Methodology notes</li>
+      </ul>
+      <a href="insights.html#newsletter" class="btn-primary">Subscribe to Newsletter</a>
+    </div>
+    <div class="access-cell">
+      <div class="access-tier">Retainer Clients</div>
+      <div class="access-title">Full Briefing Access</div>
+      <div class="access-desc">Active Firewall and Silent Partner retainer clients receive all briefings — open and restricted — via encrypted email as they are published. No additional cost.</div>
+      <ul class="access-includes">
+        <li>All Open and Restricted briefings</li>
+        <li>Direct analyst alerts for matter-specific developments</li>
+        <li>Priority notification for time-sensitive regulatory changes</li>
+      </ul>
+      <a href="demo.html" class="btn-ghost">Inquire About a Retainer</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
+      <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
+      <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">Our Story</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sectors.html">Sectors Served</a>
+      <a href="demo.html">Request a Demo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <a href="services.html#firewall">The Firewall</a>
+      <a href="services.html#deepdive">The Deep Dive</a>
+      <a href="services.html#silent">The Silent Partner</a>
+      <a href="services.html#training">Analyst Accelerator</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="insights.html">Insights &amp; Blog</a>
+      <a href="briefings.html">Briefings</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="demo.html">Client Intake</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2026 Locke &amp; Boole Solutions LLC. A Registered Florida Limited Liability Company. Data intelligence, not legal counsel.</div>
+    <div class="footer-legal-links">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var resourcePages = ['insights.html','briefings.html'];
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    var dp = a.getAttribute('data-page');
+    if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
+      a.classList.add('active');
+    }
+  });
+  // filter buttons
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

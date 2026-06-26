@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162B50;
+  --navy-light: #1E3A6E;
+  --cream: #F0EDE8;
+  --cream-dark: #E2DDD6;
+  --white: #FFFFFF;
+  --text-muted: #8A94A6;
+  --accent-line: #C8C0B4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(13, 31, 60, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-divider {
+  width: 1px; height: 22px;
+  background: rgba(240,237,232,0.15);
+  margin: 0 4px;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.7);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-links a.active { color: var(--cream); }
+
+/* Dropdown arrow */
+.nav-arrow {
+  font-size: 8px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-links > li:hover .nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.1);
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, top 0.15s;
+  z-index: 300;
+}
+
+.nav-links > li:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  top: calc(100% + 12px);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.65);
+}
+
+.nav-dropdown a:last-child { border-bottom: none; }
+
+.nav-dropdown a:hover {
+  background: rgba(240,237,232,0.04);
+  color: var(--cream);
+}
+
+.nav-dropdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  padding: 12px 20px 6px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.35) !important;
+  color: var(--cream) !important;
+  padding: 8px 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border-color: var(--cream) !important;
+}
+
+/* ========================
+   PAGE HEADER (inner pages)
+======================== */
+.page-header {
+  background: var(--navy);
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.page-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.page-header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: rgba(240,237,232,0.25);
+}
+
+.page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.page-header h1 em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+.page-header-sub {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ========================
+   SHARED SECTION UTILITIES
+======================== */
+section { padding: 88px 48px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+.section-eyebrow.light { color: rgba(240,237,232,0.35); }
+.section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
+
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: #4A6FA5; }
+.section-title.light { color: var(--cream); }
+.section-title.light em { color: rgba(240,237,232,0.45); }
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(240,237,232,0.7);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.25);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-ghost:hover { border-color: rgba(240,237,232,0.6); color: var(--cream); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+/* ========================
+   MARQUEE
+======================== */
+.marquee-strip {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  overflow: hidden;
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.28);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 64px;
+}
+
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(240,237,232,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-main {
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  border-bottom: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.35);
+  line-height: 1.75;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  margin-bottom: 2px;
+}
+
+.footer-contact-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.55);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-left {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.2);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal-links a:hover { color: rgba(240,237,232,0.55); }
+
+/* ========================
+   FORM ELEMENTS
+======================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+}
+
+.form-label.dark { color: rgba(13,31,60,0.5); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.12);
+  color: var(--cream);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  width: 100%;
+}
+
+.form-input.light, .form-select.light, .form-textarea.light {
+  background: rgba(13,31,60,0.04);
+  border-color: rgba(13,31,60,0.15);
+  color: var(--navy);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(240,237,232,0.18); }
+.form-input.light::placeholder, .form-textarea.light::placeholder { color: rgba(13,31,60,0.25); }
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(240,237,232,0.35);
+}
+
+.form-input.light:focus, .form-select.light:focus, .form-textarea.light:focus {
+  border-color: rgba(13,31,60,0.4);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
+
+.form-select option { background: var(--navy); color: var(--cream); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
+<style>
+.compliance-hero {
+  background: var(--navy);
+}
+
+.ethics-grid {
+  background: var(--cream);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background-color: var(--cream-dark);
+  border: 1px solid var(--cream-dark);
+}
+
+.ethics-cell {
+  background: var(--cream);
+  padding: 52px 48px;
+}
+
+.ethics-cell-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 56px;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.ethics-cell-title {
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 12px;
+}
+
+.ethics-cell-body {
+  font-size: 14px; font-weight: 300;
+  color: #4A5A70; line-height: 1.8;
+}
+
+/* WHAT WE DO / DON'T */
+.do-dont-section {
+  background: var(--cream);
+}
+
+.do-dont-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 52px;
+}
+
+.do-col-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid;
+}
+
+.do-col-title.do { color: var(--navy); border-color: var(--navy); }
+.do-col-title.dont { color: #8A3A3A; border-color: #C88; }
+
+.do-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+.do-list li {
+  font-size: 14px; font-weight: 300;
+  line-height: 1.65;
+  display: flex; gap: 12px; align-items: flex-start;
+}
+
+.do-list li.do-item { color: #2A3A50; }
+.do-list li.dont-item { color: #5A3030; }
+
+.do-marker {
+  font-size: 14px; flex-shrink: 0; margin-top: 1px;
+}
+
+.do-marker.check { color: var(--navy); }
+.do-marker.cross { color: #C88; }
+
+/* OSINT STATEMENT */
+.osint-statement {
+  background: var(--navy-mid);
+  padding: 88px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.osint-statement .section-eyebrow { color: rgba(240,237,232,0.35); }
+.osint-statement .section-eyebrow::before { background: rgba(240,237,232,0.2); }
+
+.osint-body {
+  font-size: 15px; font-weight: 300;
+  color: rgba(240,237,232,0.55);
+  line-height: 1.85;
+}
+
+.osint-body p + p { margin-top: 16px; }
+
+.osint-boundaries {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.1);
+  padding: 32px 32px;
+}
+
+.osint-boundaries-title {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+}
+
+.osint-boundary-item {
+  display: flex; gap: 14px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+
+.osint-boundary-marker {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  flex-shrink: 0;
+  padding-top: 2px;
+  width: 40px;
+}
+
+.osint-boundary-text {
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  line-height: 1.65;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compliance &amp; Ethics — Locke &amp; Boole Solutions</title>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark">L&amp;B</span>
+    <span class="nav-divider"></span>
+    <span class="nav-logo-text">Locke &amp; Boole</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" data-page="services.html">Services</a></li>
+    <li><a href="methodology.html" data-page="methodology.html">Methodology</a></li>
+    <li><a href="sectors.html" data-page="sectors.html">Sectors</a></li>
+    <li class="has-dropdown">
+      <a href="#" data-page="resources">Resources <span class="nav-arrow">▼</span></a>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Resources</div>
+        <a href="insights.html">Insights &amp; Blog</a>
+        <a href="briefings.html">Briefings</a>
+      </div>
+    </li>
+    <li><a href="about.html" data-page="about.html">About Us</a></li>
+    <li><a href="demo.html" class="nav-cta" data-page="demo.html">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Compliance &amp; Ethics</div>
+  <h1>Methodology,<br>not <em>advocacy.</em></h1>
+  <p class="page-header-sub">We operate strictly within the boundaries of public records, FOIA mechanisms, and lawful open-source intelligence. These are not aspirational statements. They are operational constraints.</p>
+</div>
+
+<!-- ETHICS GRID -->
+<section style="padding: 72px 48px; background: var(--cream);">
+  <div class="section-eyebrow">Our Ethical Framework</div>
+  <h2 class="section-title" style="margin-bottom:52px;">Six principles we<br>do not <em>compromise.</em></h2>
+  <div class="ethics-grid">
+    <div class="ethics-cell">
+      <div class="ethics-cell-num">I</div>
+      <div class="ethics-cell-title">Public Record Only</div>
+      <div class="ethics-cell-body">Every piece of information we collect and report is drawn from publicly accessible sources — Secretary of State portals, county records, EDGAR, PACER, FOIA responses, and similar. We do not access private systems, accounts, or communications.</div>
+    </div>
+    <div class="ethics-cell">
+      <div class="ethics-cell-num">II</div>
+      <div class="ethics-cell-title">No Surveillance</div>
+      <div class="ethics-cell-body">We do not conduct physical surveillance of individuals, install tracking software, intercept communications, or engage in any investigative activity that requires in-person observation of a subject's movements or activities.</div>
+    </div>
+    <div class="ethics-cell">
+      <div class="ethics-cell-num">III</div>
+      <div class="ethics-cell-title">Cite Everything</div>
+      <div class="ethics-cell-body">Every factual claim in every Deliverable we produce carries a cited public source. If we cannot source a claim from the public record, we do not include it. This applies without exception, regardless of how confident we are in a finding.</div>
+    </div>
+    <div class="ethics-cell">
+      <div class="ethics-cell-num">IV</div>
+      <div class="ethics-cell-title">Data Only — No Advice</div>
+      <div class="ethics-cell-body">We provide data. We do not provide legal advice, investment advice, strategic recommendations, or advocacy. Our role ends at the delivery of accurate, sourced information. What the client does with it is their professional judgment to make.</div>
+    </div>
+    <div class="ethics-cell">
+      <div class="ethics-cell-num">V</div>
+      <div class="ethics-cell-title">No Political Advocacy</div>
+      <div class="ethics-cell-body">Locke &amp; Boole does not engage in political advocacy, lobbying, partisan activity, or any work designed to influence electoral outcomes, legislative processes, or regulatory rulemaking. We do not take sides.</div>
+    </div>
+    <div class="ethics-cell">
+      <div class="ethics-cell-num">VI</div>
+      <div class="ethics-cell-title">Client Screening</div>
+      <div class="ethics-cell-body">We reserve the right to decline any engagement — and exercise it regularly. We do not accept matters where the intended use of our Deliverables appears designed to facilitate harm, harassment, illegal discrimination, or any activity that violates applicable law.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DO / DON'T -->
+<section class="do-dont-section">
+  <div class="section-eyebrow">Scope of Practice</div>
+  <h2 class="section-title">What we do.<br>What we <em>don't.</em></h2>
+  <div class="do-dont-grid">
+    <div>
+      <div class="do-col-title do">What We Do</div>
+      <ul class="do-list">
+        <li class="do-item"><span class="do-marker check">✓</span> Search publicly available Secretary of State and UCC databases</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Submit FOIA and public records requests to government agencies</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Analyze EDGAR, bankruptcy dockets, and federal procurement records</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Cross-reference county real property and tax assessor databases</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Use publicly accessible geospatial and mapping imagery</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Conduct open-source intelligence gathering from public sources</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Compile, synthesize, and visually map findings from public data</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Produce subpoena-ready affidavits of our methodology</li>
+        <li class="do-item"><span class="do-marker check">✓</span> Monitor public registries for ongoing changes to entity status</li>
+      </ul>
+    </div>
+    <div>
+      <div class="do-col-title dont">What We Don't Do</div>
+      <ul class="do-list">
+        <li class="dont-item"><span class="do-marker cross">✕</span> Conduct physical surveillance or in-person observation of individuals</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Access private accounts, emails, or communications of any kind</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Install tracking software, spyware, or monitoring applications</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Obtain information through pretexting, impersonation, or deception</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Provide legal advice, investment recommendations, or strategic counsel</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Accept engagements designed to facilitate harassment or harm</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Conduct consumer credit, employment, or tenant background checks under FCRA</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Engage in political advocacy, lobbying, or partisan activity</li>
+        <li class="dont-item"><span class="do-marker cross">✕</span> Disclose client identities or matter details to any third party</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- OSINT STATEMENT -->
+<div class="osint-statement">
+  <div>
+    <div class="section-eyebrow">Legal Basis</div>
+    <h2 class="section-title light">Our OSINT<br><em>boundaries.</em></h2>
+    <div class="osint-body" style="margin-top:24px;">
+      <p>All information gathering by Locke &amp; Boole Solutions LLC is conducted within the following legal frameworks. These are not guidelines — they are operational boundaries we do not cross.</p>
+      <p>Where we are uncertain whether a specific data collection method falls within these boundaries in a particular jurisdiction, we default to not collecting the data rather than assuming permissibility.</p>
+    </div>
+  </div>
+  <div class="osint-boundaries">
+    <div class="osint-boundaries-title">Applicable Frameworks</div>
+    <div class="osint-boundary-item">
+      <div class="osint-boundary-marker">FOIA</div>
+      <div class="osint-boundary-text">State and federal Freedom of Information Act request mechanisms. We submit formal written requests and accept only lawfully produced records in response.</div>
+    </div>
+    <div class="osint-boundary-item">
+      <div class="osint-boundary-marker">OSINT</div>
+      <div class="osint-boundary-text">Open-source intelligence gathered exclusively from publicly accessible sources — no password-protected, subscription-only, or privately held databases unless the Client holds a lawful subscription and grants access.</div>
+    </div>
+    <div class="osint-boundary-item">
+      <div class="osint-boundary-marker">CFAA</div>
+      <div class="osint-boundary-text">We fully comply with the Computer Fraud and Abuse Act. We do not access any computer system, database, or network without explicit authorization from the system owner.</div>
+    </div>
+    <div class="osint-boundary-item">
+      <div class="osint-boundary-marker">SCA</div>
+      <div class="osint-boundary-text">We comply fully with the Stored Communications Act. We do not attempt to access stored electronic communications, accounts, or private messaging systems under any circumstances.</div>
+    </div>
+    <div class="osint-boundary-item">
+      <div class="osint-boundary-marker">FCRA</div>
+      <div class="osint-boundary-text">We do not conduct consumer reports as defined by the Fair Credit Reporting Act. Our services are not designed for, and may not be used for, employment screening, tenant screening, or consumer credit evaluation.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
+      <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
+      <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">Our Story</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sectors.html">Sectors Served</a>
+      <a href="demo.html">Request a Demo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <a href="services.html#firewall">The Firewall</a>
+      <a href="services.html#deepdive">The Deep Dive</a>
+      <a href="services.html#silent">The Silent Partner</a>
+      <a href="services.html#training">Analyst Accelerator</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="insights.html">Insights &amp; Blog</a>
+      <a href="briefings.html">Briefings</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="demo.html">Client Intake</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2026 Locke &amp; Boole Solutions LLC. A Registered Florida Limited Liability Company. Data intelligence, not legal counsel.</div>
+    <div class="footer-legal-links">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var resourcePages = ['insights.html','briefings.html'];
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    var dp = a.getAttribute('data-page');
+    if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
+      a.classList.add('active');
+    }
+  });
+  // filter buttons
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

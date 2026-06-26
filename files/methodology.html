@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162B50;
+  --navy-light: #1E3A6E;
+  --cream: #F0EDE8;
+  --cream-dark: #E2DDD6;
+  --white: #FFFFFF;
+  --text-muted: #8A94A6;
+  --accent-line: #C8C0B4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(13, 31, 60, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-divider {
+  width: 1px; height: 22px;
+  background: rgba(240,237,232,0.15);
+  margin: 0 4px;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.7);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-links a.active { color: var(--cream); }
+
+/* Dropdown arrow */
+.nav-arrow {
+  font-size: 8px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-links > li:hover .nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.1);
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, top 0.15s;
+  z-index: 300;
+}
+
+.nav-links > li:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  top: calc(100% + 12px);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.65);
+}
+
+.nav-dropdown a:last-child { border-bottom: none; }
+
+.nav-dropdown a:hover {
+  background: rgba(240,237,232,0.04);
+  color: var(--cream);
+}
+
+.nav-dropdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  padding: 12px 20px 6px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.35) !important;
+  color: var(--cream) !important;
+  padding: 8px 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border-color: var(--cream) !important;
+}
+
+/* ========================
+   PAGE HEADER (inner pages)
+======================== */
+.page-header {
+  background: var(--navy);
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.page-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.page-header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: rgba(240,237,232,0.25);
+}
+
+.page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.page-header h1 em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+.page-header-sub {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ========================
+   SHARED SECTION UTILITIES
+======================== */
+section { padding: 88px 48px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+.section-eyebrow.light { color: rgba(240,237,232,0.35); }
+.section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
+
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: #4A6FA5; }
+.section-title.light { color: var(--cream); }
+.section-title.light em { color: rgba(240,237,232,0.45); }
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(240,237,232,0.7);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.25);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-ghost:hover { border-color: rgba(240,237,232,0.6); color: var(--cream); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+/* ========================
+   MARQUEE
+======================== */
+.marquee-strip {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  overflow: hidden;
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.28);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 64px;
+}
+
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(240,237,232,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-main {
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  border-bottom: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.35);
+  line-height: 1.75;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  margin-bottom: 2px;
+}
+
+.footer-contact-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.55);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-left {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.2);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal-links a:hover { color: rgba(240,237,232,0.55); }
+
+/* ========================
+   FORM ELEMENTS
+======================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+}
+
+.form-label.dark { color: rgba(13,31,60,0.5); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.12);
+  color: var(--cream);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  width: 100%;
+}
+
+.form-input.light, .form-select.light, .form-textarea.light {
+  background: rgba(13,31,60,0.04);
+  border-color: rgba(13,31,60,0.15);
+  color: var(--navy);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(240,237,232,0.18); }
+.form-input.light::placeholder, .form-textarea.light::placeholder { color: rgba(13,31,60,0.25); }
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(240,237,232,0.35);
+}
+
+.form-input.light:focus, .form-select.light:focus, .form-textarea.light:focus {
+  border-color: rgba(13,31,60,0.4);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
+
+.form-select option { background: var(--navy); color: var(--cream); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
+<style>
+/* PROCESS STEPS */
+.process-section {
+  background: var(--cream);
+}
+
+.process-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 88px;
+  align-items: start;
+}
+
+.process-intro {
+  font-size: 15px; font-weight: 300;
+  color: #4A5A70; line-height: 1.85;
+  position: sticky; top: 100px;
+}
+
+.process-intro p + p { margin-top: 16px; }
+
+.process-steps {}
+
+.step-row {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 28px;
+  align-items: start;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  transition: padding-left 0.25s;
+}
+
+.step-row:first-child { border-top: 1px solid var(--cream-dark); }
+.step-row:hover { padding-left: 8px; }
+
+.step-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 40px; color: var(--cream-dark);
+  line-height: 1;
+}
+
+.step-content {}
+
+.step-title {
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 10px;
+}
+
+.step-desc {
+  font-size: 14px; font-weight: 300;
+  color: #4A5A70; line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+.step-sources {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+
+.step-source-tag {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--cream-dark);
+  padding: 4px 10px;
+}
+
+/* DATA SOURCES */
+.sources-section {
+  background: var(--navy);
+}
+
+.sources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(240,237,232,0.07);
+  border: 1px solid rgba(240,237,232,0.07);
+  margin-top: 56px;
+}
+
+.source-cell {
+  background: var(--navy);
+  padding: 36px 36px;
+}
+
+.source-category {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.source-list {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.source-list li {
+  font-size: 13px; font-weight: 300;
+  color: rgba(240,237,232,0.55);
+  line-height: 1.55;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+
+.source-list li::before {
+  content: '›';
+  color: rgba(240,237,232,0.25);
+  flex-shrink: 0;
+}
+
+/* DELIVERABLES */
+.deliverables-section {
+  background: var(--cream);
+}
+
+.deliverables-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--cream-dark);
+  border: 1px solid var(--cream-dark);
+  margin-top: 56px;
+}
+
+.deliverable-cell {
+  background: var(--cream);
+  padding: 36px 28px;
+}
+
+.deliverable-icon {
+  font-size: 24px; margin-bottom: 16px;
+}
+
+.deliverable-title {
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 10px;
+}
+
+.deliverable-desc {
+  font-size: 13px; font-weight: 300;
+  color: #5A6880; line-height: 1.7;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodology — Locke &amp; Boole Solutions</title>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark">L&amp;B</span>
+    <span class="nav-divider"></span>
+    <span class="nav-logo-text">Locke &amp; Boole</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" data-page="services.html">Services</a></li>
+    <li><a href="methodology.html" data-page="methodology.html">Methodology</a></li>
+    <li><a href="sectors.html" data-page="sectors.html">Sectors</a></li>
+    <li class="has-dropdown">
+      <a href="#" data-page="resources">Resources <span class="nav-arrow">▼</span></a>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Resources</div>
+        <a href="insights.html">Insights &amp; Blog</a>
+        <a href="briefings.html">Briefings</a>
+      </div>
+    </li>
+    <li><a href="about.html" data-page="about.html">About Us</a></li>
+    <li><a href="demo.html" class="nav-cta" data-page="demo.html">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Methodology</div>
+  <h1>Every finding<br>independently <em>verifiable.</em></h1>
+  <p class="page-header-sub">We operate on a strict data-first philosophy. We do not rely on proprietary black-box databases. We rely on the public record — and we cite every source.</p>
+</div>
+
+<!-- PROCESS -->
+<section class="process-section">
+  <div class="section-eyebrow">Our Framework</div>
+  <h2 class="section-title">The five-stage<br><em>investigation process.</em></h2>
+  <br><br>
+  <div class="process-layout">
+    <div class="process-intro">
+      <p>Locke &amp; Boole's methodology was developed over years of applied OSINT practice in legal, corporate, and compliance contexts. It is not proprietary in the sense of being hidden — every technique we use is available to any trained analyst. Our edge is execution speed, depth of cross-referencing, and institutional familiarity with the databases that matter.</p>
+      <p>We document everything. Every stage of an investigation is logged, sourced, and preserved in a format that can be independently audited — by opposing counsel, by a judge, or by your own internal team.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Entity Identification</div>
+          <p class="step-desc">We begin with Secretary of State filings, registered agent records, and annual reports across all jurisdictions relevant to the matter. This constructs the initial corporate family tree: all known legal entities connected to the target, their status, formation dates, and principal addresses.</p>
+          <div class="step-sources">
+            <span class="step-source-tag">Secretary of State portals</span>
+            <span class="step-source-tag">Registered Agent Records</span>
+            <span class="step-source-tag">Annual Reports</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Financial Threading</div>
+          <p class="step-desc">EDGAR filings, federal procurement registries, and bankruptcy dockets are cross-referenced against UCC financing statements to surface financial interdependencies between entities — secured creditors, guarantors, and hidden encumbrances on assets.</p>
+          <div class="step-sources">
+            <span class="step-source-tag">EDGAR</span>
+            <span class="step-source-tag">UCC Filings</span>
+            <span class="step-source-tag">Federal Procurement Registry</span>
+            <span class="step-source-tag">PACER / Bankruptcy Dockets</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Physical Asset Verification</div>
+          <p class="step-desc">County tax assessor databases and real property records link entities to physical addresses and confirm the actual existence of claimed assets. Geospatial verification — satellite imagery and public mapping tools — provides independent confirmation that assets exist where and as described.</p>
+          <div class="step-sources">
+            <span class="step-source-tag">County Tax Assessor Databases</span>
+            <span class="step-source-tag">Real Property Records</span>
+            <span class="step-source-tag">Geospatial / Satellite Imagery</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">04</div>
+        <div class="step-content">
+          <div class="step-title">Ownership Chain Synthesis</div>
+          <p class="step-desc">All data threads are synthesized into a visual ownership chain — a "corporate family tree" that maps relationships between entities, natural persons, assets, and jurisdictions. Every node in the chart carries a cited source. The deliverable is formatted for immediate use in litigation or regulatory submissions.</p>
+          <div class="step-sources">
+            <span class="step-source-tag">All Prior Sources</span>
+            <span class="step-source-tag">Visual Asset Genealogy</span>
+            <span class="step-source-tag">Footnoted Citations</span>
+          </div>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">05</div>
+        <div class="step-content">
+          <div class="step-title">Continuous Monitoring (Retainer Clients)</div>
+          <p class="step-desc">For subscription clients, the investigation does not end at delivery. We maintain automated surveillance on the monitored entity set and generate alerts the moment material changes appear in the public record — registered agent substitutions, UCC amendments, entity dissolutions, or new encumbrances.</p>
+          <div class="step-sources">
+            <span class="step-source-tag">Automated Registry Monitoring</span>
+            <span class="step-source-tag">UCC Amendment Tracking</span>
+            <span class="step-source-tag">Entity Status Alerts</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SOURCES -->
+<section class="sources-section">
+  <div class="section-eyebrow light">Primary Sources</div>
+  <h2 class="section-title light">The public record<br>contains the <em>truth.</em></h2>
+  <div class="sources-grid">
+    <div class="source-cell">
+      <div class="source-category">State &amp; Federal Filings</div>
+      <ul class="source-list">
+        <li>Secretary of State business entity portals (all 50 states)</li>
+        <li>Registered agent and annual report records</li>
+        <li>UCC-1 financing statements and amendments</li>
+        <li>State-level franchise tax records</li>
+        <li>Assumed name / DBA filings</li>
+      </ul>
+    </div>
+    <div class="source-cell">
+      <div class="source-category">Federal Financial Data</div>
+      <ul class="source-list">
+        <li>SEC EDGAR — 10-K, S-1, 8-K, and beneficial ownership filings</li>
+        <li>Federal procurement and contractor award databases</li>
+        <li>PACER — Federal bankruptcy and civil dockets</li>
+        <li>FinCEN beneficial ownership registry (where accessible)</li>
+        <li>IRS Form 990 (nonprofit disclosures)</li>
+      </ul>
+    </div>
+    <div class="source-cell">
+      <div class="source-category">Real Property &amp; Assets</div>
+      <ul class="source-list">
+        <li>County tax assessor and property appraiser databases</li>
+        <li>Grantor-grantee deed records by county</li>
+        <li>Mortgage and lien filings at county clerk level</li>
+        <li>State real property transfer records</li>
+        <li>Satellite and public mapping imagery for verification</li>
+      </ul>
+    </div>
+    <div class="source-cell">
+      <div class="source-category">OSINT &amp; Open Record</div>
+      <ul class="source-list">
+        <li>State and federal FOIA request responses</li>
+        <li>Court dockets — state civil, probate, and family divisions</li>
+        <li>Offshore registry data (where publicly accessible)</li>
+        <li>Trade publication and business registry cross-references</li>
+        <li>Domain and WHOIS registration records</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables-section">
+  <div class="section-eyebrow">Deliverable Formats</div>
+  <h2 class="section-title">What you receive at<br>the end of every <em>engagement.</em></h2>
+  <div class="deliverables-grid">
+    <div class="deliverable-cell">
+      <div class="deliverable-icon">📄</div>
+      <div class="deliverable-title">Secured PDF Report</div>
+      <div class="deliverable-desc">All reports are delivered as encrypted, password-protected PDFs with footnoted data sources for every claim. Formatted for immediate use in legal or compliance proceedings.</div>
+    </div>
+    <div class="deliverable-cell">
+      <div class="deliverable-icon">🗺️</div>
+      <div class="deliverable-title">Visual Ownership Chart</div>
+      <div class="deliverable-desc">A structured visual map of the entity ownership chain, showing relationships between companies, natural persons, assets, and jurisdictions. Exportable in PDF and high-resolution image formats.</div>
+    </div>
+    <div class="deliverable-cell">
+      <div class="deliverable-icon">⚖️</div>
+      <div class="deliverable-title">Affidavit of Methodology</div>
+      <div class="deliverable-desc">Available as an add-on for litigation use: a signed, subpoena-ready affidavit documenting the specific methodology, databases consulted, and chain of custody for all findings. (+$2,000)</div>
+    </div>
+    <div class="deliverable-cell">
+      <div class="deliverable-icon">📊</div>
+      <div class="deliverable-title">Executive Summary</div>
+      <div class="deliverable-desc">A 2-page distillation of key findings for C-suite or board-level audiences who require the bottom line without the underlying sourcing. Included with all Firewall and Silent Partner deliverables.</div>
+    </div>
+    <div class="deliverable-cell">
+      <div class="deliverable-icon">🔔</div>
+      <div class="deliverable-title">Monitoring Alerts</div>
+      <div class="deliverable-desc">Real-time alerts via encrypted email for registered agent changes, entity dissolutions, UCC amendments, and other structural triggers. Retainer clients only.</div>
+    </div>
+    <div class="deliverable-cell">
+      <div class="deliverable-icon">📚</div>
+      <div class="deliverable-title">Training Playbook</div>
+      <div class="deliverable-desc">For Analyst Accelerator clients: a 40-page digital methodology playbook covering all training modules, plus recorded session video for permanent internal records.</div>
+    </div>
+  </div>
+  <br><br>
+  <a href="demo.html" class="btn-navy">Request a Demonstration</a>
+</section>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
+      <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
+      <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">Our Story</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sectors.html">Sectors Served</a>
+      <a href="demo.html">Request a Demo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <a href="services.html#firewall">The Firewall</a>
+      <a href="services.html#deepdive">The Deep Dive</a>
+      <a href="services.html#silent">The Silent Partner</a>
+      <a href="services.html#training">Analyst Accelerator</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="insights.html">Insights &amp; Blog</a>
+      <a href="briefings.html">Briefings</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="demo.html">Client Intake</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2026 Locke &amp; Boole Solutions LLC. A Registered Florida Limited Liability Company. Data intelligence, not legal counsel.</div>
+    <div class="footer-legal-links">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var resourcePages = ['insights.html','briefings.html'];
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    var dp = a.getAttribute('data-page');
+    if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
+      a.classList.add('active');
+    }
+  });
+  // filter buttons
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

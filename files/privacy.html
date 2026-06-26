@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #0D1F3C;
+  --navy-mid: #162B50;
+  --navy-light: #1E3A6E;
+  --cream: #F0EDE8;
+  --cream-dark: #E2DDD6;
+  --white: #FFFFFF;
+  --text-muted: #8A94A6;
+  --accent-line: #C8C0B4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--navy);
+  overflow-x: hidden;
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(13, 31, 60, 0.97);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 48px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px;
+  color: var(--cream);
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.nav-divider {
+  width: 1px; height: 22px;
+  background: rgba(240,237,232,0.15);
+  margin: 0 4px;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cream);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.nav-links {
+  display: flex; align-items: center; gap: 32px;
+  list-style: none;
+}
+
+.nav-links > li { position: relative; }
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.7);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+  display: flex; align-items: center; gap: 5px;
+}
+
+.nav-links a:hover { color: var(--cream); }
+
+.nav-links a.active { color: var(--cream); }
+
+/* Dropdown arrow */
+.nav-arrow {
+  font-size: 8px;
+  opacity: 0.5;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.nav-links > li:hover .nav-arrow {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* Dropdown */
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.1);
+  min-width: 220px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, top 0.15s;
+  z-index: 300;
+}
+
+.nav-links > li:hover .nav-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  top: calc(100% + 12px);
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.65);
+}
+
+.nav-dropdown a:last-child { border-bottom: none; }
+
+.nav-dropdown a:hover {
+  background: rgba(240,237,232,0.04);
+  color: var(--cream);
+}
+
+.nav-dropdown-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  padding: 12px 20px 6px;
+}
+
+.nav-cta {
+  background: transparent;
+  border: 1px solid rgba(240,237,232,0.35) !important;
+  color: var(--cream) !important;
+  padding: 8px 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  transition: all 0.2s !important;
+}
+
+.nav-cta:hover {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border-color: var(--cream) !important;
+}
+
+/* ========================
+   PAGE HEADER (inner pages)
+======================== */
+.page-header {
+  background: var(--navy);
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,237,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,237,232,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.page-header-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.page-header-eyebrow::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: rgba(240,237,232,0.25);
+}
+
+.page-header h1 {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
+
+.page-header h1 em {
+  font-style: italic;
+  opacity: 0.55;
+}
+
+.page-header-sub {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  max-width: 520px;
+  line-height: 1.75;
+}
+
+/* ========================
+   SHARED SECTION UTILITIES
+======================== */
+section { padding: 88px 48px; }
+
+.section-eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+.section-eyebrow.light { color: rgba(240,237,232,0.35); }
+.section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
+
+.section-title {
+  font-family: 'EB Garamond', serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.section-title em { font-style: italic; color: #4A6FA5; }
+.section-title.light { color: var(--cream); }
+.section-title.light em { color: rgba(240,237,232,0.45); }
+
+/* ========================
+   BUTTONS
+======================== */
+.btn-primary {
+  background: var(--cream);
+  color: var(--navy);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+
+.btn-ghost {
+  background: transparent;
+  color: rgba(240,237,232,0.7);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(240,237,232,0.25);
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-ghost:hover { border-color: rgba(240,237,232,0.6); color: var(--cream); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--cream);
+  padding: 13px 30px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none; cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-navy:hover { background: var(--navy-mid); transform: translateY(-1px); }
+
+/* ========================
+   MARQUEE
+======================== */
+.marquee-strip {
+  background: var(--navy-mid);
+  border-top: 1px solid rgba(240,237,232,0.06);
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+  overflow: hidden;
+  padding: 18px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 64px;
+  animation: marquee 24s linear infinite;
+  width: max-content;
+  align-items: center;
+}
+
+.marquee-item {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.28);
+  white-space: nowrap;
+  display: flex; align-items: center; gap: 64px;
+}
+
+.marquee-dot {
+  width: 3px; height: 3px;
+  background: rgba(240,237,232,0.18);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--navy);
+  border-top: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-main {
+  padding: 64px 48px 40px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  border-bottom: 1px solid rgba(240,237,232,0.07);
+}
+
+.footer-brand-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 22px;
+  color: var(--cream);
+  margin-bottom: 12px;
+}
+
+.footer-brand-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.35);
+  line-height: 1.75;
+  max-width: 300px;
+  margin-bottom: 24px;
+}
+
+.footer-contact-item {
+  margin-bottom: 10px;
+}
+
+.footer-contact-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.25);
+  margin-bottom: 2px;
+}
+
+.footer-contact-value {
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(240,237,232,0.55);
+}
+
+.footer-col-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.3);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(240,237,232,0.06);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.45);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  padding: 20px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-bottom-left {
+  font-size: 11px;
+  font-weight: 300;
+  color: rgba(240,237,232,0.2);
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-legal-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(240,237,232,0.2);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-legal-links a:hover { color: rgba(240,237,232,0.55); }
+
+/* ========================
+   FORM ELEMENTS
+======================== */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+}
+
+.form-label.dark { color: rgba(13,31,60,0.5); }
+
+.form-input, .form-select, .form-textarea {
+  background: rgba(240,237,232,0.04);
+  border: 1px solid rgba(240,237,232,0.12);
+  color: var(--cream);
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  width: 100%;
+}
+
+.form-input.light, .form-select.light, .form-textarea.light {
+  background: rgba(13,31,60,0.04);
+  border-color: rgba(13,31,60,0.15);
+  color: var(--navy);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: rgba(240,237,232,0.18); }
+.form-input.light::placeholder, .form-textarea.light::placeholder { color: rgba(13,31,60,0.25); }
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: rgba(240,237,232,0.35);
+}
+
+.form-input.light:focus, .form-select.light:focus, .form-textarea.light:focus {
+  border-color: rgba(13,31,60,0.4);
+}
+
+.form-textarea { resize: vertical; min-height: 100px; }
+
+.form-select option { background: var(--navy); color: var(--cream); }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ========================
+   SCROLLBAR
+======================== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
+<style>
+.legal-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 80px;
+  align-items: start;
+  padding: 72px 48px;
+  background: var(--cream);
+}
+
+.legal-toc {
+  position: sticky;
+  top: 100px;
+}
+
+.legal-toc-title {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.legal-toc a {
+  display: block;
+  font-size: 12px; font-weight: 400;
+  color: #5A6880;
+  text-decoration: none;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  transition: color 0.15s;
+  line-height: 1.4;
+}
+
+.legal-toc a:hover { color: var(--navy); }
+
+.legal-toc-updated {
+  font-size: 10px; font-weight: 300;
+  color: var(--text-muted);
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.legal-body {}
+
+.legal-intro {
+  font-size: 15px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.legal-section {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--cream-dark);
+}
+
+.legal-section:last-child { border-bottom: none; }
+
+.legal-section-num {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.legal-section h2 {
+  font-family: 'EB Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+
+.legal-section p {
+  font-size: 14px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 14px;
+}
+
+.legal-section p:last-child { margin-bottom: 0; }
+
+.legal-section ul {
+  list-style: none;
+  margin: 14px 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.legal-section ul li {
+  font-size: 14px; font-weight: 300;
+  color: #3A4A60; line-height: 1.7;
+  display: flex; gap: 10px;
+}
+
+.legal-section ul li::before {
+  content: '—';
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.legal-section strong { font-weight: 600; color: var(--navy); }
+
+.legal-highlight {
+  background: var(--cream-dark);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-left: 3px solid var(--navy);
+  font-size: 13px; font-weight: 400;
+  color: var(--navy); line-height: 1.7;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Locke &amp; Boole Solutions</title>
+
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-mark">L&amp;B</span>
+    <span class="nav-divider"></span>
+    <span class="nav-logo-text">Locke &amp; Boole</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="services.html" data-page="services.html">Services</a></li>
+    <li><a href="methodology.html" data-page="methodology.html">Methodology</a></li>
+    <li><a href="sectors.html" data-page="sectors.html">Sectors</a></li>
+    <li class="has-dropdown">
+      <a href="#" data-page="resources">Resources <span class="nav-arrow">▼</span></a>
+      <div class="nav-dropdown">
+        <div class="nav-dropdown-label">Resources</div>
+        <a href="insights.html">Insights &amp; Blog</a>
+        <a href="briefings.html">Briefings</a>
+      </div>
+    </li>
+    <li><a href="about.html" data-page="about.html">About Us</a></li>
+    <li><a href="demo.html" class="nav-cta" data-page="demo.html">Request a Demo</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Legal</div>
+  <h1>Privacy<br><em>Policy.</em></h1>
+  <p class="page-header-sub">Locke &amp; Boole Solutions LLC takes the privacy of client information and personal data with the same seriousness we apply to our investigative work. This policy explains what we collect, why, and how we protect it.</p>
+</div>
+
+<div class="legal-layout">
+  <div class="legal-toc">
+    <div class="legal-toc-title">Contents</div>
+    <a href="#pp-overview">1. Overview</a>
+    <a href="#pp-collect">2. Information We Collect</a>
+    <a href="#pp-use">3. How We Use Information</a>
+    <a href="#pp-share">4. Information Sharing</a>
+    <a href="#pp-security">5. Data Security</a>
+    <a href="#pp-retention">6. Retention</a>
+    <a href="#pp-rights">7. Your Rights</a>
+    <a href="#pp-cookies">8. Cookies &amp; Tracking</a>
+    <a href="#pp-children">9. Children's Privacy</a>
+    <a href="#pp-changes">10. Policy Changes</a>
+    <a href="#pp-contact">11. Contact</a>
+    <div class="legal-toc-updated">Last updated:<br>June 1, 2026</div>
+  </div>
+
+  <div class="legal-body">
+    <div class="legal-intro">
+      This Privacy Policy describes how Locke &amp; Boole Solutions LLC ("the Firm," "we," "us") collects, uses, and protects personal information submitted through our website, intake forms, and client communications. By using this website or submitting an intake inquiry, you consent to the practices described in this policy.
+    </div>
+
+    <div class="legal-section" id="pp-overview">
+      <div class="legal-section-num">Section 01</div>
+      <h2>Overview</h2>
+      <p>We operate a boutique intelligence firm. We are acutely aware that the information entrusted to us — about clients, about subjects of investigation, and about third parties — requires careful handling. Our data practices are designed with this in mind.</p>
+      <p>We collect only the minimum personal information necessary to operate our business. We do not sell personal data. We do not use client data for advertising. We do not share client identities or matter details with any third party except as required by law.</p>
+      <div class="legal-highlight">
+        We do not sell, rent, license, or otherwise transfer personal information to third parties for marketing, advertising, or commercial purposes. This is unconditional.
+      </div>
+    </div>
+
+    <div class="legal-section" id="pp-collect">
+      <div class="legal-section-num">Section 02</div>
+      <h2>Information We Collect</h2>
+      <p><strong>Information you provide directly:</strong> When you submit an intake inquiry, sign a retainer agreement, or communicate with us, we collect the information you choose to provide — including your name, organization, email address, phone number, and matter details.</p>
+      <p><strong>Newsletter subscriptions:</strong> If you subscribe to our newsletter or briefing distribution list, we collect your email address and, if provided, your name and firm affiliation.</p>
+      <p><strong>Website usage data:</strong> Our website may collect standard server log data, including IP addresses, browser type, pages visited, and referral URLs. This data is used for security monitoring and aggregate traffic analysis only.</p>
+      <p><strong>Communication records:</strong> We retain records of communications with clients and prospective clients for operational continuity and legal compliance purposes.</p>
+      <p>We do not collect payment card information directly. All payment processing is handled by third-party processors who maintain their own PCI-compliant data security standards.</p>
+    </div>
+
+    <div class="legal-section" id="pp-use">
+      <div class="legal-section-num">Section 03</div>
+      <h2>How We Use Information</h2>
+      <p>We use the information we collect exclusively for the following purposes:</p>
+      <ul>
+        <li>Evaluating and responding to client intake inquiries</li>
+        <li>Executing signed engagement letters and retainer agreements</li>
+        <li>Delivering Deliverables and ongoing monitoring reports to clients</li>
+        <li>Sending newsletter content and briefings to subscribers who have opted in</li>
+        <li>Maintaining internal records required for business operations and legal compliance</li>
+        <li>Improving the security and functionality of our website and communications infrastructure</li>
+      </ul>
+      <p>We do not use personal information to build advertising profiles, conduct behavioral targeting, or enable any third-party marketing activities.</p>
+    </div>
+
+    <div class="legal-section" id="pp-share">
+      <div class="legal-section-num">Section 04</div>
+      <h2>Information Sharing</h2>
+      <p>We do not sell, share, or disclose personal information to third parties except in the following limited circumstances:</p>
+      <ul>
+        <li><strong>Legal obligation:</strong> When required by valid legal process, including subpoenas, court orders, or regulatory demands. We will, where legally permissible, notify affected clients before complying.</li>
+        <li><strong>Service providers:</strong> Limited technical service providers (such as encrypted email infrastructure) who are contractually bound to confidentiality and prohibited from using data for any purpose other than providing the specific service.</li>
+        <li><strong>Successors:</strong> In the event of a merger, acquisition, or dissolution of the Firm, provided the successor entity is bound by equivalent privacy commitments.</li>
+      </ul>
+      <p>In no case do we share client identities, matter details, or Deliverable contents with any party not directly involved in delivering our services to that client.</p>
+    </div>
+
+    <div class="legal-section" id="pp-security">
+      <div class="legal-section-num">Section 05</div>
+      <h2>Data Security</h2>
+      <p>We implement industry-standard security practices to protect the information we hold, including:</p>
+      <ul>
+        <li>End-to-end encrypted email communications (PGP encryption available upon request)</li>
+        <li>Encrypted storage for all client files and Deliverables</li>
+        <li>Strict internal access controls — only analysts directly assigned to a matter access its files</li>
+        <li>Secure, password-protected PDF delivery for all Deliverables</li>
+        <li>No use of personal client data on third-party cloud storage platforms without explicit consent</li>
+      </ul>
+      <p>No data security system is impenetrable. If we become aware of a security incident affecting client data, we will notify affected clients promptly and take all reasonable steps to mitigate harm.</p>
+    </div>
+
+    <div class="legal-section" id="pp-retention">
+      <div class="legal-section-num">Section 06</div>
+      <h2>Data Retention</h2>
+      <p>We retain client data for the minimum period necessary to fulfill our contractual obligations and comply with applicable legal requirements. Generally:</p>
+      <ul>
+        <li>Active engagement files are retained for the duration of the engagement plus 7 years, to satisfy standard professional recordkeeping requirements.</li>
+        <li>Intake inquiries that did not result in an engagement are retained for 12 months and then securely deleted.</li>
+        <li>Newsletter subscriber data is retained until the subscriber unsubscribes, at which point it is permanently deleted within 30 days.</li>
+        <li>Website server logs are retained for 90 days for security monitoring purposes.</li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="pp-rights">
+      <div class="legal-section-num">Section 07</div>
+      <h2>Your Rights</h2>
+      <p>Depending on your jurisdiction, you may have rights with respect to personal information we hold about you, including the right to access, correct, or request deletion of your data. To exercise any of these rights, contact us at contact@lockeandboole.com.</p>
+      <p>We will respond to verifiable requests within 30 days. We may need to verify your identity before processing certain requests. Some data may be exempt from deletion requests where retention is required by law or necessary to fulfill existing contractual obligations.</p>
+      <p>Newsletter subscribers may unsubscribe at any time using the unsubscribe link in any email or by contacting us directly.</p>
+    </div>
+
+    <div class="legal-section" id="pp-cookies">
+      <div class="legal-section-num">Section 08</div>
+      <h2>Cookies &amp; Tracking</h2>
+      <p>Our website uses minimal cookies strictly necessary for basic site functionality. We do not use advertising cookies, behavioral tracking pixels, or third-party analytics services that profile individual visitors.</p>
+      <p>We do not use Google Analytics, Facebook Pixel, or similar behavioral tracking tools. Any analytics we conduct are aggregate and non-identifiable.</p>
+    </div>
+
+    <div class="legal-section" id="pp-children">
+      <div class="legal-section-num">Section 09</div>
+      <h2>Children's Privacy</h2>
+      <p>Our services are intended exclusively for legal professionals, corporate entities, and adult individuals engaged in lawful business activities. We do not knowingly collect personal information from individuals under the age of 18. If we become aware that we have inadvertently collected such information, we will delete it promptly.</p>
+    </div>
+
+    <div class="legal-section" id="pp-changes">
+      <div class="legal-section-num">Section 10</div>
+      <h2>Policy Changes</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. Material changes will be communicated to active clients via email. The date of the most recent revision is noted at the top of this policy.</p>
+      <p>Continued use of our website or services following a policy update constitutes acceptance of the revised terms.</p>
+    </div>
+
+    <div class="legal-section" id="pp-contact">
+      <div class="legal-section-num">Section 11</div>
+      <h2>Contact</h2>
+      <p>Privacy-related inquiries, data access requests, and unsubscribe requests should be directed to:</p>
+      <p><strong>Locke &amp; Boole Solutions LLC</strong><br>contact@lockeandboole.com<br>PGP encryption available upon request.<br>Florida Limited Liability Company</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
+      <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
+      <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Company</div>
+      <a href="about.html">Our Story</a>
+      <a href="methodology.html">Methodology</a>
+      <a href="sectors.html">Sectors Served</a>
+      <a href="demo.html">Request a Demo</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <a href="services.html#firewall">The Firewall</a>
+      <a href="services.html#deepdive">The Deep Dive</a>
+      <a href="services.html#silent">The Silent Partner</a>
+      <a href="services.html#training">Analyst Accelerator</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Resources</div>
+      <a href="insights.html">Insights &amp; Blog</a>
+      <a href="briefings.html">Briefings</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="demo.html">Client Intake</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">© 2026 Locke &amp; Boole Solutions LLC. A Registered Florida Limited Liability Company. Data intelligence, not legal counsel.</div>
+    <div class="footer-legal-links">
+      <a href="terms.html">Terms &amp; Conditions</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="compliance.html">Compliance &amp; Ethics</a>
+      <a href="disclaimer.html">Disclaimer</a>
+    </div>
+  </div>
+</footer>
+<script>
+(function(){
+  var page = window.location.pathname.split('/').pop() || 'index.html';
+  var resourcePages = ['insights.html','briefings.html'];
+  document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
+    var dp = a.getAttribute('data-page');
+    if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
+      a.classList.add('active');
+    }
+  });
+  // filter buttons
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+      btn.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>
