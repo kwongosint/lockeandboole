@@ -101,24 +101,37 @@ nav {
 }
 
 /* Dropdown */
-.nav-dropdown {
+/* === DROPDOWN — gap-bridge fix === */
+.nav-links > li.has-dropdown { padding-bottom: 20px; margin-bottom: -20px; }
+
+/* invisible hover bridge so mouse doesn't lose hover crossing the gap */
+.nav-links > li.has-dropdown::after {
+  content: '';
   position: absolute;
-  top: calc(100% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  border: 1px solid rgba(240,237,232,0.1);
-  min-width: 220px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s, top 0.15s;
-  z-index: 300;
+  top: calc(100% - 20px);
+  left: -24px; right: -24px;
+  height: 28px;
 }
 
-.nav-links > li:hover .nav-dropdown {
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.12);
+  min-width: 230px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 300;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+
+.nav-links > li.has-dropdown:hover .nav-dropdown {
   opacity: 1;
   pointer-events: all;
-  top: calc(100% + 12px);
+  transform: translateX(-50%) translateY(0);
 }
 
 .nav-dropdown a {
@@ -128,12 +141,14 @@ nav {
   font-size: 12px;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.65);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
 .nav-dropdown a:last-child { border-bottom: none; }
 
 .nav-dropdown a:hover {
-  background: rgba(240,237,232,0.04);
+  background: rgba(240,237,232,0.06);
   color: var(--cream);
 }
 
@@ -143,7 +158,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(240,237,232,0.25);
-  padding: 12px 20px 6px;
+  padding: 14px 20px 6px;
 }
 
 .nav-cta {
@@ -528,21 +543,21 @@ footer {
 ::-webkit-scrollbar-track { background: var(--navy); }
 ::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
 <style>
-.disclaimer-body {
-  background: var(--cream);
-  padding: 72px 48px;
+.legal-layout {
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: 80px;
   align-items: start;
+  padding: 72px 48px;
+  background: var(--cream);
 }
 
-.disclaimer-toc {
+.legal-toc {
   position: sticky;
   top: 100px;
 }
 
-.disclaimer-toc-title {
+.legal-toc-title {
   font-size: 9px; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--text-muted);
@@ -551,7 +566,7 @@ footer {
   border-bottom: 1px solid var(--cream-dark);
 }
 
-.disclaimer-toc a {
+.legal-toc a {
   display: block;
   font-size: 12px; font-weight: 400;
   color: #5A6880;
@@ -562,18 +577,16 @@ footer {
   line-height: 1.4;
 }
 
-.disclaimer-toc a:hover { color: var(--navy); }
+.legal-toc a:hover { color: var(--navy); }
 
-.disclaimer-toc-updated {
+.legal-toc-updated {
   font-size: 10px; font-weight: 300;
   color: var(--text-muted);
   margin-top: 20px;
   line-height: 1.6;
 }
 
-.disclaimer-content {}
-
-.disclaimer-intro {
+.legal-intro {
   font-size: 15px; font-weight: 300;
   color: #3A4A60; line-height: 1.85;
   margin-bottom: 48px;
@@ -581,53 +594,73 @@ footer {
   border-bottom: 1px solid var(--cream-dark);
 }
 
-.disclaimer-section {
-  margin-bottom: 44px;
-  padding-bottom: 44px;
+.legal-section {
+  margin-bottom: 48px;
+  padding-bottom: 48px;
   border-bottom: 1px solid var(--cream-dark);
 }
 
-.disclaimer-section:last-child { border-bottom: none; }
+.legal-section:last-child {
+  border-bottom: none;
+}
 
-.disclaimer-section-num {
+.legal-section-num {
   font-size: 9px; font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 8px;
 }
 
-.disclaimer-section h2 {
+.legal-section h2 {
   font-family: 'EB Garamond', serif;
   font-size: 26px; font-weight: 400;
   color: var(--navy);
   margin-bottom: 20px;
+  line-height: 1.2;
 }
 
-.disclaimer-section p {
+.legal-section p {
   font-size: 14px; font-weight: 300;
   color: #3A4A60; line-height: 1.85;
   margin-bottom: 14px;
 }
 
-.disclaimer-section p:last-child { margin-bottom: 0; }
-.disclaimer-section strong { font-weight: 600; color: var(--navy); }
+.legal-section p:last-child { margin-bottom: 0; }
 
-.disclaimer-callout {
-  background: var(--navy);
-  padding: 24px 28px;
-  margin: 24px 0;
+.legal-section ul {
+  list-style: none;
+  margin: 14px 0;
+  display: flex; flex-direction: column; gap: 8px;
 }
 
-.disclaimer-callout p {
+.legal-section ul li {
   font-size: 14px; font-weight: 300;
-  color: rgba(240,237,232,0.7);
-  line-height: 1.75;
-  margin: 0;
+  color: #3A4A60; line-height: 1.7;
+  display: flex; gap: 10px;
+}
+
+.legal-section ul li::before {
+  content: '—';
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.legal-section strong {
+  font-weight: 600; color: var(--navy);
+}
+
+.legal-highlight {
+  background: var(--cream-dark);
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-left: 3px solid var(--navy);
+  font-size: 13px; font-weight: 400;
+  color: var(--navy); line-height: 1.7;
 }
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Disclaimer — Locke &amp; Boole Solutions</title>
+<title>Terms &amp; Conditions — Locke &amp; Boole Solutions</title>
 
 </head>
 <body>
@@ -658,89 +691,132 @@ footer {
 <div class="page-header">
   <div class="page-header-grid"></div>
   <div class="page-header-eyebrow">Legal</div>
-  <h1>Disclaimer.</h1>
-  <p class="page-header-sub">Important disclosures regarding the nature, limitations, and intended use of all information and services provided by Locke &amp; Boole Solutions LLC.</p>
+  <h1>Terms &amp;<br><em>Conditions.</em></h1>
+  <p class="page-header-sub">Please read these terms carefully before engaging our services. By submitting a client intake or signing a retainer agreement, you agree to be bound by these terms.</p>
 </div>
 
-<div class="disclaimer-body">
-  <div class="disclaimer-toc">
-    <div class="disclaimer-toc-title">Contents</div>
-    <a href="#d-not-legal">Not Legal Advice</a>
-    <a href="#d-accuracy">Accuracy of Information</a>
-    <a href="#d-website">Website Disclaimer</a>
-    <a href="#d-third-party">Third-Party Sources</a>
-    <a href="#d-no-relationship">No Professional Relationship</a>
-    <a href="#d-forward">Forward-Looking Statements</a>
-    <a href="#d-liability">Limitation of Liability</a>
-    <a href="#d-jurisdiction">Jurisdictional Notice</a>
-    <div class="disclaimer-toc-updated">Last updated:<br>June 1, 2026</div>
+<div class="legal-layout">
+  <div class="legal-toc">
+    <div class="legal-toc-title">Contents</div>
+    <a href="#definitions">1. Definitions</a>
+    <a href="#services">2. Nature of Services</a>
+    <a href="#engagement">3. Engagement &amp; Retainer</a>
+    <a href="#data">4. Data &amp; Deliverables</a>
+    <a href="#confidentiality">5. Confidentiality</a>
+    <a href="#limitations">6. Limitations of Liability</a>
+    <a href="#prohibited">7. Prohibited Uses</a>
+    <a href="#payment">8. Payment Terms</a>
+    <a href="#termination">9. Termination</a>
+    <a href="#governing">10. Governing Law</a>
+    <a href="#contact-legal">11. Contact</a>
+    <div class="legal-toc-updated">Last updated:<br>June 1, 2026</div>
   </div>
 
-  <div class="disclaimer-content">
-    <div class="disclaimer-intro">
-      The following disclaimers apply to all content published on this website, all materials produced by Locke &amp; Boole Solutions LLC, and all communications made by the Firm in connection with its services. Please read these disclosures carefully. If you do not accept these terms, do not use this website or engage our services.
+  <div class="legal-body">
+    <div class="legal-intro">
+      These Terms and Conditions ("Terms") govern the relationship between Locke &amp; Boole Solutions LLC ("the Firm," "we," "us") and any individual or entity ("Client," "you") that submits an intake inquiry, executes a retainer agreement, or otherwise engages our services. These Terms are incorporated by reference into all retainer agreements and engagement letters issued by Locke &amp; Boole Solutions LLC.
     </div>
 
-    <div class="disclaimer-section" id="d-not-legal">
-      <div class="disclaimer-section-num">Disclaimer 01</div>
-      <h2>Not Legal Advice</h2>
-      <p><strong>Nothing on this website, in any Deliverable, or in any communication from Locke &amp; Boole Solutions LLC constitutes legal advice.</strong> Locke &amp; Boole is a data intelligence firm, not a law firm. We are not licensed to practice law in any jurisdiction and do not purport to do so.</p>
-      <p>All information provided by the Firm — whether on this website, in reports, in briefings, in insights articles, or in direct communications — is provided for <strong>general informational purposes only</strong>. It does not constitute legal advice and should not be relied upon as a substitute for consultation with a qualified attorney licensed in the relevant jurisdiction.</p>
-      <div class="disclaimer-callout">
-        <p>If you require legal advice regarding any matter touched upon in our services or publications, you should consult a licensed attorney. No content produced by Locke &amp; Boole Solutions LLC creates an attorney-client relationship between you and this firm under any circumstances.</p>
+    <div class="legal-section" id="definitions">
+      <div class="legal-section-num">Section 01</div>
+      <h2>Definitions</h2>
+      <p>For purposes of these Terms, the following definitions apply:</p>
+      <ul>
+        <li><strong>"Services"</strong> refers to all data intelligence, corporate structure investigation, asset tracing, beneficial ownership mapping, continuous monitoring, and training services provided by the Firm.</li>
+        <li><strong>"Deliverables"</strong> refers to all reports, visual ownership charts, affidavits, executive summaries, monitoring alerts, training materials, and other outputs produced by the Firm in connection with a Client engagement.</li>
+        <li><strong>"Engagement Letter"</strong> refers to the written document issued by the Firm specifying the scope, fee, and timeline of a particular engagement.</li>
+        <li><strong>"Retainer Agreement"</strong> refers to the signed agreement establishing an ongoing subscription or VIP retainer relationship between the Client and the Firm.</li>
+        <li><strong>"Matter"</strong> refers to the specific investigation, monitoring arrangement, or training engagement that is the subject of the Firm's work for a Client.</li>
+      </ul>
+    </div>
+
+    <div class="legal-section" id="services">
+      <div class="legal-section-num">Section 02</div>
+      <h2>Nature of Services</h2>
+      <p>Locke &amp; Boole Solutions LLC is a <strong>data intelligence firm</strong>. We are not a law firm. We do not provide legal advice, legal counsel, strategic advocacy, or any service that constitutes the practice of law in any jurisdiction.</p>
+      <p>All Deliverables produced by the Firm are provided for <strong>informational purposes only</strong>. Clients are solely responsible for interpreting Deliverables in accordance with their own legal obligations and in consultation with their retained legal counsel.</p>
+      <div class="legal-highlight">
+        No attorney-client relationship, fiduciary relationship, or any other professional relationship beyond that of a data intelligence vendor and its client is created by engagement with Locke &amp; Boole Solutions LLC.
       </div>
+      <p>The Firm's services are limited to the collection, analysis, and presentation of publicly available information obtained through lawful means, including Secretary of State filings, UCC records, EDGAR filings, county property records, federal procurement data, bankruptcy dockets, FOIA responses, and other public sources.</p>
     </div>
 
-    <div class="disclaimer-section" id="d-accuracy">
-      <div class="disclaimer-section-num">Disclaimer 02</div>
-      <h2>Accuracy of Information</h2>
-      <p>While Locke &amp; Boole Solutions LLC makes reasonable efforts to ensure that all information contained in its Deliverables is accurate as of the date of delivery, we make <strong>no warranties, express or implied</strong>, regarding the completeness, accuracy, reliability, suitability, or availability of any information provided.</p>
-      <p>Public records — including Secretary of State filings, UCC records, county property records, and federal databases — are subject to publication delays, clerical errors, incomplete filings, and jurisdictional inconsistencies that are entirely beyond the Firm's control. Corporate structures change. Registered agents change. Assets are transferred. Our reports reflect the public record as it existed at the time of investigation, not necessarily as it exists at the time you read or act upon them.</p>
-      <p>Reliance on any information provided by Locke &amp; Boole Solutions LLC is therefore at your own risk. The Firm shall not be liable for any errors, omissions, or inaccuracies in the information provided, or for any decisions made in reliance on such information.</p>
+    <div class="legal-section" id="engagement">
+      <div class="legal-section-num">Section 03</div>
+      <h2>Engagement &amp; Retainer</h2>
+      <p>No engagement is established until the Client has received and countersigned a written Engagement Letter or Retainer Agreement issued by the Firm, and until all applicable fees have cleared. Submission of an intake inquiry does not constitute engagement and creates no obligation on the part of either party.</p>
+      <p>The Firm reserves the right to decline any inquiry at its sole discretion, without explanation or obligation. We do not accept every matter. If we determine we cannot add material value to your matter, we will inform you promptly.</p>
+      <p>Subscription services (The Firewall, The Silent Partner) operate on a month-to-month basis unless otherwise specified in the Retainer Agreement. Either party may terminate a subscription with 30 days' written notice, subject to the terms of Section 9 (Termination).</p>
     </div>
 
-    <div class="disclaimer-section" id="d-website">
-      <div class="disclaimer-section-num">Disclaimer 03</div>
-      <h2>Website Disclaimer</h2>
-      <p>The content of this website is provided for general information purposes only. Case study metrics, operational statistics, and service descriptions reflect historical or representative data and are subject to change without notice.</p>
-      <p>Locke &amp; Boole Solutions LLC reserves the right to modify, update, or remove any content on this website at any time and without prior notice. The Firm makes no representation that the website will be available without interruption, error-free, or free of harmful components.</p>
-      <p>This website may contain links to third-party websites. These links are provided for convenience only. The Firm has no control over the content of linked sites and accepts no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+    <div class="legal-section" id="data">
+      <div class="legal-section-num">Section 04</div>
+      <h2>Data &amp; Deliverables</h2>
+      <p>All Deliverables produced by the Firm are the property of the Client upon full payment of all applicable fees. The Firm retains no continuing rights to Deliverables following delivery and payment, except as necessary to fulfill ongoing monitoring obligations under subscription engagements.</p>
+      <p>Deliverables are based exclusively on publicly available information available as of the date of investigation. The Firm makes no representation that Deliverables reflect the complete or current state of any entity, asset, or ownership structure. Corporate structures change; public records have publication lags; and offshore registries vary in accessibility and reliability.</p>
+      <p>Clients are prohibited from representing Deliverables as having been produced by any entity other than Locke &amp; Boole Solutions LLC in any judicial, regulatory, or public proceeding without prior written consent from the Firm.</p>
     </div>
 
-    <div class="disclaimer-section" id="d-third-party">
-      <div class="disclaimer-section-num">Disclaimer 04</div>
-      <h2>Third-Party Sources</h2>
-      <p>The Firm's Deliverables and publications may reference, cite, or summarize information from third-party sources, including government databases, court filings, and public registries. While we endeavor to cite reliable sources, the Firm makes no representation regarding the accuracy, completeness, or currency of information obtained from third-party sources.</p>
-      <p>The Firm is not responsible for the content, accuracy, or reliability of any third-party source referenced in its work. Citations are provided to enable independent verification; they do not constitute endorsement of the underlying source's general reliability.</p>
+    <div class="legal-section" id="confidentiality">
+      <div class="legal-section-num">Section 05</div>
+      <h2>Confidentiality</h2>
+      <p>The Firm will maintain strict confidentiality regarding all Client identities, matter details, and Deliverables. We do not disclose Client relationships, matter specifics, or Deliverable contents to any third party except as required by valid legal process.</p>
+      <p>Clients agree to maintain the confidentiality of any non-public information shared by the Firm in connection with an engagement, including methodology documentation, proprietary workflow details, and analyst identities.</p>
+      <p>The Firm may reference aggregate, anonymized operational metrics (such as total assets traced, total entities monitored) for marketing and credibility purposes, provided no Client or matter is identifiable from such references.</p>
     </div>
 
-    <div class="disclaimer-section" id="d-no-relationship">
-      <div class="disclaimer-section-num">Disclaimer 05</div>
-      <h2>No Professional Relationship</h2>
-      <p>Accessing this website, reading our publications, submitting an intake inquiry, or receiving a Deliverable does not establish any professional, fiduciary, or advisory relationship between you and Locke &amp; Boole Solutions LLC.</p>
-      <p>A formal client relationship is established <strong>only</strong> upon execution of a signed Engagement Letter or Retainer Agreement by both parties and clearance of all applicable fees. Until that point, no duty of any kind is owed by the Firm to any individual or entity that has interacted with this website or its publications.</p>
+    <div class="legal-section" id="limitations">
+      <div class="legal-section-num">Section 06</div>
+      <h2>Limitations of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, the Firm's total liability to any Client for any claim arising from or related to an engagement shall not exceed the total fees paid by the Client to the Firm in the three (3) months preceding the claim.</p>
+      <p>The Firm shall not be liable for any indirect, incidental, consequential, special, or punitive damages, including lost profits, lost business opportunities, or decisions made in reliance on Deliverables.</p>
+      <p>The Firm does not warrant that Deliverables are complete, accurate, or current as of any date other than the date of delivery. Public records are subject to delays, errors, and omissions that are beyond the Firm's control. All Deliverables are provided "as is" based on available public data.</p>
     </div>
 
-    <div class="disclaimer-section" id="d-forward">
-      <div class="disclaimer-section-num">Disclaimer 06</div>
-      <h2>Forward-Looking Statements</h2>
-      <p>Any statements in our publications or communications that are not historical fact may constitute forward-looking statements. These include statements about anticipated regulatory developments, industry trends, or the potential implications of legal or structural changes.</p>
-      <p>Forward-looking statements involve known and unknown risks and uncertainties. Actual outcomes may differ materially from those expressed or implied. The Firm undertakes no obligation to update forward-looking statements following publication.</p>
+    <div class="legal-section" id="prohibited">
+      <div class="legal-section-num">Section 07</div>
+      <h2>Prohibited Uses</h2>
+      <p>Clients may not use Deliverables or the Firm's services for any of the following purposes:</p>
+      <ul>
+        <li>Harassment, stalking, or targeted intimidation of any individual</li>
+        <li>Any purpose that violates applicable federal, state, or local law</li>
+        <li>Consumer credit, employment screening, or tenant screening subject to the Fair Credit Reporting Act (FCRA)</li>
+        <li>Any purpose that constitutes unauthorized practice of law</li>
+        <li>Resale or redistribution of Deliverables to third parties without prior written consent</li>
+        <li>Any use that would require the Firm to have been licensed as a private investigator in any jurisdiction where such licensing is required for the specific services rendered</li>
+      </ul>
+      <p>Violation of these prohibitions may result in immediate termination of engagement without refund and potential legal action.</p>
     </div>
 
-    <div class="disclaimer-section" id="d-liability">
-      <div class="disclaimer-section-num">Disclaimer 07</div>
-      <h2>Limitation of Liability</h2>
-      <p>To the maximum extent permitted by applicable law, Locke &amp; Boole Solutions LLC expressly excludes all liability for any loss or damage — including without limitation indirect or consequential loss or damage — arising from or in connection with the use of this website, any content published on it, or any Deliverable produced by the Firm.</p>
-      <p>This limitation applies whether the loss arises in contract, tort (including negligence), breach of statutory duty, or otherwise, and whether or not the Firm has been advised of the possibility of such loss.</p>
+    <div class="legal-section" id="payment">
+      <div class="legal-section-num">Section 08</div>
+      <h2>Payment Terms</h2>
+      <p>All fees are due in full prior to commencement of work unless otherwise specified in a signed Engagement Letter. Subscription fees are billed monthly in advance. One-time project fees for Deep Dive engagements require a 50% deposit upon execution of the Engagement Letter, with the remainder due upon delivery.</p>
+      <p>Fees are non-refundable once work has commenced. If the Firm is unable to complete a project due to circumstances within its control, a pro-rata refund will be issued for incomplete work.</p>
+      <p>All fees are quoted and payable in U.S. dollars. Applicable taxes are the responsibility of the Client.</p>
     </div>
 
-    <div class="disclaimer-section" id="d-jurisdiction">
-      <div class="disclaimer-section-num">Disclaimer 08</div>
-      <h2>Jurisdictional Notice</h2>
-      <p>Locke &amp; Boole Solutions LLC is a Florida Limited Liability Company operating under the laws of the State of Florida. Our services are directed at legal professionals, corporate entities, and qualified business clients engaged in lawful activities.</p>
-      <p>The information on this website is not directed at any person in any jurisdiction where, by reason of that person's nationality, residence, or domicile, the publication or availability of the information would be contrary to law or regulation. Persons in such jurisdictions should not access this website or its content.</p>
-      <p>Questions regarding these disclaimers may be directed to <strong>contact@lockeandboole.com</strong>.</p>
+    <div class="legal-section" id="termination">
+      <div class="legal-section-num">Section 09</div>
+      <h2>Termination</h2>
+      <p>Either party may terminate a subscription engagement with 30 days' written notice. Termination does not entitle the Client to a refund of fees already paid for the current billing period.</p>
+      <p>The Firm reserves the right to terminate any engagement immediately and without notice if the Client is found to be in breach of these Terms, if the Client provides materially false information during intake, or if continuation of the engagement would require the Firm to act unlawfully.</p>
+      <p>Upon termination, all outstanding fees become immediately due. The Firm will deliver all completed Deliverables up to the date of termination.</p>
+    </div>
+
+    <div class="legal-section" id="governing">
+      <div class="legal-section-num">Section 10</div>
+      <h2>Governing Law</h2>
+      <p>These Terms, and all engagements governed by them, shall be interpreted under and governed by the laws of the State of Florida, without regard to its conflict of law provisions.</p>
+      <p>Any dispute arising from or relating to these Terms or any engagement shall be resolved by binding arbitration in Duval County, Florida, under the rules of the American Arbitration Association, except that either party may seek injunctive or other equitable relief in any court of competent jurisdiction.</p>
+      <p>Locke &amp; Boole Solutions LLC is a registered Florida Limited Liability Company (LLC).</p>
+    </div>
+
+    <div class="legal-section" id="contact-legal">
+      <div class="legal-section-num">Section 11</div>
+      <h2>Contact</h2>
+      <p>Questions regarding these Terms should be directed to:</p>
+      <p><strong>Locke &amp; Boole Solutions LLC</strong><br>contact@lockeandboole.com<br>PGP encryption available upon request.<br>Florida Limited Liability Company</p>
     </div>
   </div>
 </div>

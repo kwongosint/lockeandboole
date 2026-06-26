@@ -101,24 +101,37 @@ nav {
 }
 
 /* Dropdown */
-.nav-dropdown {
+/* === DROPDOWN — gap-bridge fix === */
+.nav-links > li.has-dropdown { padding-bottom: 20px; margin-bottom: -20px; }
+
+/* invisible hover bridge so mouse doesn't lose hover crossing the gap */
+.nav-links > li.has-dropdown::after {
+  content: '';
   position: absolute;
-  top: calc(100% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  border: 1px solid rgba(240,237,232,0.1);
-  min-width: 220px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s, top 0.15s;
-  z-index: 300;
+  top: calc(100% - 20px);
+  left: -24px; right: -24px;
+  height: 28px;
 }
 
-.nav-links > li:hover .nav-dropdown {
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.12);
+  min-width: 230px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 300;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+
+.nav-links > li.has-dropdown:hover .nav-dropdown {
   opacity: 1;
   pointer-events: all;
-  top: calc(100% + 12px);
+  transform: translateX(-50%) translateY(0);
 }
 
 .nav-dropdown a {
@@ -128,12 +141,14 @@ nav {
   font-size: 12px;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.65);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
 .nav-dropdown a:last-child { border-bottom: none; }
 
 .nav-dropdown a:hover {
-  background: rgba(240,237,232,0.04);
+  background: rgba(240,237,232,0.06);
   color: var(--cream);
 }
 
@@ -143,7 +158,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(240,237,232,0.25);
-  padding: 12px 20px 6px;
+  padding: 14px 20px 6px;
 }
 
 .nav-cta {
@@ -528,177 +543,160 @@ footer {
 ::-webkit-scrollbar-track { background: var(--navy); }
 ::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
 <style>
-.briefings-intro {
+.services-grid {
   background: var(--cream);
+}
+
+.service-block {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 2fr;
   gap: 80px;
   align-items: start;
+  padding: 72px 48px;
+  border-bottom: 1px solid var(--cream-dark);
 }
 
-.briefings-intro-body {
-  font-size: 15px; font-weight: 300;
-  color: #3A4A60; line-height: 1.85;
-  margin-top: 28px;
+.service-block:last-child { border-bottom: none; }
+
+.service-block-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 80px;
+  color: var(--cream-dark);
+  line-height: 1;
+  margin-bottom: 16px;
+  letter-spacing: -0.04em;
 }
 
-.briefings-intro-body p + p { margin-top: 16px; }
-
-.briefings-note {
-  background: var(--cream-dark);
-  padding: 28px 28px;
-  margin-top: 0;
-}
-
-.briefings-note-title {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase;
+.service-block-tag {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.service-block-name {
+  font-family: 'EB Garamond', serif;
+  font-size: 34px; font-weight: 400;
+  color: var(--navy);
+  line-height: 1.1;
   margin-bottom: 8px;
 }
 
-.briefings-note-text {
-  font-size: 13px; font-weight: 300;
-  color: #4A5A70; line-height: 1.7;
+.service-block-codename {
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #8A94A6;
+  margin-bottom: 24px;
 }
 
-/* BRIEFINGS LIST */
-.briefings-section {
-  background: var(--cream);
-  padding-top: 0;
+.service-block-price {
+  font-family: 'EB Garamond', serif;
+  font-size: 40px;
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
-.briefings-list {
+.service-block-price-note {
+  font-size: 10px; font-weight: 400;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: #8A94A6;
+  margin-bottom: 28px;
+}
+
+.service-block-desc {
+  font-size: 16px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 36px;
+}
+
+.service-includes-title {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.service-includes {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  background: var(--cream-dark);
-  border: 1px solid var(--cream-dark);
+  gap: 10px;
+  margin-bottom: 32px;
 }
 
-.briefing-row {
-  background: var(--cream);
-  padding: 32px 40px;
-  display: grid;
-  grid-template-columns: 140px 1fr auto;
-  gap: 40px;
-  align-items: center;
-  transition: background 0.2s;
-  cursor: pointer;
-  text-decoration: none;
+.service-includes li {
+  font-size: 14px; font-weight: 300;
+  color: #3A4A60; line-height: 1.6;
+  display: flex; align-items: flex-start; gap: 12px;
 }
 
-.briefing-row:hover { background: #EAE6E0; }
-
-.briefing-date {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
+.service-includes li::before {
+  content: '—';
   color: var(--text-muted);
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-.briefing-content {}
+.service-why {
+  background: var(--cream-dark);
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  border-left: 3px solid var(--navy);
+}
 
-.briefing-category {
+.service-why-label {
   font-size: 9px; font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 6px;
 }
 
-.briefing-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 20px; font-weight: 400;
-  color: var(--navy);
-  line-height: 1.25;
-  margin-bottom: 6px;
+.service-why-text {
+  font-size: 13px; font-weight: 400;
+  color: var(--navy); line-height: 1.65;
+  font-style: italic;
 }
 
-.briefing-desc {
-  font-size: 13px; font-weight: 300;
-  color: #5A6880; line-height: 1.6;
-}
-
-.briefing-arrow {
-  font-size: 18px; color: var(--cream-dark);
-  transition: color 0.2s, transform 0.2s;
-}
-
-.briefing-row:hover .briefing-arrow {
-  color: var(--navy);
-  transform: translateX(4px);
-}
-
-.briefing-restricted {
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: rgba(13,31,60,0.35);
-  border: 1px solid rgba(13,31,60,0.15);
-  padding: 4px 10px;
-  white-space: nowrap;
-}
-
-/* ACCESS SECTION */
-.access-section {
+/* Comparison table */
+.comparison-section {
   background: var(--navy);
+  padding: 88px 48px;
 }
 
-.access-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: rgba(240,237,232,0.07);
-  border: 1px solid rgba(240,237,232,0.07);
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
   margin-top: 56px;
 }
 
-.access-cell {
-  background: var(--navy);
-  padding: 44px 40px;
+.comparison-table th {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(240,237,232,0.35);
+  padding: 16px 24px;
+  text-align: left;
+  border-bottom: 1px solid rgba(240,237,232,0.08);
 }
 
-.access-tier {
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(240,237,232,0.3);
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(240,237,232,0.06);
-}
-
-.access-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 26px; color: var(--cream);
-  margin-bottom: 14px;
-}
-
-.access-desc {
-  font-size: 14px; font-weight: 300;
-  color: rgba(240,237,232,0.5);
-  line-height: 1.75;
-  margin-bottom: 24px;
-}
-
-.access-includes {
-  list-style: none;
-  display: flex; flex-direction: column; gap: 8px;
-  margin-bottom: 28px;
-}
-
-.access-includes li {
+.comparison-table td {
   font-size: 13px; font-weight: 300;
-  color: rgba(240,237,232,0.5);
-  display: flex; gap: 10px;
+  color: rgba(240,237,232,0.6);
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(240,237,232,0.05);
+  vertical-align: top;
 }
 
-.access-includes li::before {
-  content: '›';
-  color: rgba(240,237,232,0.25);
-  flex-shrink: 0;
+.comparison-table tr:hover td {
+  background: rgba(240,237,232,0.02);
 }
+
+.check { color: rgba(240,237,232,0.75); font-size: 15px; }
+.dash { color: rgba(240,237,232,0.2); font-size: 15px; }
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Briefings — Locke &amp; Boole Solutions</title>
+<title>Services — Locke &amp; Boole Solutions</title>
 
 </head>
 <body>
@@ -728,142 +726,208 @@ footer {
 
 <div class="page-header">
   <div class="page-header-grid"></div>
-  <div class="page-header-eyebrow">Resources / Briefings</div>
-  <h1>Timely intelligence<br>on structural <em>risk.</em></h1>
-  <p class="page-header-sub">Briefings are short-form intelligence memos produced by the Locke &amp; Boole analyst team when a development in corporate law, OSINT practice, or regulatory compliance warrants immediate attention from our clients.</p>
+  <div class="page-header-eyebrow">Services</div>
+  <h1>Surveillance and <em>Verification.</em></h1>
+  <p class="page-header-sub">We do not provide advice. We provide data — verified, mapped, and delivered in subpoena-ready formats.</p>
 </div>
 
-<section class="briefings-intro">
-  <div>
-    <div class="section-eyebrow">What Are Briefings</div>
-    <h2 class="section-title">Not analysis.<br><em>Intelligence.</em></h2>
-    <div class="briefings-intro-body">
-      <p>Unlike our Insights pieces — which cover methodology and framework in depth — Briefings are short, direct, and time-sensitive. They are written when something changes in the regulatory environment, the OSINT toolset, or corporate law that has immediate implications for how our clients should approach their work.</p>
-      <p>Briefings are typically 2–4 pages. They do not hedge. They tell you what changed, why it matters to your practice, and what to do about it.</p>
+<div class="services-grid">
+  <!-- FIREWALL -->
+  <div class="service-block" id="firewall">
+    <div class="service-block-meta">
+      <div class="service-block-num">01</div>
+      <div class="service-block-tag">Subscription · Monthly</div>
+      <div class="service-block-name">The Firewall</div>
+      <div class="service-block-codename">Continuous Monitoring</div>
+      <div class="service-block-price">$1,500<span style="font-size:20px;opacity:0.45">/mo</span></div>
+      <div class="service-block-price-note">Top 5 business partners</div>
+      <a href="demo.html" class="btn-navy">Engage This Service</a>
     </div>
-  </div>
-  <div>
-    <div class="briefings-note">
-      <div class="briefings-note-title">Access Policy</div>
-      <div class="briefings-note-text">Briefings marked "Restricted" are available exclusively to active retainer clients (Firewall, Silent Partner). Briefings marked "Open" are available to all newsletter subscribers. To access restricted briefings, inquire about a retainer engagement via our <a href="demo.html" style="color:var(--navy);font-weight:500;">client intake</a>.</div>
-    </div>
-  </div>
-</section>
-
-<!-- BRIEFINGS LIST -->
-<section class="briefings-section">
-  <div class="section-eyebrow">Recent Briefings</div>
-  <div class="briefings-list">
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">June 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">Regulatory Update · FinCEN</div>
-        <div class="briefing-title">FinCEN BOI Registry: New Reporting Exemptions and What They Mean for Investigative Practice</div>
-        <div class="briefing-desc">Three new exemption categories were quietly added in the May 2026 regulatory update. Here's what is no longer required to be reported — and where that creates new blind spots.</div>
-      </div>
-      <div>
-        <div class="briefing-restricted">Restricted</div>
-      </div>
-    </a>
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">May 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">OSINT Tools · Practice Update</div>
-        <div class="briefing-title">Two Secretary of State Portals Have Changed Their Search Interfaces — What Investigators Need to Know</div>
-        <div class="briefing-desc">Nevada and Wyoming updated their business registry search systems in April. The new interfaces have changed how registered agent data surfaces. A practical guide to the new navigation.</div>
-      </div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
-    </a>
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">May 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">Corporate Law · Florida</div>
-        <div class="briefing-title">Florida LLC Act Amendment: Changes to Annual Report Requirements Affecting Entity Monitoring</div>
-        <div class="briefing-desc">A Florida legislative amendment effective July 1, 2026 changes the information required on annual LLC reports. For clients monitoring Florida-registered entities, this changes your data picture.</div>
-      </div>
-      <div>
-        <div class="briefing-restricted">Restricted</div>
-      </div>
-    </a>
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">April 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">Litigation Practice · Asset Recovery</div>
-        <div class="briefing-title">Post-Judgment Asset Discovery: A Change in the 11th Circuit's Approach to Fraudulent Transfer Clawbacks</div>
-        <div class="briefing-desc">A recent 11th Circuit decision has implications for how asset recovery attorneys frame their discovery requests in Florida post-judgment proceedings. Summary for litigation teams.</div>
-      </div>
-      <div>
-        <div class="briefing-restricted">Restricted</div>
-      </div>
-    </a>
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">April 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">OSINT Practice · Database Update</div>
-        <div class="briefing-title">PACER Fee Structure Update: What Changed and How to Minimize Cost in High-Volume Searches</div>
-        <div class="briefing-desc">PACER's updated fee structure takes effect June 2026. For investigators running large-scale bankruptcy docket searches, the new pricing has meaningful cost implications. Practical guidance on batching and alternatives.</div>
-      </div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
-    </a>
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">March 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">Compliance · Corporate Transparency</div>
-        <div class="briefing-title">The CTA Enforcement Ramp: What the First Wave of BOI Penalties Tells Us About Priorities</div>
-        <div class="briefing-desc">The first formal FinCEN enforcement actions under the Corporate Transparency Act have been issued. An analysis of the penalty pattern, which entities were targeted, and what compliance teams should prioritize.</div>
-      </div>
-      <div>
-        <div class="briefing-restricted">Restricted</div>
-      </div>
-    </a>
-
-    <a class="briefing-row" href="#">
-      <div class="briefing-date">February 2026</div>
-      <div class="briefing-content">
-        <div class="briefing-category">OSINT Practice · Tools</div>
-        <div class="briefing-title">New Geospatial Verification Resources for Commercial Property Confirmation</div>
-        <div class="briefing-desc">Three new publicly accessible tools significantly improve the speed of physical asset confirmation in commercial real estate investigations. A brief evaluation and recommended workflow.</div>
-      </div>
-      <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ACCESS TIERS -->
-<section class="access-section">
-  <div class="section-eyebrow light">Access</div>
-  <h2 class="section-title light">How to receive<br><em>restricted briefings.</em></h2>
-  <div class="access-grid">
-    <div class="access-cell">
-      <div class="access-tier">Newsletter Subscribers</div>
-      <div class="access-title">Open Briefings</div>
-      <div class="access-desc">All briefings marked "Open" are distributed free to newsletter subscribers. Subscribe via our Insights page to receive them as published.</div>
-      <ul class="access-includes">
-        <li>All Open-access briefings</li>
-        <li>Monthly Insights articles</li>
-        <li>Methodology notes</li>
+    <div class="service-block-body">
+      <p class="service-block-desc">Retain our automated monitoring engine to watch over your critical partners, vendors, and organizational subsidiaries. The Firewall runs continuously so you don't have to — surfacing structural changes before they become legal exposure.</p>
+      <div class="service-includes-title">What's Included</div>
+      <ul class="service-includes">
+        <li>Monthly Stability Reports on your top 5 business partners</li>
+        <li>Automated flagging of registered agent changes, entity dissolutions, and new UCC liens</li>
+        <li>2-page executive summary delivered by the 1st of every month</li>
+        <li>Secure encrypted PDF delivery for every report</li>
+        <li>Email alerts for time-sensitive structural changes between reports</li>
       </ul>
-      <a href="insights.html#newsletter" class="btn-primary">Subscribe to Newsletter</a>
-    </div>
-    <div class="access-cell">
-      <div class="access-tier">Retainer Clients</div>
-      <div class="access-title">Full Briefing Access</div>
-      <div class="access-desc">Active Firewall and Silent Partner retainer clients receive all briefings — open and restricted — via encrypted email as they are published. No additional cost.</div>
-      <ul class="access-includes">
-        <li>All Open and Restricted briefings</li>
-        <li>Direct analyst alerts for matter-specific developments</li>
-        <li>Priority notification for time-sensitive regulatory changes</li>
-      </ul>
-      <a href="demo.html" class="btn-ghost">Inquire About a Retainer</a>
+      <div class="service-why">
+        <div class="service-why-label">Why You Need It</div>
+        <p class="service-why-text">To avoid a $50,000 legal headache from a partner who quietly restructured their liability shields without your knowledge — and without telling you.</p>
+      </div>
     </div>
   </div>
+
+  <!-- DEEP DIVE -->
+  <div class="service-block" id="deepdive">
+    <div class="service-block-meta">
+      <div class="service-block-num">02</div>
+      <div class="service-block-tag">One-Time · Bespoke</div>
+      <div class="service-block-name">The Deep Dive</div>
+      <div class="service-block-codename">Asset Trace Report</div>
+      <div class="service-block-price">$3,500<span style="font-size:20px;opacity:0.45">+</span></div>
+      <div class="service-block-price-note">Starting price</div>
+      <a href="demo.html" class="btn-navy">Engage This Service</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">A full, bespoke asset mapping investigation for high-stakes litigation, divorce proceedings, bankruptcy, or M&amp;A due diligence. Every claim is independently verifiable using the same public sources we cite. We do not guess.</p>
+      <div class="service-includes-title">What's Included</div>
+      <ul class="service-includes">
+        <li>20-page visual "asset genealogy" report mapping the target's full ownership chain</li>
+        <li>Cross-state and cross-jurisdictional entity tracking</li>
+        <li>Footnoted data sources for every claim in the report</li>
+        <li>Secure, encrypted PDF delivery</li>
+        <li>Optional: Subpoena-ready affidavit of methodology (+$2,000)</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">When to Use It</div>
+        <p class="service-why-text">High-net-worth divorce where assets have been moved into holding companies. Pre-acquisition diligence where the selling entity's ownership chain is opaque. Bankruptcy proceedings where assets may have been transferred to nominees.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SILENT PARTNER -->
+  <div class="service-block" id="silent">
+    <div class="service-block-meta">
+      <div class="service-block-num">03</div>
+      <div class="service-block-tag">VIP Retainer · Monthly</div>
+      <div class="service-block-name">The Silent Partner</div>
+      <div class="service-block-codename">Executive Access</div>
+      <div class="service-block-price">$2,000<span style="font-size:20px;opacity:0.45">/mo</span></div>
+      <div class="service-block-price-note">Includes Firewall tier</div>
+      <a href="demo.html" class="btn-navy">Engage This Service</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">Immediate, priority access to our analyst team for high-volume, time-sensitive intelligence requirements. For clients who cannot afford to wait — or who simply require the highest tier of continuous structural intelligence.</p>
+      <div class="service-includes-title">What's Included</div>
+      <ul class="service-includes">
+        <li>All services in The Firewall Continuous Monitoring subscription</li>
+        <li>Unlimited "quick-trace" requests — entity status identified in under 1 hour</li>
+        <li>One complimentary Deep Dive report per quarter (a $3,500 value)</li>
+        <li>Direct "Hotline" access via encrypted messaging for urgent asset searches</li>
+        <li>24-hour guaranteed turnaround on all urgent requests</li>
+        <li>Dedicated analyst point-of-contact for all matters</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">Who It's For</div>
+        <p class="service-why-text">Litigation firms handling multiple concurrent matters. Family offices auditing their financial managers. Private equity teams running parallel diligence processes on multiple targets.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAINING -->
+  <div class="service-block" id="training">
+    <div class="service-block-meta">
+      <div class="service-block-num">04</div>
+      <div class="service-block-tag">Training · Per Session</div>
+      <div class="service-block-name">Analyst Accelerator</div>
+      <div class="service-block-codename">Internal OSINT Capacity</div>
+      <div class="service-block-price">$3,500<span style="font-size:20px;opacity:0.45">/session</span></div>
+      <div class="service-block-price-note">4-hour virtual session</div>
+      <a href="demo.html" class="btn-navy">Inquire About Training</a>
+    </div>
+    <div class="service-block-body">
+      <p class="service-block-desc">We do not hoard our methodology. For clients seeking to build durable internal OSINT capacity, we offer live, virtual training sessions run directly by our analysts. Your team will leave capable of running basic structural investigations independently.</p>
+      <div class="service-includes-title">Training Modules</div>
+      <ul class="service-includes">
+        <li>Navigating UCC filings and Secretary of State databases across jurisdictions</li>
+        <li>Advanced Boolean search operators for open-source investigations</li>
+        <li>Building a "shell entity family tree" in under 30 minutes</li>
+        <li>Real property record cross-referencing for asset confirmation</li>
+        <li>EDGAR, federal procurement, and bankruptcy docket navigation</li>
+      </ul>
+      <div class="service-why">
+        <div class="service-why-label">What You'll Receive</div>
+        <p class="service-why-text">A 40-page digital playbook and recorded session video for your firm's permanent internal records. Suitable for teams of up to 10 participants per session.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<section class="comparison-section">
+  <div class="section-eyebrow light">Service Comparison</div>
+  <h2 class="section-title light">Find the right <em>tier.</em></h2>
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Firewall</th>
+        <th>Deep Dive</th>
+        <th>Silent Partner</th>
+        <th>Accelerator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Continuous partner monitoring</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Monthly executive summary</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Full asset genealogy report</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td>✓ Quarterly</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Cross-jurisdictional tracing</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Subpoena-ready affidavit (add-on)</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Unlimited quick-trace requests</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Direct encrypted analyst hotline</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+        <td class="dash">—</td>
+      </tr>
+      <tr>
+        <td>Internal team training</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+      </tr>
+      <tr>
+        <td>40-page methodology playbook</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="dash">—</td>
+        <td class="check">✓</td>
+      </tr>
+    </tbody>
+  </table>
+  <br><br>
+  <a href="demo.html" class="btn-primary">Request a Demonstration</a>
 </section>
 
 <footer>

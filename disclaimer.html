@@ -101,24 +101,37 @@ nav {
 }
 
 /* Dropdown */
-.nav-dropdown {
+/* === DROPDOWN — gap-bridge fix === */
+.nav-links > li.has-dropdown { padding-bottom: 20px; margin-bottom: -20px; }
+
+/* invisible hover bridge so mouse doesn't lose hover crossing the gap */
+.nav-links > li.has-dropdown::after {
+  content: '';
   position: absolute;
-  top: calc(100% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  border: 1px solid rgba(240,237,232,0.1);
-  min-width: 220px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s, top 0.15s;
-  z-index: 300;
+  top: calc(100% - 20px);
+  left: -24px; right: -24px;
+  height: 28px;
 }
 
-.nav-links > li:hover .nav-dropdown {
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.12);
+  min-width: 230px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 300;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+
+.nav-links > li.has-dropdown:hover .nav-dropdown {
   opacity: 1;
   pointer-events: all;
-  top: calc(100% + 12px);
+  transform: translateX(-50%) translateY(0);
 }
 
 .nav-dropdown a {
@@ -128,12 +141,14 @@ nav {
   font-size: 12px;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.65);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
 .nav-dropdown a:last-child { border-bottom: none; }
 
 .nav-dropdown a:hover {
-  background: rgba(240,237,232,0.04);
+  background: rgba(240,237,232,0.06);
   color: var(--cream);
 }
 
@@ -143,7 +158,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(240,237,232,0.25);
-  padding: 12px 20px 6px;
+  padding: 14px 20px 6px;
 }
 
 .nav-cta {
@@ -528,263 +543,104 @@ footer {
 ::-webkit-scrollbar-track { background: var(--navy); }
 ::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
 <style>
-/* ── HERO ── */
-.hero {
-  background: var(--navy);
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  padding: 120px 48px 88px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(240,237,232,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(240,237,232,0.03) 1px, transparent 1px);
-  background-size: 80px 80px;
-  pointer-events: none;
-}
-
-.hero-eyebrow {
-  font-size: 10px; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(240,237,232,0.35);
-  margin-bottom: 32px;
-}
-
-.hero h1 {
-  font-family: 'EB Garamond', serif;
-  font-size: clamp(52px, 7vw, 98px);
-  font-weight: 400;
-  color: var(--cream);
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  max-width: 920px;
-  margin-bottom: 36px;
-}
-
-.hero h1 em { font-style: italic; opacity: 0.55; }
-
-.hero-sub {
-  font-size: 16px; font-weight: 300;
-  color: rgba(240,237,232,0.55);
-  max-width: 500px; line-height: 1.75;
-  margin-bottom: 52px;
-}
-
-.hero-actions { display: flex; gap: 16px; align-items: center; }
-
-.hero-stats {
-  position: absolute;
-  right: 48px; bottom: 88px;
-  display: flex; flex-direction: column; gap: 32px;
-  align-items: flex-end;
-  border-right: 1px solid rgba(240,237,232,0.1);
-  padding-right: 36px;
-}
-
-.hero-stat-num {
-  font-family: 'EB Garamond', serif;
-  font-size: 38px;
-  color: var(--cream); line-height: 1;
-}
-
-.hero-stat-label {
-  font-size: 9px; font-weight: 500;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: rgba(240,237,232,0.3);
-  text-align: right; margin-top: 3px;
-}
-
-/* ── INTRO ── */
-.intro-section {
+.disclaimer-body {
   background: var(--cream);
+  padding: 72px 48px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 260px 1fr;
   gap: 80px;
   align-items: start;
 }
 
-.intro-body {
-  font-size: 16px; font-weight: 300;
-  line-height: 1.85; color: #3A4A60;
-  margin-top: 32px;
+.disclaimer-toc {
+  position: sticky;
+  top: 100px;
 }
 
-.intro-body p + p { margin-top: 20px; }
-
-.framework-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--cream-dark);
-  border: 1px solid var(--cream-dark);
-  margin-top: 8px;
+.disclaimer-toc-title {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cream-dark);
 }
 
-.framework-cell {
-  background: var(--cream);
-  padding: 28px 24px;
+.disclaimer-toc a {
+  display: block;
+  font-size: 12px; font-weight: 400;
+  color: #5A6880;
+  text-decoration: none;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--cream-dark);
+  transition: color 0.15s;
+  line-height: 1.4;
 }
 
-.framework-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--navy); margin-bottom: 6px;
+.disclaimer-toc a:hover { color: var(--navy); }
+
+.disclaimer-toc-updated {
+  font-size: 10px; font-weight: 300;
+  color: var(--text-muted);
+  margin-top: 20px;
+  line-height: 1.6;
 }
 
-.framework-desc {
-  font-size: 12px; font-weight: 300;
-  color: #5A6880; line-height: 1.6;
+.disclaimer-intro {
+  font-size: 15px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--cream-dark);
 }
 
-/* ── SERVICE PREVIEW ── */
-.services-preview {
-  background: var(--navy);
+.disclaimer-section {
+  margin-bottom: 44px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--cream-dark);
 }
 
-.services-preview .section-eyebrow { color: rgba(240,237,232,0.35); }
-.services-preview .section-eyebrow::before { background: rgba(240,237,232,0.25); }
+.disclaimer-section:last-child { border-bottom: none; }
 
-.services-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 56px;
-}
-
-.services-header-right {
-  font-size: 13px; font-weight: 300;
-  color: rgba(240,237,232,0.4);
-  max-width: 320px; line-height: 1.7;
-  text-align: right;
-}
-
-.service-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(240,237,232,0.07);
-  border: 1px solid rgba(240,237,232,0.07);
-}
-
-.service-card {
-  background: var(--navy);
-  padding: 36px 28px;
-  display: flex; flex-direction: column;
-  transition: background 0.25s;
-}
-
-.service-card:hover { background: var(--navy-mid); }
-
-.service-tag {
+.disclaimer-section-num {
   font-size: 9px; font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(240,237,232,0.28);
-  margin-bottom: 18px; padding-bottom: 14px;
-  border-bottom: 1px solid rgba(240,237,232,0.07);
+  color: var(--text-muted);
+  margin-bottom: 8px;
 }
 
-.service-name {
+.disclaimer-section h2 {
   font-family: 'EB Garamond', serif;
-  font-size: 22px; font-weight: 400;
-  color: var(--cream); margin-bottom: 4px;
-  line-height: 1.2;
-}
-
-.service-codename {
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(240,237,232,0.3);
-  margin-bottom: 18px;
-}
-
-.service-desc {
-  font-size: 13px; font-weight: 300;
-  color: rgba(240,237,232,0.5);
-  line-height: 1.7; flex: 1;
-  margin-bottom: 24px;
-}
-
-.service-price {
-  font-family: 'EB Garamond', serif;
-  font-size: 30px; color: var(--cream);
-  margin-bottom: 2px;
-}
-
-.service-price-note {
-  font-size: 10px; font-weight: 400;
-  letter-spacing: 0.06em;
-  color: rgba(240,237,232,0.28);
-  text-transform: uppercase;
-}
-
-.services-footer {
-  text-align: center;
-  margin-top: 40px;
-}
-
-/* ── METRICS ── */
-.metrics-section {
-  background: var(--navy-mid);
-}
-
-.metrics-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: rgba(240,237,232,0.06);
-  border: 1px solid rgba(240,237,232,0.06);
-  margin-top: 56px;
-}
-
-.metric-cell {
-  background: var(--navy-mid);
-  padding: 48px;
-}
-
-.metric-value {
-  font-family: 'EB Garamond', serif;
-  font-size: 64px; color: var(--cream);
-  line-height: 1; margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-
-.metric-desc {
-  font-size: 13px; font-weight: 300;
-  color: rgba(240,237,232,0.4);
-  line-height: 1.7; max-width: 220px;
-}
-
-/* ── CTA BAND ── */
-.cta-band {
-  background: var(--cream-dark);
-  padding: 72px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 48px;
-}
-
-.cta-band-text {
-  font-family: 'EB Garamond', serif;
-  font-size: clamp(28px, 3vw, 42px);
-  font-weight: 400;
+  font-size: 26px; font-weight: 400;
   color: var(--navy);
-  line-height: 1.15;
-  max-width: 600px;
+  margin-bottom: 20px;
 }
 
-.cta-band-text em { font-style: italic; opacity: 0.55; }
+.disclaimer-section p {
+  font-size: 14px; font-weight: 300;
+  color: #3A4A60; line-height: 1.85;
+  margin-bottom: 14px;
+}
 
-.cta-band-actions { display: flex; gap: 16px; flex-shrink: 0; }
+.disclaimer-section p:last-child { margin-bottom: 0; }
+.disclaimer-section strong { font-weight: 600; color: var(--navy); }
+
+.disclaimer-callout {
+  background: var(--navy);
+  padding: 24px 28px;
+  margin: 24px 0;
+}
+
+.disclaimer-callout p {
+  font-size: 14px; font-weight: 300;
+  color: rgba(240,237,232,0.7);
+  line-height: 1.75;
+  margin: 0;
+}
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Locke &amp; Boole Solutions — Structural Integrity Intelligence</title>
+<title>Disclaimer — Locke &amp; Boole Solutions</title>
 
 </head>
 <body>
@@ -812,150 +668,93 @@ footer {
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-eyebrow">Locke &amp; Boole Solutions — Structural Integrity Intelligence</div>
-  <h1>Strip away the layers.<br>See who <em>actually</em><br>owns what.</h1>
-  <p class="hero-sub">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors.</p>
-  <div class="hero-actions">
-    <a href="demo.html" class="btn-primary">Request a Demonstration</a>
-    <a href="services.html" class="btn-ghost">View Services</a>
-  </div>
-  <div class="hero-stats">
-    <div>
-      <div class="hero-stat-num">$42M</div>
-      <div class="hero-stat-label">Assets Traced</div>
-    </div>
-    <div>
-      <div class="hero-stat-num">48/48</div>
-      <div class="hero-stat-label">Shell Entities in 48hrs</div>
-    </div>
-    <div>
-      <div class="hero-stat-num">17</div>
-      <div class="hero-stat-label">Active Retainer Clients</div>
-    </div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item">Beneficial Ownership Mapping <span class="marquee-dot"></span> Shell Entity Tracing <span class="marquee-dot"></span> Continuous Structural Monitoring <span class="marquee-dot"></span> UCC Lien Surveillance <span class="marquee-dot"></span> Asset Genealogy Reports <span class="marquee-dot"></span> OSINT Verification <span class="marquee-dot"></span> Subpoena-Ready Deliverables <span class="marquee-dot"></span> Cross-Jurisdictional Investigation <span class="marquee-dot"></span></span>
-    <span class="marquee-item">Beneficial Ownership Mapping <span class="marquee-dot"></span> Shell Entity Tracing <span class="marquee-dot"></span> Continuous Structural Monitoring <span class="marquee-dot"></span> UCC Lien Surveillance <span class="marquee-dot"></span> Asset Genealogy Reports <span class="marquee-dot"></span> OSINT Verification <span class="marquee-dot"></span> Subpoena-Ready Deliverables <span class="marquee-dot"></span> Cross-Jurisdictional Investigation <span class="marquee-dot"></span></span>
-  </div>
+<div class="page-header">
+  <div class="page-header-grid"></div>
+  <div class="page-header-eyebrow">Legal</div>
+  <h1>Disclaimer.</h1>
+  <p class="page-header-sub">Important disclosures regarding the nature, limitations, and intended use of all information and services provided by Locke &amp; Boole Solutions LLC.</p>
 </div>
 
-<!-- INTRO / ABOUT -->
-<section class="intro-section">
-  <div>
-    <div class="section-eyebrow">The Firm</div>
-    <h2 class="section-title">The surface rarely<br>tells the full <em>story.</em></h2>
-    <div class="intro-body">
-      <p>Locke &amp; Boole Solutions is a boutique intelligence firm specializing in the verification of corporate structures and the mapping of hidden asset networks.</p>
-      <p>In complex litigation, high-stakes M&amp;A, and cross-border compliance, the surface-level corporate registry rarely tells the full story. We strip away the layers of shell entities, holding companies, and nominee directors.</p>
-      <p>Our advantage is structural monitoring. We do not simply generate a report and leave. We provide dynamic mapping and continuous integrity alerts to ensure your partners remain compliant.</p>
-    </div>
-    <br>
-    <a href="about.html" class="btn-navy">Our Story →</a>
+<div class="disclaimer-body">
+  <div class="disclaimer-toc">
+    <div class="disclaimer-toc-title">Contents</div>
+    <a href="#d-not-legal">Not Legal Advice</a>
+    <a href="#d-accuracy">Accuracy of Information</a>
+    <a href="#d-website">Website Disclaimer</a>
+    <a href="#d-third-party">Third-Party Sources</a>
+    <a href="#d-no-relationship">No Professional Relationship</a>
+    <a href="#d-forward">Forward-Looking Statements</a>
+    <a href="#d-liability">Limitation of Liability</a>
+    <a href="#d-jurisdiction">Jurisdictional Notice</a>
+    <div class="disclaimer-toc-updated">Last updated:<br>June 1, 2026</div>
   </div>
-  <div>
-    <div class="section-eyebrow">Our Data Framework</div>
-    <div class="framework-grid">
-      <div class="framework-cell">
-        <div class="framework-label">State &amp; Federal Filings</div>
-        <div class="framework-desc">Secretary of State portals, UCC liens, and annual reports</div>
-      </div>
-      <div class="framework-cell">
-        <div class="framework-label">Real Property Records</div>
-        <div class="framework-desc">County tax assessor databases linking entities to addresses</div>
-      </div>
-      <div class="framework-cell">
-        <div class="framework-label">Financial Filings</div>
-        <div class="framework-desc">EDGAR, federal procurement registries, and bankruptcy dockets</div>
-      </div>
-      <div class="framework-cell">
-        <div class="framework-label">Geospatial Verification</div>
-        <div class="framework-desc">Satellite imagery to confirm the physical existence of claimed assets</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- SERVICES PREVIEW -->
-<section class="services-preview">
-  <div class="services-header">
-    <div>
-      <div class="section-eyebrow light">Services</div>
-      <h2 class="section-title light">Surveillance and<br><em>Verification.</em></h2>
+  <div class="disclaimer-content">
+    <div class="disclaimer-intro">
+      The following disclaimers apply to all content published on this website, all materials produced by Locke &amp; Boole Solutions LLC, and all communications made by the Firm in connection with its services. Please read these disclosures carefully. If you do not accept these terms, do not use this website or engage our services.
     </div>
-    <p class="services-header-right">We do not provide advice. We provide data — verified, mapped, and delivered in subpoena-ready formats.</p>
-  </div>
-  <div class="service-cards">
-    <div class="service-card">
-      <div class="service-tag">Subscription · Monthly</div>
-      <div class="service-name">The Firewall</div>
-      <div class="service-codename">Continuous Monitoring</div>
-      <p class="service-desc">Automated surveillance of your critical partners, vendors, and subsidiaries with monthly stability reports and automated entity-change flagging.</p>
-      <div class="service-price">$1,500<span style="font-size:16px;opacity:0.45">/mo</span></div>
-      <div class="service-price-note">Top 5 business partners</div>
-    </div>
-    <div class="service-card">
-      <div class="service-tag">One-Time · Bespoke</div>
-      <div class="service-name">The Deep Dive</div>
-      <div class="service-codename">Asset Trace Report</div>
-      <p class="service-desc">Full bespoke asset mapping for litigation, divorce, bankruptcy, or M&amp;A diligence. 20-page visual ownership chain with footnoted citations.</p>
-      <div class="service-price">$3,500<span style="font-size:16px;opacity:0.45">+</span></div>
-      <div class="service-price-note">Starting price</div>
-    </div>
-    <div class="service-card">
-      <div class="service-tag">VIP Retainer · Monthly</div>
-      <div class="service-name">The Silent Partner</div>
-      <div class="service-codename">Executive Access</div>
-      <p class="service-desc">Direct encrypted hotline to our analyst team. Unlimited quick-traces, one complimentary Deep Dive per quarter, 24-hour guaranteed turnaround.</p>
-      <div class="service-price">$2,000<span style="font-size:16px;opacity:0.45">/mo</span></div>
-      <div class="service-price-note">Includes Firewall tier</div>
-    </div>
-    <div class="service-card">
-      <div class="service-tag">Training · Per Session</div>
-      <div class="service-name">Analyst Accelerator</div>
-      <div class="service-codename">Internal OSINT Capacity</div>
-      <p class="service-desc">Live virtual training for firms building internal intelligence capacity. UCC filings, Boolean search, shell entity mapping. 40-page playbook included.</p>
-      <div class="service-price">$3,500<span style="font-size:16px;opacity:0.45">/session</span></div>
-      <div class="service-price-note">4-hour virtual session</div>
-    </div>
-  </div>
-  <div class="services-footer">
-    <a href="services.html" class="btn-primary">View All Services</a>
-  </div>
-</section>
 
-<!-- METRICS -->
-<section class="metrics-section">
-  <div class="section-eyebrow light">Track Record</div>
-  <h2 class="section-title light">Verifiable <em>metrics.</em></h2>
-  <div class="metrics-row">
-    <div class="metric-cell">
-      <div class="metric-value">$42M</div>
-      <div class="metric-desc">In hidden assets traced across 4 states and 2 offshore jurisdictions for a single private family office engagement.</div>
+    <div class="disclaimer-section" id="d-not-legal">
+      <div class="disclaimer-section-num">Disclaimer 01</div>
+      <h2>Not Legal Advice</h2>
+      <p><strong>Nothing on this website, in any Deliverable, or in any communication from Locke &amp; Boole Solutions LLC constitutes legal advice.</strong> Locke &amp; Boole is a data intelligence firm, not a law firm. We are not licensed to practice law in any jurisdiction and do not purport to do so.</p>
+      <p>All information provided by the Firm — whether on this website, in reports, in briefings, in insights articles, or in direct communications — is provided for <strong>general informational purposes only</strong>. It does not constitute legal advice and should not be relied upon as a substitute for consultation with a qualified attorney licensed in the relevant jurisdiction.</p>
+      <div class="disclaimer-callout">
+        <p>If you require legal advice regarding any matter touched upon in our services or publications, you should consult a licensed attorney. No content produced by Locke &amp; Boole Solutions LLC creates an attorney-client relationship between you and this firm under any circumstances.</p>
+      </div>
     </div>
-    <div class="metric-cell">
-      <div class="metric-value">48/48</div>
-      <div class="metric-desc">Shell entities mapped in 48 hours for a hedge fund pre-acquisition diligence. We do not miss deadlines.</div>
-    </div>
-    <div class="metric-cell">
-      <div class="metric-value">17</div>
-      <div class="metric-desc">Active corporate retainer clients currently receiving continuous structural integrity monitoring.</div>
-    </div>
-  </div>
-</section>
 
-<!-- CTA BAND -->
-<div class="cta-band">
-  <div class="cta-band-text">The surface-level registry<br>rarely tells the full <em>story.</em><br>We find what's underneath.</div>
-  <div class="cta-band-actions">
-    <a href="demo.html" class="btn-navy">Request a Demonstration</a>
-    <a href="methodology.html" class="btn-ghost" style="border-color:rgba(13,31,60,0.25);color:var(--navy);">Our Methodology</a>
+    <div class="disclaimer-section" id="d-accuracy">
+      <div class="disclaimer-section-num">Disclaimer 02</div>
+      <h2>Accuracy of Information</h2>
+      <p>While Locke &amp; Boole Solutions LLC makes reasonable efforts to ensure that all information contained in its Deliverables is accurate as of the date of delivery, we make <strong>no warranties, express or implied</strong>, regarding the completeness, accuracy, reliability, suitability, or availability of any information provided.</p>
+      <p>Public records — including Secretary of State filings, UCC records, county property records, and federal databases — are subject to publication delays, clerical errors, incomplete filings, and jurisdictional inconsistencies that are entirely beyond the Firm's control. Corporate structures change. Registered agents change. Assets are transferred. Our reports reflect the public record as it existed at the time of investigation, not necessarily as it exists at the time you read or act upon them.</p>
+      <p>Reliance on any information provided by Locke &amp; Boole Solutions LLC is therefore at your own risk. The Firm shall not be liable for any errors, omissions, or inaccuracies in the information provided, or for any decisions made in reliance on such information.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-website">
+      <div class="disclaimer-section-num">Disclaimer 03</div>
+      <h2>Website Disclaimer</h2>
+      <p>The content of this website is provided for general information purposes only. Case study metrics, operational statistics, and service descriptions reflect historical or representative data and are subject to change without notice.</p>
+      <p>Locke &amp; Boole Solutions LLC reserves the right to modify, update, or remove any content on this website at any time and without prior notice. The Firm makes no representation that the website will be available without interruption, error-free, or free of harmful components.</p>
+      <p>This website may contain links to third-party websites. These links are provided for convenience only. The Firm has no control over the content of linked sites and accepts no responsibility for them or for any loss or damage that may arise from your use of them.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-third-party">
+      <div class="disclaimer-section-num">Disclaimer 04</div>
+      <h2>Third-Party Sources</h2>
+      <p>The Firm's Deliverables and publications may reference, cite, or summarize information from third-party sources, including government databases, court filings, and public registries. While we endeavor to cite reliable sources, the Firm makes no representation regarding the accuracy, completeness, or currency of information obtained from third-party sources.</p>
+      <p>The Firm is not responsible for the content, accuracy, or reliability of any third-party source referenced in its work. Citations are provided to enable independent verification; they do not constitute endorsement of the underlying source's general reliability.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-no-relationship">
+      <div class="disclaimer-section-num">Disclaimer 05</div>
+      <h2>No Professional Relationship</h2>
+      <p>Accessing this website, reading our publications, submitting an intake inquiry, or receiving a Deliverable does not establish any professional, fiduciary, or advisory relationship between you and Locke &amp; Boole Solutions LLC.</p>
+      <p>A formal client relationship is established <strong>only</strong> upon execution of a signed Engagement Letter or Retainer Agreement by both parties and clearance of all applicable fees. Until that point, no duty of any kind is owed by the Firm to any individual or entity that has interacted with this website or its publications.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-forward">
+      <div class="disclaimer-section-num">Disclaimer 06</div>
+      <h2>Forward-Looking Statements</h2>
+      <p>Any statements in our publications or communications that are not historical fact may constitute forward-looking statements. These include statements about anticipated regulatory developments, industry trends, or the potential implications of legal or structural changes.</p>
+      <p>Forward-looking statements involve known and unknown risks and uncertainties. Actual outcomes may differ materially from those expressed or implied. The Firm undertakes no obligation to update forward-looking statements following publication.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-liability">
+      <div class="disclaimer-section-num">Disclaimer 07</div>
+      <h2>Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, Locke &amp; Boole Solutions LLC expressly excludes all liability for any loss or damage — including without limitation indirect or consequential loss or damage — arising from or in connection with the use of this website, any content published on it, or any Deliverable produced by the Firm.</p>
+      <p>This limitation applies whether the loss arises in contract, tort (including negligence), breach of statutory duty, or otherwise, and whether or not the Firm has been advised of the possibility of such loss.</p>
+    </div>
+
+    <div class="disclaimer-section" id="d-jurisdiction">
+      <div class="disclaimer-section-num">Disclaimer 08</div>
+      <h2>Jurisdictional Notice</h2>
+      <p>Locke &amp; Boole Solutions LLC is a Florida Limited Liability Company operating under the laws of the State of Florida. Our services are directed at legal professionals, corporate entities, and qualified business clients engaged in lawful activities.</p>
+      <p>The information on this website is not directed at any person in any jurisdiction where, by reason of that person's nationality, residence, or domicile, the publication or availability of the information would be contrary to law or regulation. Persons in such jurisdictions should not access this website or its content.</p>
+      <p>Questions regarding these disclaimers may be directed to <strong>contact@lockeandboole.com</strong>.</p>
+    </div>
   </div>
 </div>
 

@@ -101,24 +101,37 @@ nav {
 }
 
 /* Dropdown */
-.nav-dropdown {
+/* === DROPDOWN — gap-bridge fix === */
+.nav-links > li.has-dropdown { padding-bottom: 20px; margin-bottom: -20px; }
+
+/* invisible hover bridge so mouse doesn't lose hover crossing the gap */
+.nav-links > li.has-dropdown::after {
+  content: '';
   position: absolute;
-  top: calc(100% + 20px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--navy);
-  border: 1px solid rgba(240,237,232,0.1);
-  min-width: 220px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.15s, top 0.15s;
-  z-index: 300;
+  top: calc(100% - 20px);
+  left: -24px; right: -24px;
+  height: 28px;
 }
 
-.nav-links > li:hover .nav-dropdown {
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% - 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  background: var(--navy);
+  border: 1px solid rgba(240,237,232,0.12);
+  min-width: 230px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 300;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+
+.nav-links > li.has-dropdown:hover .nav-dropdown {
   opacity: 1;
   pointer-events: all;
-  top: calc(100% + 12px);
+  transform: translateX(-50%) translateY(0);
 }
 
 .nav-dropdown a {
@@ -128,12 +141,14 @@ nav {
   font-size: 12px;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.65);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
 .nav-dropdown a:last-child { border-bottom: none; }
 
 .nav-dropdown a:hover {
-  background: rgba(240,237,232,0.04);
+  background: rgba(240,237,232,0.06);
   color: var(--cream);
 }
 
@@ -143,7 +158,7 @@ nav {
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: rgba(240,237,232,0.25);
-  padding: 12px 20px 6px;
+  padding: 14px 20px 6px;
 }
 
 .nav-cta {
@@ -528,121 +543,129 @@ footer {
 ::-webkit-scrollbar-track { background: var(--navy); }
 ::-webkit-scrollbar-thumb { background: rgba(240,237,232,0.15); }</style>
 <style>
-.legal-layout {
+/* STORY BODY */
+.story-section {
   display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 80px;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 88px;
   align-items: start;
-  padding: 72px 48px;
-  background: var(--cream);
 }
 
-.legal-toc {
+.story-sidebar {
   position: sticky;
   top: 100px;
 }
 
-.legal-toc-title {
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 16px;
-  padding-bottom: 10px;
+.story-sidebar-stat {
+  margin-bottom: 36px;
+  padding-bottom: 36px;
   border-bottom: 1px solid var(--cream-dark);
 }
 
-.legal-toc a {
-  display: block;
-  font-size: 12px; font-weight: 400;
-  color: #5A6880;
-  text-decoration: none;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--cream-dark);
-  transition: color 0.15s;
+.story-sidebar-stat:last-child { border-bottom: none; }
+
+.sidebar-stat-value {
+  font-family: 'EB Garamond', serif;
+  font-size: 52px; color: var(--navy);
+  line-height: 1; margin-bottom: 6px;
+}
+
+.sidebar-stat-label {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.story-body {
+  font-size: 16px; font-weight: 300;
+  color: #3A4A60; line-height: 1.9;
+}
+
+.story-body h3 {
+  font-family: 'EB Garamond', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--navy);
+  margin-top: 52px; margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.story-body h3:first-child { margin-top: 0; }
+
+.story-body p + p { margin-top: 18px; }
+
+.story-body p strong {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* PHILOSOPHY */
+.philosophy-section {
+  background: var(--navy);
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(240,237,232,0.07);
+  border: 1px solid rgba(240,237,232,0.07);
+  margin-top: 56px;
+}
+
+.philosophy-cell {
+  background: var(--navy);
+  padding: 40px 36px;
+  transition: background 0.25s;
+}
+
+.philosophy-cell:hover { background: var(--navy-mid); }
+
+.philosophy-num {
+  font-family: 'EB Garamond', serif;
+  font-size: 48px; color: rgba(240,237,232,0.12);
+  line-height: 1; margin-bottom: 16px;
+}
+
+.philosophy-title {
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--cream); margin-bottom: 12px;
+}
+
+.philosophy-desc {
+  font-size: 14px; font-weight: 300;
+  color: rgba(240,237,232,0.5);
+  line-height: 1.75;
+}
+
+/* TEAM NOTE */
+.team-section {
+  background: var(--cream-dark);
+  padding: 88px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.team-quote {
+  font-family: 'EB Garamond', serif;
+  font-size: 28px; font-weight: 400;
+  color: var(--navy);
   line-height: 1.4;
+  font-style: italic;
 }
 
-.legal-toc a:hover { color: var(--navy); }
-
-.legal-toc-updated {
-  font-size: 10px; font-weight: 300;
-  color: var(--text-muted);
-  margin-top: 20px;
-  line-height: 1.6;
-}
-
-.legal-body {}
-
-.legal-intro {
+.team-body {
   font-size: 15px; font-weight: 300;
   color: #3A4A60; line-height: 1.85;
-  margin-bottom: 48px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid var(--cream-dark);
 }
 
-.legal-section {
-  margin-bottom: 48px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid var(--cream-dark);
-}
-
-.legal-section:last-child { border-bottom: none; }
-
-.legal-section-num {
-  font-size: 9px; font-weight: 600;
-  letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--text-muted);
-  margin-bottom: 8px;
-}
-
-.legal-section h2 {
-  font-family: 'EB Garamond', serif;
-  font-size: 26px; font-weight: 400;
-  color: var(--navy);
-  margin-bottom: 20px;
-}
-
-.legal-section p {
-  font-size: 14px; font-weight: 300;
-  color: #3A4A60; line-height: 1.85;
-  margin-bottom: 14px;
-}
-
-.legal-section p:last-child { margin-bottom: 0; }
-
-.legal-section ul {
-  list-style: none;
-  margin: 14px 0;
-  display: flex; flex-direction: column; gap: 8px;
-}
-
-.legal-section ul li {
-  font-size: 14px; font-weight: 300;
-  color: #3A4A60; line-height: 1.7;
-  display: flex; gap: 10px;
-}
-
-.legal-section ul li::before {
-  content: '—';
-  color: var(--text-muted);
-  flex-shrink: 0;
-}
-
-.legal-section strong { font-weight: 600; color: var(--navy); }
-
-.legal-highlight {
-  background: var(--cream-dark);
-  padding: 20px 24px;
-  margin: 20px 0;
-  border-left: 3px solid var(--navy);
-  font-size: 13px; font-weight: 400;
-  color: var(--navy); line-height: 1.7;
-}
+.team-body p + p { margin-top: 16px; }
 </style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — Locke &amp; Boole Solutions</title>
+<title>Our Story — Locke &amp; Boole Solutions</title>
 
 </head>
 <body>
@@ -672,140 +695,99 @@ footer {
 
 <div class="page-header">
   <div class="page-header-grid"></div>
-  <div class="page-header-eyebrow">Legal</div>
-  <h1>Privacy<br><em>Policy.</em></h1>
-  <p class="page-header-sub">Locke &amp; Boole Solutions LLC takes the privacy of client information and personal data with the same seriousness we apply to our investigative work. This policy explains what we collect, why, and how we protect it.</p>
+  <div class="page-header-eyebrow">About Us</div>
+  <h1>Evidence,<br>not <em>guesswork.</em></h1>
+  <p class="page-header-sub">Locke &amp; Boole Solutions was built on a single conviction: that the public record contains the truth — if you know how to read it.</p>
 </div>
 
-<div class="legal-layout">
-  <div class="legal-toc">
-    <div class="legal-toc-title">Contents</div>
-    <a href="#pp-overview">1. Overview</a>
-    <a href="#pp-collect">2. Information We Collect</a>
-    <a href="#pp-use">3. How We Use Information</a>
-    <a href="#pp-share">4. Information Sharing</a>
-    <a href="#pp-security">5. Data Security</a>
-    <a href="#pp-retention">6. Retention</a>
-    <a href="#pp-rights">7. Your Rights</a>
-    <a href="#pp-cookies">8. Cookies &amp; Tracking</a>
-    <a href="#pp-children">9. Children's Privacy</a>
-    <a href="#pp-changes">10. Policy Changes</a>
-    <a href="#pp-contact">11. Contact</a>
-    <div class="legal-toc-updated">Last updated:<br>June 1, 2026</div>
+<section class="story-section">
+  <div class="story-sidebar">
+    <div class="section-eyebrow">By the Numbers</div>
+    <div class="story-sidebar-stat">
+      <div class="sidebar-stat-value">$42M</div>
+      <div class="sidebar-stat-label">In hidden assets traced for a single family office</div>
+    </div>
+    <div class="story-sidebar-stat">
+      <div class="sidebar-stat-value">48</div>
+      <div class="sidebar-stat-label">Shell entities mapped in 48 hours</div>
+    </div>
+    <div class="story-sidebar-stat">
+      <div class="sidebar-stat-value">17</div>
+      <div class="sidebar-stat-label">Active retainer clients today</div>
+    </div>
+    <div class="story-sidebar-stat">
+      <div class="sidebar-stat-value">12h</div>
+      <div class="sidebar-stat-label">Maximum intake response window</div>
+    </div>
   </div>
+  <div class="story-body">
+    <h3>Who We Are</h3>
+    <p>Locke &amp; Boole Solutions LLC is a boutique intelligence firm based in Florida, specializing in the verification of corporate structures and the mapping of hidden asset networks. We serve legal professionals, corporate finance teams, and government-adjacent organizations that require absolute precision in ownership verification.</p>
+    <p>We are not a law firm. We do not provide legal counsel. We provide data — <strong>verified, mapped, and delivered in subpoena-ready formats</strong> — and we let our clients do what they do best with it.</p>
 
-  <div class="legal-body">
-    <div class="legal-intro">
-      This Privacy Policy describes how Locke &amp; Boole Solutions LLC ("the Firm," "we," "us") collects, uses, and protects personal information submitted through our website, intake forms, and client communications. By using this website or submitting an intake inquiry, you consent to the practices described in this policy.
-    </div>
+    <h3>The Problem We Solve</h3>
+    <p>In complex litigation, high-stakes mergers and acquisitions, and cross-border compliance matters, the surface-level corporate registry rarely tells the full story. Beneficial ownership is obscured through layers of shell entities, holding companies, nominee directors, and offshore jurisdictions deliberately designed to frustrate inquiry.</p>
+    <p>Most due diligence processes treat entity searches as a box to check. We treat them as the beginning of the investigation — because the most consequential information is never in the first layer.</p>
 
-    <div class="legal-section" id="pp-overview">
-      <div class="legal-section-num">Section 01</div>
-      <h2>Overview</h2>
-      <p>We operate a boutique intelligence firm. We are acutely aware that the information entrusted to us — about clients, about subjects of investigation, and about third parties — requires careful handling. Our data practices are designed with this in mind.</p>
-      <p>We collect only the minimum personal information necessary to operate our business. We do not sell personal data. We do not use client data for advertising. We do not share client identities or matter details with any third party except as required by law.</p>
-      <div class="legal-highlight">
-        We do not sell, rent, license, or otherwise transfer personal information to third parties for marketing, advertising, or commercial purposes. This is unconditional.
-      </div>
-    </div>
+    <h3>Our Approach</h3>
+    <p>We operate on a strict data-first philosophy. We do not rely on proprietary black-box databases. We rely on the public record — Secretary of State filings, UCC liens, EDGAR disclosures, county property records, federal procurement registries, and bankruptcy dockets — and we cite every source.</p>
+    <p>Every finding we produce can be independently verified. That is not a marketing claim. It is a structural feature of our methodology, and it is what makes our deliverables defensible in court.</p>
 
-    <div class="legal-section" id="pp-collect">
-      <div class="legal-section-num">Section 02</div>
-      <h2>Information We Collect</h2>
-      <p><strong>Information you provide directly:</strong> When you submit an intake inquiry, sign a retainer agreement, or communicate with us, we collect the information you choose to provide — including your name, organization, email address, phone number, and matter details.</p>
-      <p><strong>Newsletter subscriptions:</strong> If you subscribe to our newsletter or briefing distribution list, we collect your email address and, if provided, your name and firm affiliation.</p>
-      <p><strong>Website usage data:</strong> Our website may collect standard server log data, including IP addresses, browser type, pages visited, and referral URLs. This data is used for security monitoring and aggregate traffic analysis only.</p>
-      <p><strong>Communication records:</strong> We retain records of communications with clients and prospective clients for operational continuity and legal compliance purposes.</p>
-      <p>We do not collect payment card information directly. All payment processing is handled by third-party processors who maintain their own PCI-compliant data security standards.</p>
-    </div>
+    <h3>Why Continuous Monitoring</h3>
+    <p>Most intelligence firms deliver a report and move on. We do not. Our signature advantage is structural monitoring: after we map your partners, we keep watching. Registered agent changes. New UCC liens. Entity dissolutions. Quiet restructuring of liability shields. We flag these the moment they hit the public record — before they become your problem.</p>
+    <p><strong>A partner who quietly restructured their corporate protection while you were focused on the deal is a liability you didn't know you were inheriting.</strong> The Firewall exists to prevent that.</p>
 
-    <div class="legal-section" id="pp-use">
-      <div class="legal-section-num">Section 03</div>
-      <h2>How We Use Information</h2>
-      <p>We use the information we collect exclusively for the following purposes:</p>
-      <ul>
-        <li>Evaluating and responding to client intake inquiries</li>
-        <li>Executing signed engagement letters and retainer agreements</li>
-        <li>Delivering Deliverables and ongoing monitoring reports to clients</li>
-        <li>Sending newsletter content and briefings to subscribers who have opted in</li>
-        <li>Maintaining internal records required for business operations and legal compliance</li>
-        <li>Improving the security and functionality of our website and communications infrastructure</li>
-      </ul>
-      <p>We do not use personal information to build advertising profiles, conduct behavioral targeting, or enable any third-party marketing activities.</p>
-    </div>
+    <h3>Jurisdiction &amp; Registration</h3>
+    <p>Locke &amp; Boole Solutions LLC is a registered Florida Limited Liability Company. All client engagements are governed by Florida law unless otherwise specified in a signed retainer agreement. We operate strictly within the boundaries of public records access, FOIA requests, and legally permissible open-source intelligence collection.</p>
+  </div>
+</section>
 
-    <div class="legal-section" id="pp-share">
-      <div class="legal-section-num">Section 04</div>
-      <h2>Information Sharing</h2>
-      <p>We do not sell, share, or disclose personal information to third parties except in the following limited circumstances:</p>
-      <ul>
-        <li><strong>Legal obligation:</strong> When required by valid legal process, including subpoenas, court orders, or regulatory demands. We will, where legally permissible, notify affected clients before complying.</li>
-        <li><strong>Service providers:</strong> Limited technical service providers (such as encrypted email infrastructure) who are contractually bound to confidentiality and prohibited from using data for any purpose other than providing the specific service.</li>
-        <li><strong>Successors:</strong> In the event of a merger, acquisition, or dissolution of the Firm, provided the successor entity is bound by equivalent privacy commitments.</li>
-      </ul>
-      <p>In no case do we share client identities, matter details, or Deliverable contents with any party not directly involved in delivering our services to that client.</p>
+<!-- PHILOSOPHY -->
+<section class="philosophy-section">
+  <div class="section-eyebrow light">Our Principles</div>
+  <h2 class="section-title light">How we think about <em>this work.</em></h2>
+  <div class="philosophy-grid">
+    <div class="philosophy-cell">
+      <div class="philosophy-num">I</div>
+      <div class="philosophy-title">Data First</div>
+      <div class="philosophy-desc">We do not begin with conclusions. We begin with filings. Every finding emerges from the public record, not from intuition or assumption.</div>
     </div>
+    <div class="philosophy-cell">
+      <div class="philosophy-num">II</div>
+      <div class="philosophy-title">Cite Everything</div>
+      <div class="philosophy-desc">Every claim in every report we produce carries a footnoted source. If we cannot source it, we do not include it. This is non-negotiable.</div>
+    </div>
+    <div class="philosophy-cell">
+      <div class="philosophy-num">III</div>
+      <div class="philosophy-title">No Advocacy</div>
+      <div class="philosophy-desc">We provide data. We do not interpret, advocate, or take positions. Our clients are qualified to draw their own conclusions — that is why they hired us.</div>
+    </div>
+    <div class="philosophy-cell">
+      <div class="philosophy-num">IV</div>
+      <div class="philosophy-title">Strict OSINT Boundaries</div>
+      <div class="philosophy-desc">We operate exclusively within public records, FOIA mechanisms, and legally permissible OSINT collection. We do not conduct surveillance, trespass, or intercept communications.</div>
+    </div>
+    <div class="philosophy-cell">
+      <div class="philosophy-num">V</div>
+      <div class="philosophy-title">Subpoena-Ready by Default</div>
+      <div class="philosophy-desc">Our methodology is designed with the courtroom in mind. Every report we produce can withstand scrutiny — from opposing counsel, from judges, and from independent auditors.</div>
+    </div>
+    <div class="philosophy-cell">
+      <div class="philosophy-num">VI</div>
+      <div class="philosophy-title">Security Without Exception</div>
+      <div class="philosophy-desc">Client identity, matter details, and all deliverables are handled with encrypted communications and strict compartmentalization. We do not disclose client relationships.</div>
+    </div>
+  </div>
+</section>
 
-    <div class="legal-section" id="pp-security">
-      <div class="legal-section-num">Section 05</div>
-      <h2>Data Security</h2>
-      <p>We implement industry-standard security practices to protect the information we hold, including:</p>
-      <ul>
-        <li>End-to-end encrypted email communications (PGP encryption available upon request)</li>
-        <li>Encrypted storage for all client files and Deliverables</li>
-        <li>Strict internal access controls — only analysts directly assigned to a matter access its files</li>
-        <li>Secure, password-protected PDF delivery for all Deliverables</li>
-        <li>No use of personal client data on third-party cloud storage platforms without explicit consent</li>
-      </ul>
-      <p>No data security system is impenetrable. If we become aware of a security incident affecting client data, we will notify affected clients promptly and take all reasonable steps to mitigate harm.</p>
-    </div>
-
-    <div class="legal-section" id="pp-retention">
-      <div class="legal-section-num">Section 06</div>
-      <h2>Data Retention</h2>
-      <p>We retain client data for the minimum period necessary to fulfill our contractual obligations and comply with applicable legal requirements. Generally:</p>
-      <ul>
-        <li>Active engagement files are retained for the duration of the engagement plus 7 years, to satisfy standard professional recordkeeping requirements.</li>
-        <li>Intake inquiries that did not result in an engagement are retained for 12 months and then securely deleted.</li>
-        <li>Newsletter subscriber data is retained until the subscriber unsubscribes, at which point it is permanently deleted within 30 days.</li>
-        <li>Website server logs are retained for 90 days for security monitoring purposes.</li>
-      </ul>
-    </div>
-
-    <div class="legal-section" id="pp-rights">
-      <div class="legal-section-num">Section 07</div>
-      <h2>Your Rights</h2>
-      <p>Depending on your jurisdiction, you may have rights with respect to personal information we hold about you, including the right to access, correct, or request deletion of your data. To exercise any of these rights, contact us at contact@lockeandboole.com.</p>
-      <p>We will respond to verifiable requests within 30 days. We may need to verify your identity before processing certain requests. Some data may be exempt from deletion requests where retention is required by law or necessary to fulfill existing contractual obligations.</p>
-      <p>Newsletter subscribers may unsubscribe at any time using the unsubscribe link in any email or by contacting us directly.</p>
-    </div>
-
-    <div class="legal-section" id="pp-cookies">
-      <div class="legal-section-num">Section 08</div>
-      <h2>Cookies &amp; Tracking</h2>
-      <p>Our website uses minimal cookies strictly necessary for basic site functionality. We do not use advertising cookies, behavioral tracking pixels, or third-party analytics services that profile individual visitors.</p>
-      <p>We do not use Google Analytics, Facebook Pixel, or similar behavioral tracking tools. Any analytics we conduct are aggregate and non-identifiable.</p>
-    </div>
-
-    <div class="legal-section" id="pp-children">
-      <div class="legal-section-num">Section 09</div>
-      <h2>Children's Privacy</h2>
-      <p>Our services are intended exclusively for legal professionals, corporate entities, and adult individuals engaged in lawful business activities. We do not knowingly collect personal information from individuals under the age of 18. If we become aware that we have inadvertently collected such information, we will delete it promptly.</p>
-    </div>
-
-    <div class="legal-section" id="pp-changes">
-      <div class="legal-section-num">Section 10</div>
-      <h2>Policy Changes</h2>
-      <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. Material changes will be communicated to active clients via email. The date of the most recent revision is noted at the top of this policy.</p>
-      <p>Continued use of our website or services following a policy update constitutes acceptance of the revised terms.</p>
-    </div>
-
-    <div class="legal-section" id="pp-contact">
-      <div class="legal-section-num">Section 11</div>
-      <h2>Contact</h2>
-      <p>Privacy-related inquiries, data access requests, and unsubscribe requests should be directed to:</p>
-      <p><strong>Locke &amp; Boole Solutions LLC</strong><br>contact@lockeandboole.com<br>PGP encryption available upon request.<br>Florida Limited Liability Company</p>
-    </div>
+<!-- TEAM NOTE -->
+<div class="team-section">
+  <div class="team-quote">"We do not hoard our methodology. We simply apply it faster and more completely than anyone else."</div>
+  <div class="team-body">
+    <p>Locke &amp; Boole was founded by analysts who came from backgrounds in corporate compliance, legal investigation, and open-source intelligence. The firm was built on the observation that the most consequential information in any high-stakes matter is almost always available in the public record — it simply requires someone who knows where to look, how to read it, and how to connect it to what comes next.</p>
+    <p>We are a small team by design. We take a limited number of engagements at any given time and we do not delegate critical work to junior contractors. Every report that leaves this firm has been reviewed by a senior analyst.</p>
+    <p>We do not accept every inquiry. Our intake process is a filter. If we do not believe we can add material value to your matter, we will tell you plainly.</p>
+    <a href="demo.html" style="display:inline-block;margin-top:24px;" class="btn-navy">Begin the Intake Process</a>
   </div>
 </div>
 
