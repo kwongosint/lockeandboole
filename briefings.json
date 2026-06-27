@@ -1,0 +1,170 @@
+[
+  {
+    "filename": "briefing-fincen-boi-exemptions.html",
+    "eyebrow": "Regulatory Update · FinCEN",
+    "title": "FinCEN BOI Registry: New Reporting Exemptions and What They Mean for Investigative Practice",
+    "subtitle": "Three new exemption categories were quietly added in the May 2026 update. This briefing explains what is no longer required to be reported and where the gaps now appear.",
+    "date": "June 2026",
+    "read_time": "4-minute read",
+    "excerpt": "Three new exemption categories were quietly added in the May 2026 regulatory update. Here's what is no longer required to be reported — and where that creates new blind spots.",
+    "status": "Restricted",
+    "sections": [
+      {
+        "heading": "What changed",
+        "body": "FinCEN clarified which ownership interests and reporting companies qualify for the new exemptions. That means some entities that previously would have appeared in the BOI registry may now be omitted."
+      },
+      {
+        "heading": "Why it matters",
+        "body": "Investigators should not assume the registry is complete. These exemptions create cases where the public record is silent about an entity’s controlling interests, which increases the importance of parallel corporate registry and UCC research."
+      },
+      {
+        "heading": "What to do",
+        "body": "Treat the BOI registry as a starting point: verify reported ownership against public filings, UCC records, and beneficial ownership statements from related entities to spot discrepancies and hidden structures."
+      }
+    ]
+  },
+  {
+    "filename": "briefing-sos-portal-search-interfaces.html",
+    "eyebrow": "OSINT Tools · Practice Update",
+    "title": "Two Secretary of State Portals Have Changed Their Search Interfaces — What Investigators Need to Know",
+    "subtitle": "Nevada and Wyoming updated their registry search systems in April. This briefing identifies the interface changes and the practical implications for public-record searches.",
+    "date": "May 2026",
+    "read_time": "3-minute read",
+    "excerpt": "Nevada and Wyoming updated their business registry search systems in April. The new interfaces have changed how registered agent data surfaces. A practical guide to the new navigation.",
+    "status": "Open",
+    "sections": [
+      {
+        "heading": "What changed",
+        "body": "Both portals restructured their search workflows, placing entity name search and agent details behind different menus. This can cause investigators to miss relevant filings if they rely on the old click path."
+      },
+      {
+        "heading": "Why it matters",
+        "body": "A small change in workflow can become a large blind spot in fast-moving research. Analysts who continue using the previous page layout risk inconsistent results and may overlook new filing notices."
+      },
+      {
+        "heading": "Practical steps",
+        "body": "Bookmark the updated search pages, revise saved query routines, and check both the old and new search interfaces when verifying entity history during client intake."
+      }
+    ]
+  },
+  {
+    "filename": "briefing-florida-llc-annual-report-rules.html",
+    "eyebrow": "Corporate Law · Florida",
+    "title": "Florida LLC Act Amendment: Changes to Annual Report Requirements Affecting Entity Monitoring",
+    "subtitle": "A Florida legislative amendment effective July 1, 2026 changes what information is required on LLC annual reports. This briefing describes the monitoring implications.",
+    "date": "May 2026",
+    "read_time": "4-minute read",
+    "excerpt": "A Florida legislative amendment effective July 1, 2026 changes the information required on annual LLC reports. For clients monitoring Florida-registered entities, this changes your data picture.",
+    "status": "Restricted",
+    "sections": [
+      {
+        "heading": "The amendment",
+        "body": "The Florida LLC Act amendment revises filing requirements for member and manager information, including the level of detail permitted in certain service-provider disclosures."
+      },
+      {
+        "heading": "Investigative impact",
+        "body": "Because some data fields may now be less granular, investigators need to pair report monitoring with additional public-record sources to confirm whether the reported manager is the actual controlling party."
+      },
+      {
+        "heading": "Monitoring advice",
+        "body": "Update alerts to include related filings such as registered agent changes and amended articles, and cross-check amended reports against any known nominee or trust arrangements."
+      }
+    ]
+  },
+  {
+    "filename": "briefing-11th-circuit-fraudulent-transfer-clawbacks.html",
+    "eyebrow": "Litigation Practice · Asset Recovery",
+    "title": "Post-Judgment Asset Discovery: A Change in the 11th Circuit's Approach to Fraudulent Transfer Clawbacks",
+    "subtitle": "A recent 11th Circuit decision has implications for how asset recovery attorneys frame their discovery requests in Florida post-judgment proceedings.",
+    "date": "April 2026",
+    "read_time": "4-minute read",
+    "excerpt": "A recent 11th Circuit decision has implications for how asset recovery attorneys frame their discovery requests in Florida post-judgment proceedings. Summary for litigation teams.",
+    "status": "Restricted",
+    "sections": [
+      {
+        "heading": "The decision",
+        "body": "The court modified the standard for demonstrating whether transfers were fraudulent, which affects when a creditor can seek post-judgment discovery of asset transfers."
+      },
+      {
+        "heading": "What to watch",
+        "body": "In practice, attorneys should focus on timing, the relationship between transfer parties, and any post-judgment activity that could suggest concealment of assets."
+      },
+      {
+        "heading": "Client guidance",
+        "body": "For litigation teams, the briefing is to prioritize early preservation notices and evidence gathering around suspicious entity transfers immediately after judgment."
+      }
+    ]
+  },
+  {
+    "filename": "briefing-pacer-fee-structure-update.html",
+    "eyebrow": "OSINT Practice · Database Update",
+    "title": "PACER Fee Structure Update: What Changed and How to Minimize Cost in High-Volume Searches",
+    "subtitle": "PACER's updated fee structure takes effect June 2026. For investigators running large-scale bankruptcy docket searches, this briefing explains the cost implications and alternatives.",
+    "date": "April 2026",
+    "read_time": "3-minute read",
+    "excerpt": "PACER's updated fee structure takes effect June 2026. For investigators running large-scale bankruptcy docket searches, the new pricing has meaningful cost implications. Practical guidance on batching and alternatives.",
+    "status": "Open",
+    "sections": [
+      {
+        "heading": "The pricing change",
+        "body": "The updated structure increases per-page costs for some document types while leaving others unchanged. This affects high-volume searches for bankruptcy dockets and related filings."
+      },
+      {
+        "heading": "Cost mitigation",
+        "body": "Investigators should batch requests, prioritize key documents, and use summary docket reports when available to reduce page-by-page fees."
+      },
+      {
+        "heading": "Process update",
+        "body": "Review current docket retrieval workflows and shift lower-value searches to alternative public record sources when possible."
+      }
+    ]
+  },
+  {
+    "filename": "briefing-cta-enforcement-ramp.html",
+    "eyebrow": "Compliance · Corporate Transparency",
+    "title": "The CTA Enforcement Ramp: What the First Wave of BOI Penalties Tells Us About Priorities",
+    "subtitle": "The first formal FinCEN enforcement actions under the Corporate Transparency Act have been issued. This briefing analyzes the penalty pattern and what compliance teams should prioritize.",
+    "date": "March 2026",
+    "read_time": "4-minute read",
+    "excerpt": "The first formal FinCEN enforcement actions under the Corporate Transparency Act have been issued. An analysis of the penalty pattern, which entities were targeted, and what compliance teams should prioritize.",
+    "status": "Restricted",
+    "sections": [
+      {
+        "heading": "Early enforcement themes",
+        "body": "The initial penalties focus on reporting failures and misclassifications, suggesting FinCEN is targeting basic compliance mistakes rather than complex concealment schemes."
+      },
+      {
+        "heading": "What to prioritize",
+        "body": "Compliance teams should review their beneficial ownership disclosures, focusing on accurate reporting of both ownership and control relationships."
+      },
+      {
+        "heading": "Investigator impact",
+        "body": "For investigators, this means looking for gaps between actual ownership and reported ownership that FinCEN enforcement may consider material."
+      }
+    ]
+  },
+  {
+    "filename": "briefing-geospatial-verification-resources.html",
+    "eyebrow": "OSINT Practice · Tools",
+    "title": "New Geospatial Verification Resources for Commercial Property Confirmation",
+    "subtitle": "Three new publicly accessible tools significantly improve the speed of physical asset confirmation in commercial real estate investigations.",
+    "date": "February 2026",
+    "read_time": "3-minute read",
+    "excerpt": "Three new publicly accessible tools significantly improve the speed of physical asset confirmation in commercial real estate investigations. A brief evaluation and recommended workflow.",
+    "status": "Open",
+    "sections": [
+      {
+        "heading": "What’s available",
+        "body": "The new resources provide aerial imagery, parcel verification, and address-matching capabilities for commercial property records, making it easier to confirm whether an entity actually controls a physical asset."
+      },
+      {
+        "heading": "How to use them",
+        "body": "Cross-reference the property address against corporate filings, UCC records, and land title documents to verify the asset’s connection to the subject entity."
+      },
+      {
+        "heading": "The value",
+        "body": "Using geospatial verification early in the investigation helps rule out phantom property claims and strengthens the evidence chain for valuation or asset tracing."
+      }
+    ]
+  }
+]

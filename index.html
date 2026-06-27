@@ -3,7 +3,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -26,6 +26,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+
 /* ========================
    NAV
 ======================== */
@@ -45,7 +51,7 @@ nav {
 }
 
 .nav-logo-mark {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 26px;
   color: var(--cream);
   line-height: 1;
@@ -76,7 +82,7 @@ nav {
 
 .nav-links a {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.7);
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -187,6 +193,10 @@ nav {
   padding: 140px 48px 80px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .page-header-grid {
@@ -205,7 +215,7 @@ nav {
   text-transform: uppercase;
   color: rgba(240,237,232,0.35);
   margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; justify-content: center; align-items: center; gap: 12px;
 }
 
 .page-header-eyebrow::before {
@@ -216,9 +226,9 @@ nav {
 }
 
 .page-header h1 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(40px, 5vw, 68px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -266,9 +276,9 @@ section { padding: 88px 48px; }
 .section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
 
 .section-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(34px, 4vw, 52px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--navy);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -277,6 +287,9 @@ section { padding: 88px 48px; }
 .section-title em { font-style: italic; color: #4A6FA5; }
 .section-title.light { color: var(--cream); }
 .section-title.light em { color: rgba(240,237,232,0.45); }
+
+.metrics-section .section-title { color: var(--cream); }
+.metrics-section .section-title em { color: rgb(173, 169, 152); }
 
 /* ========================
    BUTTONS
@@ -302,7 +315,7 @@ section { padding: 88px 48px; }
   color: rgba(240,237,232,0.7);
   padding: 13px 30px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -387,7 +400,7 @@ footer {
 }
 
 .footer-brand-name {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 22px;
   color: var(--cream);
   margin-bottom: 12px;
@@ -417,7 +430,7 @@ footer {
 
 .footer-contact-value {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.55);
 }
 
@@ -466,7 +479,7 @@ footer {
 
 .footer-legal-links a {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.2);
   text-decoration: none;
@@ -630,16 +643,16 @@ footer {
 }
 
 .hero h1 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(44px, 5.5vw, 80px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.02;
   letter-spacing: -0.02em;
   margin-bottom: 28px;
 }
 
-.hero h1 em { font-style: italic; opacity: 0.55; }
+.hero h1 em { font-style: italic; opacity: 1; color: #d7263d; }
 
 .hero-sub {
   font-size: 15px; font-weight: 300;
@@ -658,7 +671,7 @@ footer {
 }
 
 .hero-stat-num {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 32px; color: var(--cream);
   line-height: 1;
 }
@@ -702,7 +715,7 @@ footer {
   background: var(--cream);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 64px;
   align-items: start;
 }
 
@@ -713,18 +726,7 @@ footer {
 }
 .intro-body p + p { margin-top: 18px; }
 
-.framework-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 1px; background: var(--cream-dark);
-  border: 1px solid var(--cream-dark); margin-top: 8px;
-}
-.framework-cell { background: var(--cream); padding: 26px 22px; }
-.framework-label {
-  font-size: 11px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--navy); margin-bottom: 6px;
-}
-.framework-desc { font-size: 12px; font-weight: 300; color: #5A6880; line-height: 1.6; }
+/* framework-grid removed — replaced by interactive product demo */
 
 /* ── FEATURES STRIP ── */
 /* 3-column section: text | media | text — great for breaking up content */
@@ -746,7 +748,7 @@ footer {
 .features-text-cell .section-eyebrow::before { background: rgba(240,237,232,0.2); }
 
 .features-text-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 28px; color: var(--cream);
   line-height: 1.15; margin-bottom: 16px;
 }
@@ -773,9 +775,19 @@ footer {
 }
 
 /* ── SERVICE PREVIEW ── */
-.services-preview { background: var(--navy); }
-.services-preview .section-eyebrow { color: rgba(240,237,232,0.35); }
-.services-preview .section-eyebrow::before { background: rgba(240,237,232,0.25); }
+.services-preview { background: var(--cream); }
+.services-preview .section-eyebrow { color: var(--navy); }
+.services-preview .section-eyebrow::before { background: rgba(13,31,60,0.12); }
+.services-header-right { color: rgba(13,31,60,0.75); }
+.service-cards { background: rgba(13,31,60,0.08); border: 1px solid rgba(13,31,60,0.08); }
+.service-card { background: var(--white); }
+.service-card:hover { background: #F7F3EE; }
+.service-tag { color: rgba(13,31,60,0.6); border-bottom-color: rgba(13,31,60,0.08); }
+.service-name { color: var(--navy); }
+.service-codename { color: rgba(13,31,60,0.55); }
+.service-desc { color: rgba(13,31,60,0.65); }
+.service-price { color: var(--navy); }
+.service-price-note { color: rgba(13,31,60,0.45); }
 
 .services-header {
   display: flex; justify-content: space-between;
@@ -783,45 +795,45 @@ footer {
 }
 .services-header-right {
   font-size: 13px; font-weight: 300;
-  color: rgba(240,237,232,0.4);
+  color: rgba(13,31,60,0.75);
   max-width: 300px; line-height: 1.7; text-align: right;
 }
 
 .service-cards {
   display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 1px; background: rgba(240,237,232,0.07);
-  border: 1px solid rgba(240,237,232,0.07);
+  gap: 1px; background: rgba(13,31,60,0.08);
+  border: 1px solid rgba(13,31,60,0.08);
 }
 .service-card {
-  background: var(--navy); padding: 34px 26px;
+  background: var(--white); padding: 34px 26px;
   display: flex; flex-direction: column;
   transition: background 0.25s;
 }
-.service-card:hover { background: var(--navy-mid); }
+.service-card:hover { background: #F7F3EE; }
 .service-tag {
   font-size: 9px; font-weight: 600;
   letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(240,237,232,0.28);
+  color: rgba(13,31,60,0.6);
   margin-bottom: 16px; padding-bottom: 12px;
-  border-bottom: 1px solid rgba(240,237,232,0.07);
+  border-bottom: 1px solid rgba(13,31,60,0.08);
 }
 .service-name {
-  font-family: 'EB Garamond', serif;
-  font-size: 22px; font-weight: 400; color: var(--cream);
+  font-family: 'Times New Roman', serif;
+  font-size: 22px; font-weight: 700; color: var(--navy);
   margin-bottom: 4px; line-height: 1.2;
 }
 .service-codename {
   font-size: 9px; font-weight: 600;
   letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(240,237,232,0.3); margin-bottom: 16px;
+  color: rgba(13,31,60,0.55); margin-bottom: 16px;
 }
 .service-desc {
   font-size: 13px; font-weight: 300;
-  color: rgba(240,237,232,0.5); line-height: 1.7;
+  color: rgba(13,31,60,0.65); line-height: 1.7;
   flex: 1; margin-bottom: 22px;
 }
-.service-price { font-family: 'EB Garamond', serif; font-size: 30px; color: var(--cream); margin-bottom: 2px; }
-.service-price-note { font-size: 10px; font-weight: 400; letter-spacing: 0.06em; color: rgba(240,237,232,0.28); text-transform: uppercase; }
+.service-price { font-family: 'Times New Roman', serif; font-size: 30px; color: var(--navy); margin-bottom: 2px; }
+.service-price-note { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: rgba(13,31,60,0.45); text-transform: uppercase; }
 .services-footer { text-align: center; margin-top: 36px; }
 
 /* ── METRICS ── */
@@ -832,7 +844,7 @@ footer {
   border: 1px solid rgba(240,237,232,0.06); margin-top: 52px;
 }
 .metric-cell { background: var(--navy-mid); padding: 48px; }
-.metric-value { font-family: 'EB Garamond', serif; font-size: 64px; color: var(--cream); line-height: 1; margin-bottom: 12px; }
+.metric-value { font-family: 'Times New Roman', serif; font-size: 64px; color: var(--cream); line-height: 1; margin-bottom: 12px; }
 .metric-desc { font-size: 13px; font-weight: 300; color: rgba(240,237,232,0.4); line-height: 1.7; max-width: 220px; }
 
 /* ── MEDIA + QUOTE BAND ── */
@@ -861,9 +873,9 @@ footer {
 }
 
 .quote-band-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(26px, 3vw, 40px);
-  font-weight: 400; color: var(--navy);
+  font-weight: 700; color: var(--navy);
   line-height: 1.15; margin-bottom: 20px;
 }
 .quote-band-title em { font-style: italic; opacity: 0.5; }
@@ -882,9 +894,9 @@ footer {
   align-items: center; gap: 48px;
 }
 .cta-band-text {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(26px, 3vw, 40px);
-  font-weight: 400; color: var(--cream);
+  font-weight: 700; color: var(--cream);
   line-height: 1.15; max-width: 580px;
 }
 .cta-band-text em { font-style: italic; opacity: 0.5; }
@@ -930,24 +942,12 @@ footer {
 
   <div class="hero-left">
     <div class="hero-eyebrow">Locke &amp; Boole Solutions — Structural Integrity Intelligence</div>
-    <h1>Strip away the<br>layers. See who<br><em>actually</em> owns what.</h1>
+    <h1>Trace the assets. Find the <em>source.</em></h1>
     <p class="hero-sub">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors.</p>
     <div class="hero-actions">
       <a href="demo.html" class="btn-primary">Request a Demonstration</a>
       <a href="services.html" class="btn-ghost">View Services</a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num">$42M</div>
-        <div class="hero-stat-label">Assets Traced</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">48/48</div>
-        <div class="hero-stat-label">Shell Entities / 48hrs</div>
-      </div>
-      <div>
-        <div class="hero-stat-num">17</div>
-        <div class="hero-stat-label">Active Retainer Clients</div>
       </div>
     </div>
   </div>
@@ -1116,8 +1116,6 @@ footer {
 })();
     </script>
   </div>
-        <div class="media-slot-text">Media Slot 1 — Hero Right Panel</div>
-        <div class="media-slot-sub">Drop an &lt;img&gt; or &lt;video&gt; inside .media-slot<br>Recommended: 900 × 1080px, dark-toned</div>
       </div>
     </div>
   </div>
@@ -1144,28 +1142,188 @@ footer {
     <br>
     <a href="about.html" class="btn-navy">Our Story →</a>
   </div>
-  <div>
-    <div class="section-eyebrow">Our Data Framework</div>
-    <div class="framework-grid">
-      <div class="framework-cell">
-        <div class="framework-label">State &amp; Federal Filings</div>
-        <div class="framework-desc">Secretary of State portals, UCC liens, and annual reports</div>
+  <div style="display:flex;flex-direction:column;gap:0;">
+
+    <!-- Product demo label -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:12px;">
+        <span style="display:block;width:28px;height:1px;background:var(--text-muted);opacity:0.5;"></span>Final Product Demo
       </div>
-      <div class="framework-cell">
-        <div class="framework-label">Real Property Records</div>
-        <div class="framework-desc">County tax assessor databases linking entities to addresses</div>
+      <div style="display:flex;align-items:center;gap:6px;margin-left:auto;">
+        <span style="width:7px;height:7px;border-radius:50%;background:#1D9E75;display:inline-block;box-shadow:0 0 0 3px rgba(29,158,117,0.2);animation:lb-pulse 2s ease-in-out infinite;"></span>
+        <span style="font-family:Inter,sans-serif;font-size:9px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#1D9E75;">Active trace</span>
       </div>
-      <div class="framework-cell">
-        <div class="framework-label">Financial Filings</div>
-        <div class="framework-desc">EDGAR, federal procurement registries, and bankruptcy dockets</div>
+    </div>
+
+    <!-- Chrome bar -->
+    <div style="background:#1A2F50;border-radius:6px 6px 0 0;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(240,237,232,0.06);">
+      <div style="display:flex;gap:6px;">
+        <span style="width:10px;height:10px;border-radius:50%;background:rgba(240,237,232,0.1);display:block;"></span>
+        <span style="width:10px;height:10px;border-radius:50%;background:rgba(240,237,232,0.1);display:block;"></span>
+        <span style="width:10px;height:10px;border-radius:50%;background:rgba(240,237,232,0.1);display:block;"></span>
       </div>
-      <div class="framework-cell">
-        <div class="framework-label">Geospatial Verification</div>
-        <div class="framework-desc">Satellite imagery to confirm physical existence of claimed assets</div>
+      <div style="flex:1;background:rgba(240,237,232,0.06);border-radius:3px;padding:4px 10px;font-family:Inter,sans-serif;font-size:9px;color:rgba(240,237,232,0.3);letter-spacing:0.04em;">
+        lb-trace://matter/LB-2026-████/ownership-chain
+      </div>
+      <div style="font-family:Inter,sans-serif;font-size:8px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(240,237,232,0.25);">L&amp;B Intelligence</div>
+    </div>
+
+    <!-- App body -->
+    <div style="background:#F8F6F2;border-radius:0 0 6px 6px;padding:20px 20px 16px;border:1px solid rgba(13,31,60,0.08);border-top:none;box-shadow:0 8px 32px rgba(13,31,60,0.12);">
+
+      <!-- Toolbar -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(13,31,60,0.08);">
+        <div style="font-family:Inter,sans-serif;font-size:8px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:rgba(13,31,60,0.35);">Ownership chain</div>
+        <div style="margin-left:auto;display:flex;gap:6px;">
+          <div style="font-family:Inter,sans-serif;font-size:8px;color:rgba(13,31,60,0.3);background:rgba(13,31,60,0.06);padding:3px 8px;border-radius:2px;letter-spacing:0.06em;">3 tiers</div>
+          <div style="font-family:Inter,sans-serif;font-size:8px;color:rgba(13,31,60,0.3);background:rgba(13,31,60,0.06);padding:3px 8px;border-radius:2px;letter-spacing:0.06em;">10 entities</div>
+          <div style="font-family:Inter,sans-serif;font-size:8px;color:rgba(13,31,60,0.3);background:rgba(13,31,60,0.06);padding:3px 8px;border-radius:2px;letter-spacing:0.06em;">2 jurisdictions</div>
+        </div>
+      </div>
+
+      <div style="font-family:Inter,sans-serif;font-size:7.5px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(13,31,60,0.25);margin-bottom:10px;">Click any node to trace connections →</div>
+
+      <!-- Tier labels -->
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+        <span style="font-family:Inter,sans-serif;font-size:7px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(13,31,60,0.22);">Source layer</span>
+        <span style="font-family:Inter,sans-serif;font-size:7px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(13,31,60,0.22);">Shell layer</span>
+      </div>
+
+      <!-- Tier 1 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:3px;">
+        <button class="lbn t1" data-id="FA" onclick="lbSelect(this)">Foundation A<span>501(c)(4)</span></button>
+        <button class="lbn t1" data-id="FB" onclick="lbSelect(this)">Foundation B<span>501(c)(4)</span></button>
+        <button class="lbn t1" data-id="HUB" onclick="lbSelect(this)">Dark Money Hub<span>Address X</span></button>
+      </div>
+
+      <!-- Connectors 1→2 -->
+      <svg viewBox="0 0 300 24" preserveAspectRatio="none" style="width:100%;height:24px;display:block;">
+        <line data-from="FA"  data-to="LA"  x1="50"  y1="0" x2="50"  y2="24" class="lb-line"/>
+        <line data-from="FA"  data-to="LF"  x1="50"  y1="0" x2="150" y2="24" class="lb-line"/>
+        <line data-from="FB"  data-to="LF"  x1="150" y1="0" x2="150" y2="24" class="lb-line"/>
+        <line data-from="FB"  data-to="PC"  x1="150" y1="0" x2="230" y2="24" class="lb-line"/>
+        <line data-from="HUB" data-to="PC"  x1="250" y1="0" x2="230" y2="24" class="lb-line"/>
+        <line data-from="HUB" data-to="O4"  x1="250" y1="0" x2="280" y2="24" class="lb-line"/>
+      </svg>
+
+      <!-- Tier 2 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px;margin-bottom:3px;">
+        <button class="lbn t2" data-id="LA" onclick="lbSelect(this)">LLC Affiliate<span>Reg. agent</span></button>
+        <button class="lbn t2" data-id="LF" onclick="lbSelect(this)">Lobbying Firm<span>Est. Jun 2025</span></button>
+        <button class="lbn t2" data-id="PC" onclick="lbSelect(this)">Project C<span>d/b/a Org 3</span></button>
+        <button class="lbn t2" data-id="O4" onclick="lbSelect(this)">Org 4<span>Suite co-loc.</span></button>
+      </div>
+
+      <!-- Connectors 2→3 -->
+      <svg viewBox="0 0 300 24" preserveAspectRatio="none" style="width:100%;height:24px;display:block;">
+        <line data-from="LA"  data-to="LEG" x1="37"  y1="0" x2="75"  y2="24" class="lb-line"/>
+        <line data-from="LF"  data-to="LEG" x1="112" y1="0" x2="75"  y2="24" class="lb-line"/>
+        <line data-from="LF"  data-to="OPA" x1="112" y1="0" x2="150" y2="24" class="lb-line"/>
+        <line data-from="PC"  data-to="OPA" x1="187" y1="0" x2="150" y2="24" class="lb-line"/>
+        <line data-from="O4"  data-to="OPA" x1="262" y1="0" x2="150" y2="24" class="lb-line"/>
+        <line data-from="LA"  data-to="LFD" x1="37"  y1="0" x2="262" y2="24" class="lb-line lb-shared"/>
+        <line data-from="LF"  data-to="LFD" x1="112" y1="0" x2="262" y2="24" class="lb-line lb-shared"/>
+      </svg>
+
+      <!-- Tier 3 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px;">
+        <button class="lbn t3" data-id="LEG" onclick="lbSelect(this)">Legislature<span>Bill Jan 2026</span></button>
+        <button class="lbn t3 t3d" data-id="OPA" onclick="lbSelect(this)">Operative A<span>Principal lobbyist</span></button>
+        <button class="lbn t3t" data-id="LFD" onclick="lbSelect(this)">Law Firm D<span>Shared domain</span></button>
+      </div>
+
+      <!-- Info panel -->
+      <div id="lb-info" style="padding:10px 12px;background:#fff;border:0.5px solid rgba(13,31,60,0.1);border-left:3px solid #0D1F3C;border-radius:0 2px 2px 0;min-height:36px;display:none;">
+        <div id="lb-info-title" style="font-family:Inter,sans-serif;font-size:7.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(13,31,60,0.38);margin-bottom:3px;"></div>
+        <div id="lb-info-body" style="font-family:Inter,sans-serif;font-size:9.5px;color:#2A3A50;line-height:1.55;"></div>
+      </div>
+
+      <!-- Legend + status bar -->
+      <div style="display:flex;align-items:center;gap:12px;margin-top:10px;padding-top:10px;border-top:0.5px solid rgba(13,31,60,0.07);">
+        <div style="display:flex;align-items:center;gap:4px;font-family:Inter,sans-serif;font-size:7.5px;color:rgba(13,31,60,0.35);">
+          <div style="width:14px;height:1px;border-top:1.5px dashed #D85A30;"></div>Funding
+        </div>
+        <div style="display:flex;align-items:center;gap:4px;font-family:Inter,sans-serif;font-size:7.5px;color:rgba(13,31,60,0.35);">
+          <div style="width:14px;height:1px;border-top:1.5px dashed #BA7517;"></div>Control
+        </div>
+        <div style="display:flex;align-items:center;gap:4px;font-family:Inter,sans-serif;font-size:7.5px;color:rgba(13,31,60,0.35);">
+          <div style="width:14px;height:1px;border-top:1.5px dashed #0F6E56;"></div>Shared identifiers
+        </div>
+        <div style="margin-left:auto;font-family:Inter,sans-serif;font-size:7.5px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:rgba(13,31,60,0.25);">Sources: UCC · SoS · IRS 990 · EDGAR</div>
       </div>
     </div>
   </div>
+
 </section>
+
+<style>
+@keyframes lb-pulse { 0%,100%{box-shadow:0 0 0 3px rgba(29,158,117,0.2);} 50%{box-shadow:0 0 0 6px rgba(29,158,117,0.05);} }
+.lbn {
+  font-family:Inter,sans-serif;font-size:8.5px;font-weight:600;
+  border:1px solid;border-radius:3px;padding:7px 6px 5px;
+  line-height:1.2;text-align:left;cursor:pointer;transition:all 0.15s;background:transparent;
+}
+.lbn span { display:block;font-weight:300;font-size:7px;margin-top:1px;letter-spacing:0; }
+.t1  { border-color:#D85A30;background:#FAECE7;color:#712B13; }
+.t1 span { color:#993C1D; }
+.t1:hover,.t1.active { background:#D85A30;color:#fff; }
+.t1:hover span,.t1.active span { color:rgba(255,255,255,0.75); }
+.t2  { border-color:#BA7517;background:#FFF8EE;color:#633806; }
+.t2 span { color:#854F0B; }
+.t2:hover,.t2.active { background:#BA7517;color:#fff; }
+.t2:hover span,.t2.active span { color:rgba(255,255,255,0.75); }
+.t3  { border-color:rgba(13,31,60,0.2);background:#F0EDE8;color:#0D1F3C; }
+.t3 span { color:rgba(13,31,60,0.4); }
+.t3:hover,.t3.active { background:#0D1F3C;color:#F0EDE8; }
+.t3:hover span,.t3.active span { color:rgba(240,237,232,0.55); }
+.t3d { border-color:#0D1F3C;background:#0D1F3C;color:#F0EDE8; }
+.t3d span { color:rgba(240,237,232,0.4); }
+.t3d:hover,.t3d.active { background:#162B50; }
+.t3t { border-color:#0F6E56;background:#E8F8F3;color:#085041;font-family:Inter,sans-serif;font-size:8.5px;font-weight:600;border-radius:3px;padding:7px 6px 5px;line-height:1.2;text-align:left;cursor:pointer;transition:all 0.15s; }
+.t3t span { display:block;font-weight:300;font-size:7px;margin-top:1px;color:#0F6E56;letter-spacing:0; }
+.t3t:hover,.t3t.active { background:#0F6E56;color:#fff; }
+.t3t:hover span,.t3t.active span { color:rgba(255,255,255,0.7); }
+svg .lb-line { stroke:#BA7517;stroke-width:0.75;stroke-dasharray:3,3;fill:none;opacity:0.4;transition:all 0.2s; }
+svg .lb-shared { stroke:#0F6E56;stroke-dasharray:2,3;opacity:0.3; }
+svg .lb-line.lb-hi { stroke-width:1.5;opacity:1;stroke-dasharray:none; }
+svg .lb-line.lb-dim { opacity:0.08; }
+</style>
+
+<script>
+var lbData = {
+  FA:  {title:'Foundation A — 501(c)(4)',body:'IRS 990 shows $500k–$750k grants routed to the shell layer. Co-registered at Address X alongside three affiliated organizations.'},
+  FB:  {title:'Foundation B — 501(c)(4)',body:'990 filings confirm $100k–$750k grants through the same address cluster. Board overlap identified with Foundation A.'},
+  HUB: {title:'Dark Money Hub — Address X',body:'Single suite housing multiple 501(c)(4) orgs. Cited in a 2022 Supreme Court amicus brief as central to a coordinated dark money network.'},
+  LA:  {title:'LLC Affiliate A',body:'Registered agent ties back to Law Firm D email domain. Formed weeks after Operative A departed her prior employer. No publicly listed principals.'},
+  LF:  {title:'Lobbying Firm — Est. Jun 2025',body:'Formed within weeks of Operative A leaving her 501(c)(4) employer. Registered in State K by Oct 2025 — months before the bill was introduced.'},
+  PC:  {title:'Project C — d/b/a Organization 3',body:'Co-located at Address X. 2023 Form 990: $54M in grants to affiliated orgs, $65M revenue. Registered Operative A as lobbyist Sep 2025.'},
+  O4:  {title:'Organization 4',body:'Lobbying client, $10k–$19k Q4 2025 compensation. Separate address but coordinated relationship traceable through shared lobbyist filings.'},
+  LEG: {title:'State K Legislature',body:'Bill introduced Jan 2026. Materially identical to a law struck down in another state. Lobbying Firm was registered here months prior.'},
+  OPA: {title:'Operative A — Principal Lobbyist',body:'Senior government positions 2014–2022. 501(c)(4) Entity 2022–2025 ($150k–$300k/yr). Formed Lobbying Firm Jun 2025. Registered in State K Oct 2025. Critical deposition target.'},
+  LFD: {title:'Law Firm D — Shared Domain',body:'Lobbying Firm registration uses Law Firm D email domain. State L records confirm Project C uses same domain. Suggests operational relationship.'},
+};
+var lbEdges = {
+  FA:['LA','LF'],FB:['LF','PC'],HUB:['PC','O4'],
+  LA:['LEG','LFD'],LF:['LEG','OPA','LFD'],PC:['OPA'],O4:['OPA'],
+  LEG:['LA','LF'],OPA:['LF','PC','O4'],LFD:['LA','LF'],
+};
+function lbSelect(btn){
+  var id=btn.getAttribute('data-id');
+  document.querySelectorAll('.lbn,.t3t').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.lb-line').forEach(function(l){
+    var f=l.getAttribute('data-from'),t=l.getAttribute('data-to');
+    if(f===id||t===id){l.classList.add('lb-hi');l.classList.remove('lb-dim');}
+    else{l.classList.add('lb-dim');l.classList.remove('lb-hi');}
+  });
+  var d=lbData[id];
+  if(d){
+    document.getElementById('lb-info').style.display='block';
+    document.getElementById('lb-info-title').textContent=d.title;
+    document.getElementById('lb-info-body').textContent=d.body;
+  }
+}
+</script>
 
 <!-- ═══════════════════════════════════════
      FEATURES STRIP
@@ -1181,148 +1339,188 @@ footer {
     <a href="methodology.html" class="btn-ghost" style="align-self:flex-start;">Our Methodology</a>
   </div>
 
-  <div class="features-media-cell" style="background:#F0EDE8;padding:28px 24px;display:flex;flex-direction:column;justify-content:center;overflow:hidden;">
-    <div id="oc-wrap" style="width:100%;">
+  <div class="features-media-cell" style="background:#0D1F3C;padding:0;display:flex;flex-direction:column;overflow:hidden;position:relative;">
 
-      <div style="font-family:Inter,system-ui,sans-serif;font-size:7.5px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(13,31,60,0.28);margin-bottom:14px;padding-bottom:7px;border-bottom:0.5px solid rgba(13,31,60,0.1);">Ownership chain — click any node to trace</div>
-
-      <!-- Tier labels -->
-      <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
-        <span style="font-family:Inter,system-ui,sans-serif;font-size:7px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(13,31,60,0.25);">Source entities</span>
-        <span style="font-family:Inter,system-ui,sans-serif;font-size:7px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(13,31,60,0.25);">501(c)(4) layer</span>
+    <!-- header bar -->
+    <div style="padding:14px 20px 12px;border-bottom:1px solid rgba(240,237,232,0.07);display:flex;align-items:center;gap:10px;background:#0A1B33;flex-shrink:0;">
+      <div style="display:flex;gap:5px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:rgba(240,237,232,0.08);"></span>
+        <span style="width:8px;height:8px;border-radius:50%;background:rgba(240,237,232,0.08);"></span>
+        <span style="width:8px;height:8px;border-radius:50%;background:rgba(240,237,232,0.08);"></span>
       </div>
-
-      <!-- Tier 1 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:4px;">
-        <button class="ocn t1" data-id="FA" onclick="ocSelect(this)">Foundation A<span>501(c)(4)</span></button>
-        <button class="ocn t1" data-id="FB" onclick="ocSelect(this)">Foundation B<span>501(c)(4)</span></button>
-        <button class="ocn t1" data-id="HUB" onclick="ocSelect(this)">Dark Money Hub<span>Address X</span></button>
+      <div style="font-family:Inter,sans-serif;font-size:8px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(240,237,232,0.3);margin-left:4px;">Firewall Monitor — Developer End</div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;">
+        <span id="fw-pulse" style="width:6px;height:6px;border-radius:50%;background:#1D9E75;display:inline-block;"></span>
+        <span style="font-family:Inter,sans-serif;font-size:8px;font-weight:500;color:#1D9E75;letter-spacing:0.1em;">MONITORING ACTIVE</span>
       </div>
+    </div>
 
-      <!-- SVG connectors tier 1→2 -->
-      <svg class="oc-svg" viewBox="0 0 300 28" preserveAspectRatio="none" style="width:100%;height:28px;display:block;overflow:visible;">
-        <line data-from="FA"  data-to="LA"  x1="50"  y1="0" x2="50"  y2="28" class="oc-line"/>
-        <line data-from="FA"  data-to="LF"  x1="50"  y1="0" x2="150" y2="28" class="oc-line"/>
-        <line data-from="FB"  data-to="LF"  x1="150" y1="0" x2="150" y2="28" class="oc-line"/>
-        <line data-from="FB"  data-to="PC"  x1="150" y1="0" x2="230" y2="28" class="oc-line"/>
-        <line data-from="HUB" data-to="PC"  x1="250" y1="0" x2="230" y2="28" class="oc-line"/>
-        <line data-from="HUB" data-to="O4"  x1="250" y1="0" x2="280" y2="28" class="oc-line"/>
-      </svg>
-
-      <!-- Tier 2 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px;margin-bottom:4px;">
-        <button class="ocn t2" data-id="LA" onclick="ocSelect(this)">LLC Affiliate<span>Reg. agent</span></button>
-        <button class="ocn t2" data-id="LF" onclick="ocSelect(this)">Lobbying Firm<span>Est. Jun 2025</span></button>
-        <button class="ocn t2" data-id="PC" onclick="ocSelect(this)">Project C<span>d/b/a Org 3</span></button>
-        <button class="ocn t2" data-id="O4" onclick="ocSelect(this)">Organization 4<span>Suite co-loc.</span></button>
-      </div>
-
-      <!-- SVG connectors tier 2→3 -->
-      <svg class="oc-svg" viewBox="0 0 300 28" preserveAspectRatio="none" style="width:100%;height:28px;display:block;overflow:visible;">
-        <line data-from="LA"  data-to="LEG" x1="37"  y1="0" x2="75"  y2="28" class="oc-line"/>
-        <line data-from="LF"  data-to="LEG" x1="112" y1="0" x2="75"  y2="28" class="oc-line"/>
-        <line data-from="LF"  data-to="OPA" x1="112" y1="0" x2="150" y2="28" class="oc-line"/>
-        <line data-from="PC"  data-to="OPA" x1="187" y1="0" x2="150" y2="28" class="oc-line"/>
-        <line data-from="O4"  data-to="OPA" x1="262" y1="0" x2="150" y2="28" class="oc-line"/>
-        <line data-from="LA"  data-to="LFD" x1="37"  y1="0" x2="262" y2="28" class="oc-line oc-shared"/>
-        <line data-from="LF"  data-to="LFD" x1="112" y1="0" x2="262" y2="28" class="oc-line oc-shared"/>
-      </svg>
-
-      <!-- Tier 3 -->
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:0;">
-        <button class="ocn t3" data-id="LEG" onclick="ocSelect(this)">Legislature<span>Bill Jan 2026</span></button>
-        <button class="ocn t3 t3-dark" data-id="OPA" onclick="ocSelect(this)">Operative A<span>Principal lobbyist</span></button>
-        <button class="ocn t3-teal" data-id="LFD" onclick="ocSelect(this)">Law Firm D<span>Shared domain</span></button>
-      </div>
-
-      <!-- Info panel -->
-      <div id="oc-info" style="margin-top:14px;padding:10px 13px;background:#fff;border:0.5px solid rgba(13,31,60,0.1);border-left:3px solid #0D1F3C;min-height:38px;display:none;border-radius:0 2px 2px 0;">
-        <div id="oc-info-title" style="font-family:Inter,system-ui,sans-serif;font-size:8px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(13,31,60,0.4);margin-bottom:4px;"></div>
-        <div id="oc-info-body" style="font-family:Inter,system-ui,sans-serif;font-size:10px;color:#2A3A50;line-height:1.55;"></div>
-      </div>
-
-      <!-- Legend -->
-      <div style="display:flex;gap:14px;margin-top:12px;padding-top:10px;border-top:0.5px solid rgba(13,31,60,0.08);">
-        <div style="display:flex;align-items:center;gap:5px;font-family:Inter,system-ui,sans-serif;font-size:8px;color:rgba(13,31,60,0.4);">
-          <div style="width:16px;height:1px;border-top:1.5px dashed #D85A30;"></div>Funding
+    <!-- partner status row -->
+    <div style="padding:12px 20px 10px;border-bottom:1px solid rgba(240,237,232,0.05);flex-shrink:0;">
+      <div style="font-family:Inter,sans-serif;font-size:7px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.22);margin-bottom:8px;">Monitored entities — 5 of 5</div>
+      <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="fw-entity" data-status="ok">
+          <span class="fw-dot ok"></span>
+          <span class="fw-name">Venture Partners LLC</span>
+          <span class="fw-state">Delaware</span>
+          <span class="fw-badge ok">Stable</span>
         </div>
-        <div style="display:flex;align-items:center;gap:5px;font-family:Inter,system-ui,sans-serif;font-size:8px;color:rgba(13,31,60,0.4);">
-          <div style="width:16px;height:1px;border-top:1.5px dashed #BA7517;"></div>Control
+        <div class="fw-entity" data-status="warn" id="fw-warn-row">
+          <span class="fw-dot warn"></span>
+          <span class="fw-name">Meridian Holdings Inc.</span>
+          <span class="fw-state">Nevada</span>
+          <span class="fw-badge warn" id="fw-warn-badge">Change detected</span>
         </div>
-        <div style="display:flex;align-items:center;gap:5px;font-family:Inter,system-ui,sans-serif;font-size:8px;color:rgba(13,31,60,0.4);">
-          <div style="width:16px;height:1px;border-top:1.5px dashed #0F6E56;"></div>Shared identifiers
+        <div class="fw-entity" data-status="ok">
+          <span class="fw-dot ok"></span>
+          <span class="fw-name">Crestview RE Group</span>
+          <span class="fw-state">Florida</span>
+          <span class="fw-badge ok">Stable</span>
+        </div>
+        <div class="fw-entity" data-status="ok">
+          <span class="fw-dot ok"></span>
+          <span class="fw-name">Altus Capital Partners</span>
+          <span class="fw-state">Wyoming</span>
+          <span class="fw-badge ok">Stable</span>
+        </div>
+        <div class="fw-entity" data-status="high" id="fw-high-row">
+          <span class="fw-dot high"></span>
+          <span class="fw-name">Nomex Advisors LLC</span>
+          <span class="fw-state">Delaware</span>
+          <span class="fw-badge high">Dissolution filed</span>
         </div>
       </div>
     </div>
 
+    <!-- alert feed -->
+    <div style="flex:1;overflow:hidden;padding:12px 20px 0;display:flex;flex-direction:column;gap:0;">
+      <div style="font-family:Inter,sans-serif;font-size:7px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(240,237,232,0.22);margin-bottom:8px;">Alert feed</div>
+      <div id="fw-feed" style="display:flex;flex-direction:column;gap:6px;overflow:hidden;">
+
+        <div class="fw-alert fw-alert-high">
+          <div class="fw-alert-time">2 min ago</div>
+          <div class="fw-alert-body"><strong>Nomex Advisors LLC</strong> — Articles of Dissolution filed with Delaware SoS. Entity status: INACTIVE.</div>
+        </div>
+
+        <div class="fw-alert fw-alert-warn">
+          <div class="fw-alert-time">41 min ago</div>
+          <div class="fw-alert-body"><strong>Meridian Holdings Inc.</strong> — Registered agent changed from ████████ to ████████ Corp. UCC-1 lien amendment filed simultaneously.</div>
+        </div>
+
+        <div class="fw-alert fw-alert-info">
+          <div class="fw-alert-time">Yesterday</div>
+          <div class="fw-alert-body"><strong>Venture Partners LLC</strong> — Annual report filed. No material changes to principal officers or registered agent.</div>
+        </div>
+
+        <div class="fw-alert fw-alert-info">
+          <div class="fw-alert-time">3 days ago</div>
+          <div class="fw-alert-body"><strong>Crestview RE Group</strong> — New UCC-1 financing statement recorded in Florida. Secured party: ████████ Lending LLC.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- footer bar -->
+    <div style="padding:10px 20px;border-top:1px solid rgba(240,237,232,0.05);display:flex;justify-content:space-between;align-items:center;background:#0A1B33;flex-shrink:0;margin-top:12px;">
+      <div style="font-family:Inter,sans-serif;font-size:7.5px;color:rgba(240,237,232,0.2);">Next report: <span style="color:rgba(240,237,232,0.45);font-weight:500;">Dec 1, 2026</span></div>
+      <div style="font-family:Inter,sans-serif;font-size:7.5px;color:rgba(240,237,232,0.2);">Sources: SoS · UCC · EDGAR · PACER</div>
+    </div>
+
     <style>
-    .ocn {
-      font-family:Inter,system-ui,sans-serif;font-size:9px;font-weight:600;
-      border:1px solid;border-radius:3px;padding:8px 7px 6px;
-      line-height:1.2;text-align:left;cursor:pointer;transition:all 0.15s;
-      background:transparent;
+    .fw-entity {
+      display:flex;align-items:center;gap:8px;
+      padding:5px 8px;border-radius:3px;
+      background:rgba(240,237,232,0.03);
+      border:0.5px solid rgba(240,237,232,0.06);
+      font-family:Inter,sans-serif;
+      transition:background 0.2s;
     }
-    .ocn span { display:block;font-weight:300;font-size:7.5px;margin-top:2px;letter-spacing:0; }
-    .t1  { border-color:#D85A30;background:#FAECE7;color:#712B13; }
-    .t1 span { color:#993C1D; }
-    .t1:hover,.t1.active { background:#D85A30;color:#fff; }
-    .t1:hover span,.t1.active span { color:rgba(255,255,255,0.75); }
-    .t2  { border-color:#BA7517;background:#FAEEDA;color:#633806; }
-    .t2 span { color:#854F0B; }
-    .t2:hover,.t2.active { background:#BA7517;color:#fff; }
-    .t2:hover span,.t2.active span { color:rgba(255,255,255,0.75); }
-    .t3  { border-color:rgba(13,31,60,0.25);background:#F0EDE8;color:#0D1F3C; }
-    .t3 span { color:rgba(13,31,60,0.45); }
-    .t3:hover,.t3.active { background:#0D1F3C;color:#F0EDE8; }
-    .t3:hover span,.t3.active span { color:rgba(240,237,232,0.55); }
-    .t3-dark { border-color:#0D1F3C;background:#0D1F3C;color:#F0EDE8; }
-    .t3-dark span { color:rgba(240,237,232,0.45); }
-    .t3-dark:hover,.t3-dark.active { background:#162B50; }
-    .t3-teal { border-color:#0F6E56;background:#E1F5EE;color:#085041;font-family:Inter,system-ui,sans-serif;font-size:9px;font-weight:600;border-radius:3px;padding:8px 7px 6px;line-height:1.2;text-align:left;cursor:pointer;transition:all 0.15s; }
-    .t3-teal span { display:block;font-weight:300;font-size:7.5px;margin-top:2px;color:#0F6E56;letter-spacing:0; }
-    .t3-teal:hover,.t3-teal.active { background:#0F6E56;color:#fff; }
-    .t3-teal:hover span,.t3-teal.active span { color:rgba(255,255,255,0.7); }
-    .oc-svg .oc-line { stroke:#BA7517;stroke-width:0.75;stroke-dasharray:3,3;fill:none;opacity:0.45;transition:all 0.2s; }
-    .oc-svg .oc-shared { stroke:#0F6E56;stroke-dasharray:2,3;opacity:0.35; }
-    .oc-svg .oc-line.oc-highlight { stroke-width:1.5;opacity:0.9;stroke-dasharray:none; }
-    .oc-svg .oc-line.oc-dim { opacity:0.1; }
+    .fw-entity:hover { background:rgba(240,237,232,0.06); }
+    .fw-dot {
+      width:6px;height:6px;border-radius:50%;flex-shrink:0;
+    }
+    .fw-dot.ok   { background:#1D9E75; }
+    .fw-dot.warn { background:#BA7517;animation:fw-blink 1.8s ease-in-out infinite; }
+    .fw-dot.high { background:#C0392B;animation:fw-blink 0.9s ease-in-out infinite; }
+    .fw-name {
+      font-size:9px;font-weight:500;color:rgba(240,237,232,0.7);flex:1;
+    }
+    .fw-state {
+      font-size:7.5px;font-weight:400;color:rgba(240,237,232,0.25);
+      letter-spacing:0.06em;flex-shrink:0;
+    }
+    .fw-badge {
+      font-size:7px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+      padding:2px 7px;border-radius:2px;flex-shrink:0;
+    }
+    .fw-badge.ok   { background:rgba(29,158,117,0.15);color:#1D9E75; }
+    .fw-badge.warn { background:rgba(186,117,23,0.2);color:#E8A020; }
+    .fw-badge.high { background:rgba(192,57,43,0.2);color:#E05A4A; }
+
+    .fw-alert {
+      padding:8px 10px;border-radius:3px;border-left:2px solid;
+      font-family:Inter,sans-serif;
+    }
+    .fw-alert-time {
+      font-size:7px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+      margin-bottom:3px;
+    }
+    .fw-alert-body {
+      font-size:8.5px;font-weight:300;line-height:1.5;
+    }
+    .fw-alert-body strong { font-weight:600; }
+    .fw-alert-high {
+      background:rgba(192,57,43,0.1);border-color:#C0392B;
+    }
+    .fw-alert-high .fw-alert-time { color:#E05A4A; }
+    .fw-alert-high .fw-alert-body { color:rgba(240,237,232,0.65); }
+    .fw-alert-warn {
+      background:rgba(186,117,23,0.1);border-color:#BA7517;
+    }
+    .fw-alert-warn .fw-alert-time { color:#E8A020; }
+    .fw-alert-warn .fw-alert-body { color:rgba(240,237,232,0.6); }
+    .fw-alert-info {
+      background:rgba(240,237,232,0.03);border-color:rgba(240,237,232,0.1);
+    }
+    .fw-alert-info .fw-alert-time { color:rgba(240,237,232,0.25); }
+    .fw-alert-info .fw-alert-body { color:rgba(240,237,232,0.4); }
+
+    @keyframes fw-blink {
+      0%,100% { opacity:1; }
+      50% { opacity:0.3; }
+    }
+    @keyframes fw-pulse-ring {
+      0%,100% { box-shadow:0 0 0 2px rgba(29,158,117,0.3); }
+      50% { box-shadow:0 0 0 5px rgba(29,158,117,0.05); }
+    }
+    #fw-pulse { animation:fw-pulse-ring 2s ease-in-out infinite; }
     </style>
 
     <script>
-    var ocData = {
-      FA:  { title:'Foundation A — 501(c)(4)', body:'Dark money source entity. IRS 990 shows $500k–$750k grants to lobbying layer. Registered at Address X alongside three co-located organizations.' },
-      FB:  { title:'Foundation B — 501(c)(4)', body:'Second source entity. 990 filings confirm $100k–$750k grants routed through same address cluster. Shares board overlap with Foundation A.' },
-      HUB: { title:'Dark Money Hub — Address X', body:'A single suite address housing multiple 501(c)(4) and (c)(3) organizations. Identified in a 2022 Supreme Court amicus brief as central to a coordinated dark money network.' },
-      LA:  { title:'LLC Affiliate A — Shell entity', body:'Registered agent link connects this entity to Law Firm D email domain. Formed weeks after Operative A left her prior employer. No publicly listed principals.' },
-      LF:  { title:'Lobbying Firm — Registered Jun 2025', body:'Formed by Operative A within weeks of leaving her 501(c)(4) employer. By Aug 2025, representing the same clients she previously served. Registered in State K by Oct 2025 — months before the bill was introduced.' },
-      PC:  { title:'Project C — d/b/a Organization 3', body:'Co-located at Address X. 2023 Form 990 shows $54M in grants to affiliated organizations and $65M in revenue. Registered Operative A as lobbyist in Sep 2025.' },
-      O4:  { title:'Organization 4 — Address Y', body:'Fourth lobbying client of the Firm. Received $10k–$19k in Q4 2025 compensation. Separate address but coordinated client relationship traceable through shared lobbyist registrations.' },
-      LEG: { title:'State K Legislature — Target', body:'Bill introduced Jan 2026 — materially identical to a law in another state that was struck down for blocking tens of thousands of eligible voters. Lobbying Firm was registered here months earlier.' },
-      OPA: { title:'Operative A — Principal lobbyist', body:'Held senior government positions 2014–2022. Joined 501(c)(4) Entity 2022–2025 ($150k–$300k/yr). Formed Lobbying Firm Jun 2025. Registered in State K Oct 2025. Critical deposition target.' },
-      LFD: { title:'Law Firm D — Shared email domain', body:'Lobbying Firm registration uses Law Firm D email domain. State L lobbying records show Project C uses the same domain. Suggests operational or professional relationship among entities.' },
-    };
-    var ocEdges = {
-      FA:['LA','LF'], FB:['LF','PC'], HUB:['PC','O4'],
-      LA:['LEG','LFD'], LF:['LEG','OPA','LFD'], PC:['OPA'], O4:['OPA'],
-      LEG:['LA','LF'], OPA:['LF','PC','O4'], LFD:['LA','LF'],
-    };
-    function ocSelect(btn) {
-      var id = btn.getAttribute('data-id');
-      document.querySelectorAll('.ocn,.t3-teal').forEach(function(b){ b.classList.remove('active'); });
-      btn.classList.add('active');
-      var connected = (ocEdges[id]||[]).concat([id]);
-      document.querySelectorAll('.oc-line').forEach(function(l){
-        var from=l.getAttribute('data-from'), to=l.getAttribute('data-to');
-        if(from===id||to===id){ l.classList.add('oc-highlight'); l.classList.remove('oc-dim'); }
-        else { l.classList.add('oc-dim'); l.classList.remove('oc-highlight'); }
-      });
-      var d = ocData[id];
-      if(d){
-        document.getElementById('oc-info').style.display='block';
-        document.getElementById('oc-info-title').textContent=d.title;
-        document.getElementById('oc-info-body').textContent=d.body;
-      }
-    }
+    // Simulate a new alert arriving every ~8 seconds
+    (function(){
+      var alerts = [
+        { type:'warn', time:'Just now', body:'<strong>Altus Capital Partners</strong> — UCC amendment filed in Wyoming. Secured party interest modified.' },
+        { type:'info', time:'Just now', body:'<strong>Crestview RE Group</strong> — New fictitious name registration filed in Florida.' },
+        { type:'high', time:'Just now', body:'<strong>Meridian Holdings Inc.</strong> — New registered agent filed. Principal address changed simultaneously.' },
+      ];
+      var idx = 0;
+      setInterval(function(){
+        var feed = document.getElementById('fw-feed');
+        if(!feed) return;
+        var a = alerts[idx % alerts.length]; idx++;
+        var el = document.createElement('div');
+        el.className = 'fw-alert fw-alert-' + a.type;
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.4s';
+        el.innerHTML = '<div class="fw-alert-time">' + a.time + '</div><div class="fw-alert-body">' + a.body + '</div>';
+        feed.insertBefore(el, feed.firstChild);
+        setTimeout(function(){ el.style.opacity = '1'; }, 20);
+        // remove last if too many
+        var items = feed.querySelectorAll('.fw-alert');
+        if(items.length > 4) items[items.length-1].remove();
+      }, 8000);
+    })();
     </script>
   </div>
 
@@ -1339,7 +1537,7 @@ footer {
   <div class="services-header">
     <div>
       <div class="section-eyebrow light">Services</div>
-      <h2 class="section-title light">Surveillance and<br><em>Verification.</em></h2>
+      <h2 class="section-title">Monitoring and <em>Verifying.</em></h2>
     </div>
     <p class="services-header-right">Verified, mapped, and delivered in subpoena-ready formats.</p>
   </div>
@@ -1385,19 +1583,19 @@ footer {
 <!-- METRICS -->
 <section class="metrics-section">
   <div class="section-eyebrow light">Track Record</div>
-  <h2 class="section-title light">Verifiable <em>metrics.</em></h2>
+  <h2 class="section-title">Verifiable <em>metrics.</em></h2>
   <div class="metrics-row">
     <div class="metric-cell">
-      <div class="metric-value">$42M</div>
+      <div class="metric-value">$26M</div>
       <div class="metric-desc">In hidden assets traced across 4 states and 2 offshore jurisdictions for a single private family office.</div>
     </div>
     <div class="metric-cell">
-      <div class="metric-value">48/48</div>
+      <div class="metric-value">43/43</div>
       <div class="metric-desc">Shell entities mapped in 48 hours for a hedge fund pre-acquisition diligence. We do not miss deadlines.</div>
     </div>
     <div class="metric-cell">
       <div class="metric-value">17</div>
-      <div class="metric-desc">Active corporate retainer clients currently receiving continuous structural integrity monitoring.</div>
+      <div class="metric-desc">Number of corporate retainer clients currently receiving continuous structural integrity monitoring.</div>
     </div>
   </div>
 </section>
@@ -1544,7 +1742,7 @@ footer {
       <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
       <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
       <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
-      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 48 business hours</div></div>
       <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
     </div>
     <div class="footer-col">

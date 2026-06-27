@@ -3,7 +3,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -26,6 +26,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+
 /* ========================
    NAV
 ======================== */
@@ -45,7 +51,7 @@ nav {
 }
 
 .nav-logo-mark {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 26px;
   color: var(--cream);
   line-height: 1;
@@ -76,7 +82,7 @@ nav {
 
 .nav-links a {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.7);
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -187,6 +193,10 @@ nav {
   padding: 140px 48px 80px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .page-header-grid {
@@ -205,7 +215,7 @@ nav {
   text-transform: uppercase;
   color: rgba(240,237,232,0.35);
   margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; justify-content: center; align-items: center; gap: 12px;
 }
 
 .page-header-eyebrow::before {
@@ -216,9 +226,9 @@ nav {
 }
 
 .page-header h1 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(40px, 5vw, 68px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -266,9 +276,9 @@ section { padding: 88px 48px; }
 .section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
 
 .section-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(34px, 4vw, 52px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--navy);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -302,7 +312,7 @@ section { padding: 88px 48px; }
   color: rgba(240,237,232,0.7);
   padding: 13px 30px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -387,7 +397,7 @@ footer {
 }
 
 .footer-brand-name {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 22px;
   color: var(--cream);
   margin-bottom: 12px;
@@ -417,7 +427,7 @@ footer {
 
 .footer-contact-value {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.55);
 }
 
@@ -466,7 +476,7 @@ footer {
 
 .footer-legal-links a {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.2);
   text-decoration: none;
@@ -564,9 +574,9 @@ footer {
 .demo-left .section-eyebrow::before { background: rgba(240,237,232,0.2); }
 
 .demo-left-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(30px, 3vw, 44px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -603,7 +613,7 @@ footer {
 }
 
 .demo-step-num {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 20px; color: rgba(240,237,232,0.18);
   line-height: 1; flex-shrink: 0;
   width: 20px;
@@ -642,8 +652,8 @@ footer {
 }
 
 .demo-form-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 24px; font-weight: 400;
+  font-family: 'Times New Roman', serif;
+  font-size: 24px; font-weight: 700;
   color: var(--navy);
   margin-bottom: 32px;
   padding-bottom: 20px;
@@ -716,7 +726,7 @@ footer {
 .pgp-option input { flex-shrink: 0; }
 
 .pgp-label {
-  font-size: 12px; font-weight: 400;
+  font-size: 12px; font-weight: 700;
   color: var(--navy);
   line-height: 1.5;
 }
@@ -760,14 +770,14 @@ footer {
     <h1 class="demo-left-title">Secure intake.<br><em>12-hour</em><br>response.</h1>
     <div class="demo-left-body">
       <p>We do not operate a public front desk. All client onboarding begins through our secure intake process.</p>
-      <p>We respond to all formal inquiries within 12 business hours. If your matter is time-sensitive, indicate that in the form and we will prioritize accordingly.</p>
+      <p>We respond to all formal inquiries within 48 business hours. If your matter is time-sensitive, indicate that in the form and we will prioritize accordingly.</p>
     </div>
 
     <div class="demo-what-happens">
       <div class="demo-what-title">What Happens Next</div>
       <div class="demo-step">
         <div class="demo-step-num">1</div>
-        <div class="demo-step-text">We review your intake within 12 business hours and assess fit for your matter type.</div>
+        <div class="demo-step-text">We review your intake within 48 business hours and assess fit for your matter type.</div>
       </div>
       <div class="demo-step">
         <div class="demo-step-num">2</div>
@@ -785,7 +795,7 @@ footer {
 
     <div class="demo-contact-note">
       <div class="demo-contact-note-label">Prefer Direct Contact?</div>
-      <div class="demo-contact-note-text">contact@lockeandboole.com<br>PGP encryption available upon request.<br>Response within 12 business hours.</div>
+      <div class="demo-contact-note-text">contact@lockeandboole.com<br>PGP encryption available upon request.<br>Response within 48 business hours.</div>
     </div>
   </div>
 
@@ -914,7 +924,7 @@ footer {
       <div class="footer-brand-name">Locke &amp; Boole Solutions</div>
       <p class="footer-brand-desc">Beneficial ownership mapping, asset traceability, and continuous structural monitoring for legal, corporate, and government sectors. A registered Florida LLC.</p>
       <div class="footer-contact-item"><div class="footer-contact-label">Secure Email</div><div class="footer-contact-value">contact@lockeandboole.com</div></div>
-      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 12 business hours</div></div>
+      <div class="footer-contact-item"><div class="footer-contact-label">Response</div><div class="footer-contact-value">Within 48 business hours</div></div>
       <div class="footer-contact-item"><div class="footer-contact-label">PGP Encryption</div><div class="footer-contact-value">Available upon request</div></div>
     </div>
     <div class="footer-col">

@@ -3,7 +3,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -26,6 +26,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+
 /* ========================
    NAV
 ======================== */
@@ -45,7 +51,7 @@ nav {
 }
 
 .nav-logo-mark {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 26px;
   color: var(--cream);
   line-height: 1;
@@ -76,7 +82,7 @@ nav {
 
 .nav-links a {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.7);
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -187,6 +193,10 @@ nav {
   padding: 140px 48px 80px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .page-header-grid {
@@ -205,7 +215,7 @@ nav {
   text-transform: uppercase;
   color: rgba(240,237,232,0.35);
   margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; justify-content: center; align-items: center; gap: 12px;
 }
 
 .page-header-eyebrow::before {
@@ -216,9 +226,9 @@ nav {
 }
 
 .page-header h1 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(40px, 5vw, 68px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -266,9 +276,9 @@ section { padding: 88px 48px; }
 .section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
 
 .section-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(34px, 4vw, 52px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--navy);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -302,7 +312,7 @@ section { padding: 88px 48px; }
   color: rgba(240,237,232,0.7);
   padding: 13px 30px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -387,7 +397,7 @@ footer {
 }
 
 .footer-brand-name {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 22px;
   color: var(--cream);
   margin-bottom: 12px;
@@ -417,7 +427,7 @@ footer {
 
 .footer-contact-value {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.55);
 }
 
@@ -466,7 +476,7 @@ footer {
 
 .footer-legal-links a {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.2);
   text-decoration: none;
@@ -619,8 +629,8 @@ footer {
 }
 
 .briefing-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 20px; font-weight: 400;
+  font-family: 'Times New Roman', serif;
+  font-size: 20px; font-weight: 700;
   color: var(--navy);
   line-height: 1.25;
   margin-bottom: 6px;
@@ -679,7 +689,7 @@ footer {
 }
 
 .access-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 26px; color: var(--cream);
   margin-bottom: 14px;
 }
@@ -742,8 +752,7 @@ footer {
 <div class="page-header">
   <div class="page-header-grid"></div>
   <div class="page-header-eyebrow">Resources / Briefings</div>
-  <h1>Timely intelligence<br>on structural <em>risk.</em></h1>
-  <p class="page-header-sub">Briefings are short-form intelligence memos produced by the Locke &amp; Boole analyst team when a development in corporate law, OSINT practice, or regulatory compliance warrants immediate attention from our clients.</p>
+  <h1>Timely intelligence on structural risk.</em></h1>
 </div>
 
 <section class="briefings-intro">
@@ -763,12 +772,12 @@ footer {
   </div>
 </section>
 
-<!-- BRIEFINGS LIST -->
+    <!-- BRIEFINGS LIST -->
 <section class="briefings-section">
   <div class="section-eyebrow">Recent Briefings</div>
   <div class="briefings-list">
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-fincen-boi-exemptions.html">
       <div class="briefing-date">June 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">Regulatory Update · FinCEN</div>
@@ -780,7 +789,7 @@ footer {
       </div>
     </a>
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-sos-portal-search-interfaces.html">
       <div class="briefing-date">May 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">OSINT Tools · Practice Update</div>
@@ -790,7 +799,7 @@ footer {
       <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
     </a>
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-florida-llc-annual-report-rules.html">
       <div class="briefing-date">May 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">Corporate Law · Florida</div>
@@ -802,7 +811,7 @@ footer {
       </div>
     </a>
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-11th-circuit-fraudulent-transfer-clawbacks.html">
       <div class="briefing-date">April 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">Litigation Practice · Asset Recovery</div>
@@ -814,7 +823,7 @@ footer {
       </div>
     </a>
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-pacer-fee-structure-update.html">
       <div class="briefing-date">April 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">OSINT Practice · Database Update</div>
@@ -824,7 +833,7 @@ footer {
       <div style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:rgba(13,31,60,0.5);border:1px solid rgba(13,31,60,0.15);padding:4px 10px;white-space:nowrap;">Open</div>
     </a>
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-cta-enforcement-ramp.html">
       <div class="briefing-date">March 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">Compliance · Corporate Transparency</div>
@@ -836,7 +845,7 @@ footer {
       </div>
     </a>
 
-    <a class="briefing-row" href="#">
+    <a class="briefing-row" href="briefings/briefing-geospatial-verification-resources.html">
       <div class="briefing-date">February 2026</div>
       <div class="briefing-content">
         <div class="briefing-category">OSINT Practice · Tools</div>
@@ -923,7 +932,7 @@ footer {
 <script>
 (function(){
   var page = window.location.pathname.split('/').pop() || 'index.html';
-  var resourcePages = ['insights.html','briefings.html'];
+  var resourcePages = ["insights.html", "briefings.html", "briefings/briefing-fincen-boi-exemptions.html", "briefings/briefing-sos-portal-search-interfaces.html", "briefings/briefing-florida-llc-annual-report-rules.html", "briefings/briefing-11th-circuit-fraudulent-transfer-clawbacks.html", "briefings/briefing-pacer-fee-structure-update.html", "briefings/briefing-cta-enforcement-ramp.html", "briefings/briefing-geospatial-verification-resources.html"];
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     var dp = a.getAttribute('data-page');
     if(dp === page || (dp === 'resources' && resourcePages.includes(page))){

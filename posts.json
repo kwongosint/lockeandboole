@@ -1,0 +1,236 @@
+[
+  {
+    "filename": "post-ucc-filing-system.html",
+    "eyebrow": "Methodology · OSINT",
+    "title": "Why the UCC Filing System Is the Most Underused Tool in Asset Recovery",
+    "subtitle": "UCC-1 financing statements are public records in every state. They reveal secured creditor relationships that most investigators overlook entirely.",
+    "date": "June 2026",
+    "read_time": "8-minute read",
+    "excerpt": "UCC-1 financing statements are a matter of public record in every state — and they reveal secured creditor relationships that many investigators overlook. Here is how we use them to map financial interdependencies that don’t appear in any corporate registry.",
+    "sections": [
+      {
+        "heading": "What the filing actually tells you",
+        "body": "Every UCC-1 financing statement creates a public record of a secured transaction. It identifies the debtor, the secured party, and often the collateral. In many cases, the filing also reveals previously hidden connections between otherwise unrelated entities."
+      },
+      {
+        "heading": "Why most investigations miss it",
+        "body": "Investigators tend to rely on entity registries, annual reports, and beneficial ownership disclosures. Those sources are important, but they are generally descriptive. UCC filings are functional: they show which parties have legal rights to value inside the business."
+      },
+      {
+        "heading": "How we use UCC records",
+        "body": "Our process begins with a standard entity search, then we cross-reference every corporate name against UCC records in the relevant jurisdictions. We look for matching secured party names across multiple filings, repeat debtor names that appear in different states, and collateral descriptions broad enough to suggest an economic pledge rather than a single asset."
+      },
+      {
+        "heading": "Takeaway for asset recovery",
+        "body": "A UCC filing tells you who stands in line ahead of unsecured creditors. In a recovery or litigation scenario, that information is essential. It improves assessment of collectability, informs negotiated settlements, and reveals whether a target entity is backed by a deeper web of secured financing."
+      }
+    ]
+  },
+  {
+    "filename": "post-shell-company-anatomy.html",
+    "eyebrow": "Corporate Structure",
+    "title": "The Anatomy of a Shell Company: What the Registry Tells You and What It Hides",
+    "subtitle": "Most shell companies are legal. The issue is whether the public record shows economic substance or only a paper structure.",
+    "date": "May 2026",
+    "read_time": "7-minute read",
+    "excerpt": "Most shell companies are perfectly legal. The problem isn’t the shell — it’s what sits inside it. A framework for reading between the lines of a Secretary of State filing.",
+    "sections": [
+      {
+        "heading": "Signals that point to substance",
+        "body": "When a company has a meaningful operating purpose, its filings tend to be linked to real-world activity. Look for consistent registered agent and address across related entities, active annual reports and officers that match the operating entity, and real property, licensing, or financing disclosures tied to the same business line."
+      },
+      {
+        "heading": "Signs of a paper shell",
+        "body": "A paper shell exists to hold assets or relationships without a visible business presence. These are the patterns we review: minimal filing history with no meaningful officers, shell-sided collateral pledges in UCC filings, and officer names that appear only on filing documents."
+      },
+      {
+        "heading": "Why it matters",
+        "body": "If the entity is merely a shell, the investigator’s focus must shift from the entity itself to the interests behind it. That means tracing management, secured creditors, and the operating company that may be driving the structure."
+      }
+    ]
+  },
+  {
+    "filename": "post-nominee-directors.html",
+    "eyebrow": "OSINT Practice",
+    "title": "Nominee Directors: How to Identify Them and What They Mean for Your Investigation",
+    "subtitle": "A nominee director appears in the public record as a corporate officer. In practice, they are often a legal fiction.",
+    "date": "May 2026",
+    "read_time": "6-minute read",
+    "excerpt": "A nominee director appears in the public record as the face of a company. In practice, they are frequently a legal fiction. Here’s how we identify them and trace backward to the real decision-maker.",
+    "sections": [
+      {
+        "heading": "Why they matter",
+        "body": "Nominee directors are common in privacy-conscious jurisdictions and sophisticated corporate structures. They are not always illegal, but they can signal a company built for concealment rather than operation."
+      },
+      {
+        "heading": "Common clues in the public record",
+        "body": "Officer names that appear on multiple unrelated entities in the same jurisdiction, registered agents and mailing addresses that do not match the business location, and board members with no apparent industry experience or online presence are strong clues."
+      },
+      {
+        "heading": "What to cross-check",
+        "body": "In addition to the corporate registry, the following sources often reveal hidden connections: UCC filings showing the same secured party across entities, property records tied to the same trust or holding company, and filings in other jurisdictions with the same nominee names or addresses."
+      }
+    ]
+  },
+  {
+    "filename": "post-building-family-tree.html",
+    "eyebrow": "OSINT Practice",
+    "title": "Building a Corporate Family Tree in Under 30 Minutes: Our Intake Process, Explained",
+    "subtitle": "The first 30 minutes of any asset investigation set the trajectory. Here’s the exact sequence we follow when a new matter arrives.",
+    "date": "April 2026",
+    "read_time": "7-minute read",
+    "excerpt": "The first 30 minutes of any asset investigation set the trajectory. Here’s the exact sequence we follow when a new matter arrives, and why the order of operations matters more than most analysts realize.",
+    "sections": [
+      {
+        "heading": "What we gather first",
+        "body": "Our intake begins with entity identity, jurisdiction, and current filings. We prioritize public registry records, secured party filings, and beneficial ownership declarations to create a baseline family tree quickly."
+      },
+      {
+        "heading": "Why order matters",
+        "body": "Starting with name and filing normalization reduces duplicate work. We map subsidiaries and affiliated entities before chasing individual addresses, which keeps the investigation focused on the actual ownership network."
+      },
+      {
+        "heading": "The 30-minute deliverable",
+        "body": "Within the first half-hour we can typically produce a preliminary ownership diagram, a short list of likely related entities, and the key risk indicators that merit immediate follow-up."
+      }
+    ]
+  },
+  {
+    "filename": "post-fincen-ownership-registry.html",
+    "eyebrow": "Compliance",
+    "title": "What the FinCEN Beneficial Ownership Registry Actually Covers — and What It Doesn’t",
+    "subtitle": "The Corporate Transparency Act created a new beneficial ownership database. Compliance teams are treating it as a solution.",
+    "date": "April 2026",
+    "read_time": "8-minute read",
+    "excerpt": "The Corporate Transparency Act created a new beneficial ownership database. Compliance teams are treating it as a solution. It isn’t. Here’s an honest assessment of what the registry catches and what it misses entirely.",
+    "sections": [
+      {
+        "heading": "What it includes",
+        "body": "The registry captures individuals with significant ownership or control over reporting companies. That is valuable, but it does not include interest holders who are farther removed or entities outside the reporting thresholds."
+      },
+      {
+        "heading": "What it misses",
+        "body": "It does not substitute for public record research. The registry may omit beneficial owners held through multiple layers, nominee interests, or complex financing structures that still influence control."
+      },
+      {
+        "heading": "How to use it",
+        "body": "Treat the registry as a starting point, not a conclusion. Cross-reference it against corporate filings, UCC records, and asset ownership data to validate whether declared ownership matches actual influence."
+      }
+    ]
+  },
+  {
+    "filename": "post-real-property-records.html",
+    "eyebrow": "Methodology",
+    "title": "How Real Property Records Reveal What Corporate Filings Conceal",
+    "subtitle": "A company can change its name, restructure its ownership, and replace its directors. The real estate it holds is harder to hide.",
+    "date": "March 2026",
+    "read_time": "7-minute read",
+    "excerpt": "A company can change its name, restructure its ownership, and replace its directors. The real estate it holds is harder to hide. County deed records are among the most reliable data sources in any complex investigation.",
+    "sections": [
+      {
+        "heading": "Why property records persist",
+        "body": "Real estate interests are recorded with the county and linked to legal descriptions and title history. Those records are more durable than corporate filings, which can be amended or kept current without revealing who controls the assets."
+      },
+      {
+        "heading": "What we look for",
+        "body": "We search for the same entity names, nominee grantees, and attorney escrow services across deeds, mortgages, and liens. Shared real property patterns often expose the operating beneficiary behind a holding company structure."
+      },
+      {
+        "heading": "Using property evidence",
+        "body": "Once a property-linked entity is identified, we trace the funding, creditors, and related companies that connect back to the core ownership network."
+      }
+    ]
+  },
+  {
+    "filename": "post-six-layer-problem.html",
+    "eyebrow": "Corporate Structure",
+    "title": "The Six-Layer Problem: When Ownership Chains Are Designed to Exhaust the Investigator",
+    "subtitle": "Sophisticated beneficial ownership obfuscation doesn’t rely on any single technique. It relies on depth.",
+    "date": "March 2026",
+    "read_time": "8-minute read",
+    "excerpt": "Sophisticated beneficial ownership obfuscation doesn’t rely on any single technique. It relies on depth — enough layers to make tracing feel more expensive than the alternative. Here’s how we approach it systematically.",
+    "sections": [
+      {
+        "heading": "What depth hides",
+        "body": "Layered ownership makes it harder to see the ultimate beneficiary. Each additional entity adds paperwork, jurisdictional friction, and a new set of nominal officers or agents."
+      },
+      {
+        "heading": "How we cut through layers",
+        "body": "We use jurisdictional triangulation and cross-filing patterns to identify repeated names and common service providers. That lets us collapse the chain into the likely real ownership path."
+      },
+      {
+        "heading": "The practice risk",
+        "body": "Depth is effective only if the investigator accepts the effort. We treat each additional layer as a clue rather than a distraction, which turns the six-layer problem into a solvable structure."
+      }
+    ]
+  },
+  {
+    "filename": "post-high-net-worth-divorce.html",
+    "eyebrow": "Asset Tracing",
+    "title": "High-Net-Worth Divorce and Hidden Assets: What Family Law Attorneys Should Know",
+    "subtitle": "The most effective asset concealment in high-net-worth divorce doesn’t require offshore accounts. It requires a basic understanding of LLC formation.",
+    "date": "February 2026",
+    "read_time": "7-minute read",
+    "excerpt": "The most effective asset concealment in high-net-worth divorce doesn’t require offshore accounts. It requires a basic understanding of LLC formation — and a spouse who moved first. What investigators can do about it.",
+    "sections": [
+      {
+        "heading": "How concealment works",
+        "body": "A well-structured divorce concealment plan often uses single-member LLCs, trust-owned entities, and nominee managers. The asset itself may remain in plain sight while ownership appears elsewhere."
+      },
+      {
+        "heading": "What to look for",
+        "body": "We look for recent entity formations, transfers of ownership interest, and new financing filings around the date of separation. Those signatures often point to the hidden asset vehicle."
+      },
+      {
+        "heading": "What attorneys should know",
+        "body": "Family law teams should treat suspicious structures as evidence, not merely privacy. The public record can provide a roadmap for follow-up discovery and asset preservation."
+      }
+    ]
+  },
+  {
+    "filename": "post-boolean-search-reference.html",
+    "eyebrow": "OSINT Practice",
+    "title": "Boolean Search for Corporate Investigators: A Practical Reference",
+    "subtitle": "Advanced search operators are not a trick — they are the difference between noise and signal in open-source corporate investigation.",
+    "date": "January 2026",
+    "read_time": "6-minute read",
+    "excerpt": "Advanced search operators are not a trick — they are the difference between a search that surfaces noise and one that surfaces signal. A reference guide to the operators we use most in daily investigation practice.",
+    "sections": [
+      {
+        "heading": "Why boolean matters",
+        "body": "A well-crafted search string reduces false positives and surfaces the exact corporate names, service providers, or filings you need. It turns broad queries into targeted evidence-finding exercises."
+      },
+      {
+        "heading": "Core operators",
+        "body": "We use AND to intersect terms, OR to broaden a search, quotation marks for exact phrases, and minus signs to remove irrelevant results. Those operators are the foundation of every corporate intelligence search."
+      },
+      {
+        "heading": "Investigator examples",
+        "body": "A typical search might combine entity names, director names, and filing terms to identify related entities. Small tweaks to the query often produce dramatically better results."
+      }
+    ]
+  },
+  {
+    "filename": "post-continuous-monitoring-vs-diligence.html",
+    "eyebrow": "Compliance",
+    "title": "Continuous Monitoring vs. Point-in-Time Diligence: Why One-Time Reports Fail",
+    "subtitle": "A due diligence report is accurate on the day it is issued. Entities restructure. Partners dissolve subsidiaries.",
+    "date": "January 2026",
+    "read_time": "6-minute read",
+    "excerpt": "A due diligence report is accurate on the day it’s issued. Entities restructure. Partners dissolve subsidiaries. Liens appear. The case for replacing snapshot diligence with continuous structural surveillance.",
+    "sections": [
+      {
+        "heading": "The limits of snapshot diligence",
+        "body": "A one-time report captures the record at a moment in time. It misses changes that occur the next day — new liens, ownership changes, or entity dissolutions that can materially alter risk."
+      },
+      {
+        "heading": "Why continuous monitoring matters",
+        "body": "Structural surveillance tracks key filings over time so you are alerted when the ownership picture changes. That is especially important for ongoing relationships and retainers."
+      },
+      {
+        "heading": "What we monitor",
+        "body": "We watch UCC filings, secretary of state updates, lien activity, and beneficial ownership disclosures in the jurisdictions that matter most for the client. The goal is early detection, not a static report."
+      }
+    ]
+  }
+]

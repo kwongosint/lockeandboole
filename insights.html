@@ -3,7 +3,7 @@
 <head>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -26,6 +26,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+
 /* ========================
    NAV
 ======================== */
@@ -45,7 +51,7 @@ nav {
 }
 
 .nav-logo-mark {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 26px;
   color: var(--cream);
   line-height: 1;
@@ -76,7 +82,7 @@ nav {
 
 .nav-links a {
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.7);
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -187,6 +193,10 @@ nav {
   padding: 140px 48px 80px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .page-header-grid {
@@ -205,7 +215,7 @@ nav {
   text-transform: uppercase;
   color: rgba(240,237,232,0.35);
   margin-bottom: 20px;
-  display: flex; align-items: center; gap: 12px;
+  display: flex; justify-content: center; align-items: center; gap: 12px;
 }
 
 .page-header-eyebrow::before {
@@ -216,9 +226,9 @@ nav {
 }
 
 .page-header h1 {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(40px, 5vw, 68px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -266,9 +276,9 @@ section { padding: 88px 48px; }
 .section-eyebrow.light::before { background: rgba(240,237,232,0.25); }
 
 .section-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(34px, 4vw, 52px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--navy);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -302,7 +312,7 @@ section { padding: 88px 48px; }
   color: rgba(240,237,232,0.7);
   padding: 13px 30px;
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
@@ -387,7 +397,7 @@ footer {
 }
 
 .footer-brand-name {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 22px;
   color: var(--cream);
   margin-bottom: 12px;
@@ -417,7 +427,7 @@ footer {
 
 .footer-contact-value {
   font-size: 12px;
-  font-weight: 400;
+  font-weight: 700;
   color: rgba(240,237,232,0.55);
 }
 
@@ -466,7 +476,7 @@ footer {
 
 .footer-legal-links a {
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 700;
   letter-spacing: 0.06em;
   color: rgba(240,237,232,0.2);
   text-decoration: none;
@@ -576,9 +586,9 @@ footer {
 }
 
 .featured-title {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Times New Roman', serif;
   font-size: clamp(28px, 3.5vw, 46px);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--cream);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -593,10 +603,80 @@ footer {
 }
 
 .featured-meta {
-  font-size: 11px; font-weight: 400;
+  font-size: 11px; font-weight: 700;
   letter-spacing: 0.08em;
   color: rgba(240,237,232,0.3);
   text-transform: uppercase;
+}
+
+.featured-side {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.featured-media {
+  width: 100%;
+  max-width: 420px;
+  min-height: 320px;
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  border: 1px solid rgba(240,237,232,0.14);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.featured-media-card {
+  position: relative;
+  width: 100%;
+  min-height: 220px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #4A6FA5 0%, #20325D 100%);
+  overflow: hidden;
+}
+
+.media-node {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 72px;
+  height: 72px;
+  background: rgba(240,237,232,0.2);
+  border: 1px solid rgba(240,237,232,0.18);
+  border-radius: 22px;
+}
+
+.media-chart {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  width: calc(100% - 48px);
+  height: 92px;
+}
+
+.media-chart span {
+  display: block;
+  width: 18px;
+  background: rgba(240,237,232,0.55);
+  border-radius: 999px 999px 0 0;
+}
+
+.media-chart span:nth-child(1) { height: 40px; }
+.media-chart span:nth-child(2) { height: 64px; }
+.media-chart span:nth-child(3) { height: 52px; }
+
+.featured-media-caption {
+  font-size: 13px;
+  color: rgba(240,237,232,0.75);
+  line-height: 1.7;
 }
 
 /* READ MORE LINK */
@@ -611,40 +691,6 @@ a.read-more {
 }
 
 a.read-more:hover { border-color: var(--cream); }
-
-/* FILTERS */
-.filters-bar {
-  background: var(--cream-dark);
-  padding: 20px 48px;
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  border-bottom: 1px solid var(--accent-line);
-}
-
-.filter-label {
-  font-size: 10px; font-weight: 600;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--text-muted);
-  margin-right: 8px;
-}
-
-.filter-btn {
-  font-size: 11px; font-weight: 500;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--navy);
-  background: none;
-  border: 1px solid var(--cream-dark);
-  padding: 6px 16px;
-  cursor: pointer;
-  transition: all 0.15s;
-}
-
-.filter-btn:hover, .filter-btn.active {
-  background: var(--navy);
-  color: var(--cream);
-  border-color: var(--navy);
-}
 
 /* POSTS GRID */
 .posts-section {
@@ -680,8 +726,8 @@ a.read-more:hover { border-color: var(--cream); }
 }
 
 .post-card-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 22px; font-weight: 400;
+  font-family: 'Times New Roman', serif;
+  font-size: 22px; font-weight: 700;
   color: var(--navy);
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -725,8 +771,8 @@ a.read-more:hover { border-color: var(--cream); }
 }
 
 .newsletter-text h3 {
-  font-family: 'EB Garamond', serif;
-  font-size: 30px; font-weight: 400;
+  font-family: 'Times New Roman', serif;
+  font-size: 30px; font-weight: 700;
   color: var(--cream);
   margin-bottom: 10px;
 }
@@ -803,13 +849,6 @@ a.read-more:hover { border-color: var(--cream); }
   </ul>
 </nav>
 
-<div class="page-header">
-  <div class="page-header-grid"></div>
-  <div class="page-header-eyebrow">Resources / Insights</div>
-  <h1>Intelligence on<br>the <em>practice.</em></h1>
-  <p class="page-header-sub">Analysis, commentary, and methodology notes from the Locke &amp; Boole analyst team on corporate structure, asset tracing, and OSINT practice.</p>
-</div>
-
 <!-- FEATURED POST -->
 <div class="featured-post">
   <div>
@@ -817,69 +856,97 @@ a.read-more:hover { border-color: var(--cream); }
     <div class="featured-category">Methodology · OSINT</div>
     <h2 class="featured-title">Why the UCC Filing System Is the Most Underused Tool in Asset Recovery</h2>
     <p class="featured-excerpt">UCC-1 financing statements are a matter of public record in every state — and they reveal secured creditor relationships that most investigators overlook entirely. Here is how we use them to map financial interdependencies that don't appear in any corporate registry.</p>
-    <a href="#" class="read-more">Read This Insight</a>
+    <a href="posts/post-ucc-filing-system.html" class="read-more">Read This Insight</a>
   </div>
-  <div>
+  <div class="featured-side">
+    <div class="featured-media">
+      <div class="featured-media-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 320" role="img" aria-label="Network intelligence visualization">
+          <defs>
+            <linearGradient id="fg-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#2E4E7E" />
+              <stop offset="100%" stop-color="#14223D" />
+            </linearGradient>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <rect x="0" y="0" width="400" height="320" rx="24" fill="url(#fg-gradient)" />
+          <circle cx="88" cy="96" r="16" fill="#F0EDE8" opacity="0.92" filter="url(#glow)" />
+          <circle cx="214" cy="58" r="10" fill="#F0EDE8" opacity="0.9" />
+          <circle cx="310" cy="126" r="12" fill="#F0EDE8" opacity="0.9" />
+          <circle cx="150" cy="212" r="14" fill="#F0EDE8" opacity="0.88" />
+          <circle cx="260" cy="238" r="9" fill="#F0EDE8" opacity="0.8" />
+          <line x1="90" y1="96" x2="214" y2="58" stroke="#F0EDE8" stroke-width="3" opacity="0.55" stroke-linecap="round" />
+          <line x1="88" y1="96" x2="150" y2="212" stroke="#F0EDE8" stroke-width="3" opacity="0.55" stroke-linecap="round" />
+          <line x1="214" y1="58" x2="310" y2="126" stroke="#F0EDE8" stroke-width="3" opacity="0.5" stroke-linecap="round" />
+          <line x1="150" y1="212" x2="260" y2="238" stroke="#F0EDE8" stroke-width="3" opacity="0.5" stroke-linecap="round" />
+          <path d="M320 76 C285 22, 220 40, 196 84" fill="none" stroke="#F0EDE8" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+          <path d="M70 220 C110 188, 170 204, 196 240" fill="none" stroke="#F0EDE8" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+          <path d="M282 136 C310 140, 334 196, 296 214" fill="none" stroke="#F0EDE8" stroke-width="2" opacity="0.35" stroke-linecap="round" />
+          <rect x="42" y="208" width="78" height="72" rx="14" fill="rgba(240,237,232,0.12)" />
+          <rect x="54" y="224" width="44" height="8" rx="4" fill="#F0EDE8" />
+          <rect x="54" y="242" width="26" height="6" rx="3" fill="#F0EDE8" opacity="0.8" />
+          <rect x="54" y="254" width="30" height="6" rx="3" fill="#F0EDE8" opacity="0.6" />
+          <rect x="226" y="92" width="54" height="48" rx="12" fill="rgba(240,237,232,0.12)" />
+          <line x1="248" y1="116" x2="292" y2="116" stroke="#F0EDE8" stroke-width="2" opacity="0.6" />
+          <circle cx="282" cy="180" r="6" fill="#F0EDE8" opacity="0.9" />
+        </svg>
+      </div>
+    </div>
     <div class="featured-meta">Published June 2026 &nbsp;·&nbsp; 8-minute read &nbsp;·&nbsp; Locke &amp; Boole Analyst Team</div>
   </div>
 </div>
 
-<!-- FILTERS -->
-<div class="filters-bar">
-  <span class="filter-label">Filter:</span>
-  <button class="filter-btn active">All</button>
-  <button class="filter-btn">Methodology</button>
-  <button class="filter-btn">Corporate Structure</button>
-  <button class="filter-btn">Asset Tracing</button>
-  <button class="filter-btn">OSINT Practice</button>
-  <button class="filter-btn">Compliance</button>
-</div>
-
-<!-- POSTS -->
+        <!-- POSTS -->
 <section class="posts-section">
   <div class="posts-grid">
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-shell-company-anatomy.html">
       <div class="post-card-category">Corporate Structure</div>
       <div class="post-card-title">The Anatomy of a Shell Company: What the Registry Tells You and What It Hides</div>
-      <div class="post-card-excerpt">Most shell companies are perfectly legal. The problem isn't the shell — it's what sits inside it. A framework for reading between the lines of a Secretary of State filing.</div>
+      <div class="post-card-excerpt">Most shell companies are perfectly legal. The problem isn’t the shell — it’s what sits inside it. A framework for reading between the lines of a Secretary of State filing.</div>
       <div class="post-card-footer">
         <span class="post-card-date">May 2026</span>
         <span class="post-card-arrow">→</span>
       </div>
     </a>
 
-    <a class="post-card" href="#">
-      <div class="post-card-category">Asset Tracing</div>
+    <a class="post-card" href="posts/post-nominee-directors.html">
+      <div class="post-card-category">OSINT Practice</div>
       <div class="post-card-title">Nominee Directors: How to Identify Them and What They Mean for Your Investigation</div>
-      <div class="post-card-excerpt">A nominee director appears in the public record as the face of a company. In practice, they are frequently a legal fiction. Here's how we identify them and trace backward to the real decision-maker.</div>
+      <div class="post-card-excerpt">A nominee director appears in the public record as the face of a company. In practice, they are frequently a legal fiction. Here’s how we identify them and trace backward to the real decision-maker.</div>
       <div class="post-card-footer">
         <span class="post-card-date">May 2026</span>
         <span class="post-card-arrow">→</span>
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-building-family-tree.html">
       <div class="post-card-category">OSINT Practice</div>
       <div class="post-card-title">Building a Corporate Family Tree in Under 30 Minutes: Our Intake Process, Explained</div>
-      <div class="post-card-excerpt">The first 30 minutes of any asset investigation set the trajectory. Here's the exact sequence we follow when a new matter arrives, and why the order of operations matters more than most analysts realize.</div>
+      <div class="post-card-excerpt">The first 30 minutes of any asset investigation set the trajectory. Here’s the exact sequence we follow when a new matter arrives, and why the order of operations matters more than most analysts realize.</div>
       <div class="post-card-footer">
         <span class="post-card-date">April 2026</span>
         <span class="post-card-arrow">→</span>
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-fincen-ownership-registry.html">
       <div class="post-card-category">Compliance</div>
-      <div class="post-card-title">What the FinCEN Beneficial Ownership Registry Actually Covers — and What It Doesn't</div>
-      <div class="post-card-excerpt">The Corporate Transparency Act created a new beneficial ownership database. Compliance teams are treating it as a solution. It isn't. Here's an honest assessment of what the registry catches and what it misses entirely.</div>
+      <div class="post-card-title">What the FinCEN Beneficial Ownership Registry Actually Covers — and What It Doesn’t</div>
+      <div class="post-card-excerpt">The Corporate Transparency Act created a new beneficial ownership database. Compliance teams are treating it as a solution. It isn’t. Here’s an honest assessment of what the registry catches and what it misses entirely.</div>
       <div class="post-card-footer">
         <span class="post-card-date">April 2026</span>
         <span class="post-card-arrow">→</span>
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-real-property-records.html">
       <div class="post-card-category">Methodology</div>
       <div class="post-card-title">How Real Property Records Reveal What Corporate Filings Conceal</div>
       <div class="post-card-excerpt">A company can change its name, restructure its ownership, and replace its directors. The real estate it holds is harder to hide. County deed records are among the most reliable data sources in any complex investigation.</div>
@@ -889,27 +956,27 @@ a.read-more:hover { border-color: var(--cream); }
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-six-layer-problem.html">
       <div class="post-card-category">Corporate Structure</div>
       <div class="post-card-title">The Six-Layer Problem: When Ownership Chains Are Designed to Exhaust the Investigator</div>
-      <div class="post-card-excerpt">Sophisticated beneficial ownership obfuscation doesn't rely on any single technique. It relies on depth — enough layers to make tracing feel more expensive than the alternative. Here's how we approach it systematically.</div>
+      <div class="post-card-excerpt">Sophisticated beneficial ownership obfuscation doesn’t rely on any single technique. It relies on depth — enough layers to make tracing feel more expensive than the alternative. Here’s how we approach it systematically.</div>
       <div class="post-card-footer">
         <span class="post-card-date">March 2026</span>
         <span class="post-card-arrow">→</span>
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-high-net-worth-divorce.html">
       <div class="post-card-category">Asset Tracing</div>
       <div class="post-card-title">High-Net-Worth Divorce and Hidden Assets: What Family Law Attorneys Should Know</div>
-      <div class="post-card-excerpt">The most effective asset concealment in high-net-worth divorce doesn't require offshore accounts. It requires a basic understanding of LLC formation — and a spouse who moved first. What investigators can do about it.</div>
+      <div class="post-card-excerpt">The most effective asset concealment in high-net-worth divorce doesn’t require offshore accounts. It requires a basic understanding of LLC formation — and a spouse who moved first. What investigators can do about it.</div>
       <div class="post-card-footer">
         <span class="post-card-date">February 2026</span>
         <span class="post-card-arrow">→</span>
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-boolean-search-reference.html">
       <div class="post-card-category">OSINT Practice</div>
       <div class="post-card-title">Boolean Search for Corporate Investigators: A Practical Reference</div>
       <div class="post-card-excerpt">Advanced search operators are not a trick — they are the difference between a search that surfaces noise and one that surfaces signal. A reference guide to the operators we use most in daily investigation practice.</div>
@@ -919,10 +986,10 @@ a.read-more:hover { border-color: var(--cream); }
       </div>
     </a>
 
-    <a class="post-card" href="#">
+    <a class="post-card" href="posts/post-continuous-monitoring-vs-diligence.html">
       <div class="post-card-category">Compliance</div>
       <div class="post-card-title">Continuous Monitoring vs. Point-in-Time Diligence: Why One-Time Reports Fail</div>
-      <div class="post-card-excerpt">A due diligence report is accurate on the day it's issued. Entities restructure. Partners dissolve subsidiaries. Liens appear. The case for replacing snapshot diligence with continuous structural surveillance.</div>
+      <div class="post-card-excerpt">A due diligence report is accurate on the day it’s issued. Entities restructure. Partners dissolve subsidiaries. Liens appear. The case for replacing snapshot diligence with continuous structural surveillance.</div>
       <div class="post-card-footer">
         <span class="post-card-date">January 2026</span>
         <span class="post-card-arrow">→</span>
@@ -997,19 +1064,12 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 <script>
 (function(){
   var page = window.location.pathname.split('/').pop() || 'index.html';
-  var resourcePages = ['insights.html','briefings.html'];
+  var resourcePages = ["insights.html", "briefings.html", "posts/post-ucc-filing-system.html", "posts/post-shell-company-anatomy.html", "posts/post-nominee-directors.html", "posts/post-building-family-tree.html", "posts/post-fincen-ownership-registry.html", "posts/post-real-property-records.html", "posts/post-six-layer-problem.html", "posts/post-high-net-worth-divorce.html", "posts/post-boolean-search-reference.html", "posts/post-continuous-monitoring-vs-diligence.html"];
   document.querySelectorAll('.nav-links a[data-page]').forEach(function(a){
     var dp = a.getAttribute('data-page');
     if(dp === page || (dp === 'resources' && resourcePages.includes(page))){
       a.classList.add('active');
     }
-  });
-  // filter buttons
-  document.querySelectorAll('.filter-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){
-      document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
-      btn.classList.add('active');
-    });
   });
 })();
 </script>
